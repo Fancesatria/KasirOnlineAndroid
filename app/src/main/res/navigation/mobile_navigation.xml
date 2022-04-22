@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.authapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_kasir"
+        android:name="com.example.authapp.ui.penjualan.PenjualanFragment"
+        android:label="@string/menu_kasir"
+        tools:layout="@layout/fragment_kasir" />
+
+    <fragment
+        android:id="@+id/nav_penjualan"
+        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:label="@string/menu_penjualan"
+        tools:layout="@layout/fragment_penjualan" />
+
+    <fragment
+        android:id="@+id/nav_laporan"
+        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:label="@string/menu_laporan"
+        tools:layout="@layout/fragment_laporan" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
+</navigation>
