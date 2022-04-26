@@ -2,11 +2,8 @@ package com.example.authapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.authapp.Model.ModelRegister;
-import com.example.authapp.Model.ModelToko;
 import com.example.authapp.Response.RegisterResponse;
-
-import java.util.regex.Pattern;
+import com.example.authapp.SharedPref.SpHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +41,7 @@ public class UserRegister extends AppCompatActivity {
         userRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Validasi();
                 ModelRegister modelRegister = new ModelRegister();
                 modelRegister.setEmail(editTextEmail.getText().toString());
                 modelRegister.setPassword(editTextPassword.getText().toString());
@@ -68,12 +64,15 @@ public class UserRegister extends AppCompatActivity {
 
     //function register ini ngisi func registerusers yg diambil dr interface file useRegister, jadi diisi dulu baru dipanggil waktu onclick nnti
     public void registerUser(ModelRegister modelRegister){
+        SpHelper sp = new SpHelper(this);
         Call<RegisterResponse> registerResponseCall = Api.getService().registerUsers(modelRegister);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if(response.isSuccessful()) {
-                    String message = "Registrasi akun berhasil";
+
+                    String message = "Registrasi berhasil";
+                    sp.setToken(response.body().getToken());
                     Toast.makeText(com.example.authapp.UserRegister.this, message, Toast.LENGTH_LONG).show();
 
                     //startActivity(new Intent(UserRegister.this, InformasiBisnis.class));
@@ -95,32 +94,28 @@ public class UserRegister extends AppCompatActivity {
         });
     }
 
-//    public void registerUser(ModelToko modelToko){
-//        Call<RegisterResponse> registerResponseCall = Api.getService().registerUsers(modelToko);
-//        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
-//            @Override
-//            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-//                if(response.isSuccessful()) {
-//                    String message = "Registrasi akun berhasil";
-//                    Toast.makeText(com.example.authapp.UserRegister.this, message, Toast.LENGTH_LONG).show();
-//
-//                    //startActivity(new Intent(UserRegister.this, InformasiBisnis.class));
-//                    startActivity(new Intent(UserRegister.this, TelpVerification.class));
-//                    finish();
-//
-//                } else {
-//                    String message = "Terjadi error, mohon coba lagi";
-//                    Toast.makeText(com.example.authapp.UserRegister.this, message, Toast.LENGTH_LONG).show();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RegisterResponse> call, Throwable t) {
-//                String message = t.getLocalizedMessage();
-//                Toast.makeText(com.example.authapp.UserRegister.this, message, Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
+    public void Validasi() {
+        if(editTextEmail.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty() || editTextConfirm.getText().toString().isEmpty()) {
+            editTextEmail.requestFocus();
+            editTextEmail.setError("Harap diisi");
+
+            editTextPassword.requestFocus();
+            editTextPassword.setError("Harap diisi");
+
+            editTextConfirm.requestFocus();
+            editTextConfirm.setError("Harap diisi");
+
+        } else if (editTextPassword.getText().toString() != editTextConfirm.getText().toString()){
+            editTextPassword.requestFocus();
+            editTextPassword.setError("Password tidak sama");
+
+            editTextConfirm.requestFocus();
+            editTextConfirm.setError("Password tidak sama");
+        } else if (!editTextEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+            editTextEmail.requestFocus();
+            editTextEmail.setError("Masukkan email yang valid");
+        }
+    }
+
 
 }

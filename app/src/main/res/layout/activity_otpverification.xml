@@ -51,7 +51,7 @@
         android:id="@+id/submitKodeOTP"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#2F4F4F"
         android:text="Submit"
         android:textColor="#FFFFFF"
@@ -74,5 +74,35 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/kirimUlang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="145dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="150dp"
+        android:text="Kirim ulang OTP"
+        android:textColor="@color/design_default_color_error"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="4dp"
+        android:text="Tak menerima kode ?"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/kirimUlang"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitKodeOTP" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

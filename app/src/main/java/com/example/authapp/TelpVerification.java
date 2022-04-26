@@ -2,6 +2,7 @@ package com.example.authapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelToko;
 import com.example.authapp.Response.OtpResponse;
 import com.example.authapp.Response.RegisterResponse;
+import com.example.authapp.SharedPref.SpHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,36 +26,43 @@ import retrofit2.Response;
 public class TelpVerification extends AppCompatActivity {
     private EditText NoTelp;
     private TextView btnOtp;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_telp_verification);
+        SpHelper sp = new SpHelper(this); //disimpan di minta otp
 
         NoTelp = (EditText) findViewById(R.id.noTelp);
         btnOtp = (Button) findViewById(R.id.sendKodeOTP);
         btnOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ModelToko modelToko = new ModelToko();
-                //modelToko.setNomer_toko(NoTelp.getText().toString());
-                //MintaOtp(modelToko);
+                ModelToko modelToko = new ModelToko();
+                modelToko.setNomer_toko(NoTelp.getText().toString());
+                sp.setValue("NoTelp", NoTelp.getText().toString()); //ini menyimpan notelpon ke dlm shared pref
+                MintaOtp(modelToko);
             }
         });
     }
 
 
     public void MintaOtp(ModelToko modelToko) {
-        Call<OtpResponse> OtpResponseCall = Api.getService().mintaOtp(modelToko);
+        //kalau di file java pakainya this atau nama file.this, bukan pakaia context
+        Call<OtpResponse> OtpResponseCall = Api.getService(this).mintaOtp(modelToko); //ini pake getsrvice yg ada headernya
+//        SpHelper sp = new SpHelper(this);
         OtpResponseCall.enqueue(new Callback<OtpResponse>() {
             @Override
             public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
                 if(response.isSuccessful()){
                     String message = "Kode OTP terkirim";
+                    //sp.setToken(response.body().getToken());
                     Toast.makeText(com.example.authapp.TelpVerification.this, message, Toast.LENGTH_LONG).show();
 
                     startActivity(new Intent(TelpVerification.this, OTPVerification.class));
                     finish();
+
                 } else {
                     String message = "Nomor telepon tidak valid";
                     Toast.makeText(com.example.authapp.TelpVerification.this, message, Toast.LENGTH_LONG).show();

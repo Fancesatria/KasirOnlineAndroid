@@ -4,6 +4,7 @@ import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
+import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.Response.OtpResponse;
 import com.example.authapp.Response.RegisterResponse;
@@ -28,6 +29,6 @@ public interface UserService {
     Call<OtpResponse> mintaOtp(@Body ModelToko modelToko);
 
     //ini buat register infor,masi bisnis
-    @POST("register/profil")
-    Call<OtpResponse> masukOtp(@Body ModelToko modelToko);
+    @POST("register/profile")
+    Call<InfoBisnisResponse> masukProfil(@Body ModelToko modelToko);
 }

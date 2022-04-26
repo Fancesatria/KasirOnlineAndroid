@@ -15,7 +15,7 @@ public class ModelToko {
     }
 
 
-    public ModelToko(String idtoko, String nama_toko, String alamat_toko, String nomer_toko, String nama_pemilik, String email_toko, String password_toko, String jenis_toko) {
+    public ModelToko() {
         this.idtoko = idtoko;
         this.nama_toko = nama_toko;
         this.alamat_toko = alamat_toko;
