@@ -10,7 +10,7 @@ public class PengaturanViewModel extends ViewModel {
 
     public PengaturanViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is pengaturan fragment");
+        ;
     }
 
     public LiveData<String> getText() {

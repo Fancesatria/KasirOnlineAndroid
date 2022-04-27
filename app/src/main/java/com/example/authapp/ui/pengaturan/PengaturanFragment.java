@@ -14,7 +14,7 @@ import com.example.authapp.databinding.FragmentPengaturanBinding;
 
 public class PengaturanFragment extends Fragment {
 
-    private FragmentPengaturanBinding binding;
+    FragmentPengaturanBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
