@@ -11,23 +11,23 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface PelangganService {
-    //GET DATA
-    @POST("register/profile")
-    Call<InfoBisnisResponse> pelanggan(@Body ModelToko modelToko);
+//    //GET DATA
+//    @POST("register/profile")
+//    Call<InfoBisnisResponse> pelanggan(@Body ModelToko modelToko);
+//
+//    //SELECT DATA
+//    @GET("pelanggan/{id}")
+//    Call<InfoBisnisResponse> barang(@Path("id") String id);
+//
+//    //POST DATA
+//    @POST("pelanggan")
+//    Call<InfoBisnisResponse> kategori(@Body ModelToko modelToko);
+//
+//    //UPDATE DATA
+//    @POST("pelanggan/{id}")
+//    Call<InfoBisnisResponse> barang(@Path("id") String id,@Body ModelBarang barang);
 
-    //SELECT DATA
-    @GET("pelanggan/{id}")
-    Call<InfoBisnisResponse> barang(@Path("id") String id);
-
-    //POST DATA
-    @POST("pelanggan")
-    Call<InfoBisnisResponse> kategori(@Body ModelToko modelToko);
-
-    //UPDATE DATA
-    @POST("pelanggan/{id}")
-    Call<InfoBisnisResponse> barang(@Path("id") String id,@Body ModelBarang barang);
-
-    //DELETE DATA
-    @DELETE("pelanggan/{id}")
-    Call<ModelBarang> deleteData(@Path("id") String id);
+//    //DELETE DATA
+//    @DELETE("pelanggan/{id}")
+//    Call<ModelBarang> deleteData(@Path("id") String id);
 }

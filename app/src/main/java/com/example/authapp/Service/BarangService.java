@@ -12,18 +12,18 @@ import retrofit2.http.Path;
 
 public interface BarangService {
     //GET DATA
-    @GET("barang")
-    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
-
-    //SELECT DATA
-    @GET("barang/{id}")
-    Call<InfoBisnisResponse> barang(@Path("id") String id);
-
-    //POST DATA
-    @POST("barang")
-    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
-
-    //UPDATE DATA
-    @POST("barang")
-    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
+//    @GET("barang")
+//    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
+//
+//    //SELECT DATA
+//    @GET("barang/{id}")
+//    Call<InfoBisnisResponse> barang(@Path("id") String id);
+//
+//    //POST DATA
+//    @POST("barang")
+//    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
+//
+//    //UPDATE DATA
+//    @POST("barang")
+//    Call<InfoBisnisResponse> barang(@Body ModelToko modelToko);
 }

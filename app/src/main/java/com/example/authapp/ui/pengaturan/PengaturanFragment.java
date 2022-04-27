@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.authapp.databinding.FragmentPengaturanBinding;
-import com.example.authapp.databinding.FragmentPenjualanBinding;
-import com.example.authapp.ui.penjualan.PengaturanViewModel;
 
 public class PengaturanFragment extends Fragment {
 
