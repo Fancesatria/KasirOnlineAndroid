@@ -1,16 +1,16 @@
-package com.example.authapp.ui.kasir;
+package com.example.authapp.ui.pengaturan;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class KasirViewModel extends ViewModel {
+public class PengaturanViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public KasirViewModel() {
+    public PengaturanViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is fragment");
+        mText.setValue("This is pengaturan fragment");
     }
 
     public LiveData<String> getText() {

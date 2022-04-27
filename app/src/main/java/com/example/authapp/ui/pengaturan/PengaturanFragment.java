@@ -1,4 +1,4 @@
-package com.example.authapp.ui.kasir;
+package com.example.authapp.ui.pengaturan;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.authapp.databinding.FragmentKasirBinding;
+import com.example.authapp.databinding.FragmentPengaturanBinding;
 
-public class KasirFragment extends Fragment {
+public class PengaturanFragment extends Fragment {
 
-    private FragmentKasirBinding binding;
+    private FragmentPengaturanBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        KasirViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(KasirViewModel.class);
+        PengaturanViewModel pengaturanViewModel =
+                new ViewModelProvider(this).get(PengaturanViewModel.class);
 
-        binding = FragmentKasirBinding.inflate(inflater, container, false);
+        binding = FragmentPengaturanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textKasir;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textPengaturan;
+        pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

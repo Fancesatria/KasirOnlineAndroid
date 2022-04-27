@@ -17,5 +17,6 @@
     <string name="menu_penjualan">Penjualan</string>
     <string name="menu_laporan">Laporan</string>
     <string name="menu_logout">Logout</string>
+    <string name="tab_text_1">-</string>
 
 </resources>
