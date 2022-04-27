@@ -70,7 +70,7 @@ public class InformasiBisnis extends AppCompatActivity {
                     String message = "Data berhasil ditambahkan";
                     Toast.makeText(InformasiBisnis.this, message, Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(InformasiBisnis.this, MainActivity.class));
+                    startActivity(new Intent(InformasiBisnis.this, TambahkanProduk.class));
                     finish();
                 } else {
                     String message = "Data gagal ditambahkan";

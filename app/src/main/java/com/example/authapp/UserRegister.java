@@ -41,30 +41,22 @@ public class UserRegister extends AppCompatActivity {
         userRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Validasi();
-                ModelRegister modelRegister = new ModelRegister();
-                modelRegister.setEmail(editTextEmail.getText().toString());
-                modelRegister.setPassword(editTextPassword.getText().toString());
-                modelRegister.setPassword(editTextConfirm.getText().toString());
-                registerUser(modelRegister);
+                if (Validasi()) {
+                    Toast.makeText(UserRegister.this, "Email atau Password tidak valid", Toast.LENGTH_SHORT).show();
+                } else {
+                    ModelRegister modelRegister = new ModelRegister();
+                    modelRegister.setEmail(editTextEmail.getText().toString());
+                    modelRegister.setPassword(editTextPassword.getText().toString());
+                    modelRegister.setPassword(editTextConfirm.getText().toString());
+                    registerUser(modelRegister);
+                }
             }
         });
-
-//        userRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ModelToko modelToko = new ModelToko();
-//                modelToko.setEmail_toko(editTextEmail.getText().toString());
-//                modelToko.setPassword_toko(editTextPassword.getText().toString());
-//                modelToko.setPassword_toko(editTextConfirm.getText().toString());
-//                registerUser(modelToko);
-//            }
-//        });
     }
 
     //function register ini ngisi func registerusers yg diambil dr interface file useRegister, jadi diisi dulu baru dipanggil waktu onclick nnti
     public void registerUser(ModelRegister modelRegister){
-        SpHelper sp = new SpHelper(this);
+        //SpHelper sp = new SpHelper(this);
         Call<RegisterResponse> registerResponseCall = Api.getService().registerUsers(modelRegister);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
@@ -72,7 +64,7 @@ public class UserRegister extends AppCompatActivity {
                 if(response.isSuccessful()) {
 
                     String message = "Registrasi berhasil";
-                    sp.setToken(response.body().getToken());
+                    //sp.setToken(response.body().getToken());
                     Toast.makeText(com.example.authapp.UserRegister.this, message, Toast.LENGTH_LONG).show();
 
                     //startActivity(new Intent(UserRegister.this, InformasiBisnis.class));
@@ -94,7 +86,7 @@ public class UserRegister extends AppCompatActivity {
         });
     }
 
-    public void Validasi() {
+    public boolean Validasi() {
         if(editTextEmail.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty() || editTextConfirm.getText().toString().isEmpty()) {
             editTextEmail.requestFocus();
             editTextEmail.setError("Harap diisi");
@@ -104,6 +96,7 @@ public class UserRegister extends AppCompatActivity {
 
             editTextConfirm.requestFocus();
             editTextConfirm.setError("Harap diisi");
+             return false;
 
         } else if (editTextPassword.getText().toString() != editTextConfirm.getText().toString()){
             editTextPassword.requestFocus();
@@ -111,10 +104,13 @@ public class UserRegister extends AppCompatActivity {
 
             editTextConfirm.requestFocus();
             editTextConfirm.setError("Password tidak sama");
+            return false;
         } else if (!editTextEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             editTextEmail.requestFocus();
             editTextEmail.setError("Masukkan email yang valid");
+            return false;
         }
+        return true;
     }
 
 

@@ -24,7 +24,6 @@ import retrofit2.Response;
 public class OTPVerification extends AppCompatActivity {
 
     ActivityOtpverificationBinding bind;
-    ActivityTelpVerificationBinding bind2;
     Context context;
     String NoHp ;
     SpHelper sp ;
@@ -59,7 +58,12 @@ public class OTPVerification extends AppCompatActivity {
 //                }
 
                 if  (kode.getText().toString().isEmpty()) {
-                    Toast.makeText(OTPVerification.this, "OTP tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                        kode.requestFocus();
+                        kode.setError("Harap diisi");
+
+                } else if (kode.getText().toString().length() < 4 || kode.getText().toString().length() > 4){
+                    kode.requestFocus();
+                    kode.setError("OTP terdiri dari 4 angka");
                 } else {
                     Toast.makeText(OTPVerification.this, "Nomor telepon berhasil disimpan", Toast.LENGTH_SHORT).show();
 
