@@ -14,24 +14,30 @@
     <fragment
         android:id="@+id/nav_kasir"
         android:name="com.example.authapp.ui.penjualan.PenjualanFragment"
-        android:label="@string/menu_kasir"
-        tools:layout="@layout/fragment_kasir" />
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_penjualan"
-        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:name="com.example.authapp.ui.penjualan.PenjualanFragment"
         android:label="@string/menu_penjualan"
         tools:layout="@layout/fragment_penjualan" />
 
     <fragment
         android:id="@+id/nav_laporan"
-        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:name="com.example.authapp.ui.laporan.LaporanFragment"
+        android:label="@string/menu_laporan"
+        tools:layout="@layout/fragment_laporan" />
+
+    <fragment
+        android:id="@+id/nav_pengaturan"
+        android:name="com.example.authapp.ui.pengaturan.PengaturanFragment"
         android:label="@string/menu_laporan"
         tools:layout="@layout/fragment_laporan" />
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.authapp.ui.kasir.KasirFragment"
+        android:name="com.example.authapp.ui.logout.LogoutFragment"
         android:label="@string/menu_logout"
         tools:layout="@layout/fragment_logout" />
 </navigation>
