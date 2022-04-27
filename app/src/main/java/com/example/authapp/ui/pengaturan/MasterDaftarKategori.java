@@ -1,8 +1,10 @@
-package com.example.authapp;
+package com.example.authapp.ui.pengaturan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.authapp.R;
 
 public class MasterDaftarKategori extends AppCompatActivity {
 
