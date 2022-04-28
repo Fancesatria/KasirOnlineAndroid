@@ -1,6 +1,7 @@
 package com.example.authapp.Service;
 
 import com.example.authapp.Model.ModelLogin;
+import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
 import com.example.authapp.Model.ModelViewBarang;
@@ -26,6 +27,10 @@ public interface UserService {
     //MINTA OTP(ini butuh token yg hrs dimasukkan dulu lewat okhttp)
     @POST("register/minta")
     Call<OtpResponse> mintaOtp(@Body ModelToko modelToko);
+
+    //VERIFIKASI OTP(ini butuh token yg hrs dimasukkan dulu lewat okhttp)
+    @POST("register/verifikasi")
+    Call<OtpResponse> verifOtp(@Body ModelOtp modelOtp);
 
     //REGISTER INFORMASI BISNIS
     @POST("register/profile")

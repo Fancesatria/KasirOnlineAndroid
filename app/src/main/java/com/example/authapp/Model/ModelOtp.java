@@ -2,6 +2,15 @@ package com.example.authapp.Model;
 
 public class ModelOtp {
     private String nomor_toko;
+    private String otp;
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 
     public String getToken() {
         return token;

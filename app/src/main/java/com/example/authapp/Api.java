@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.example.authapp.Service.KategoriService;
 import com.example.authapp.Service.UserService;
 import com.example.authapp.SharedPref.SpHelper;
 
@@ -67,6 +68,8 @@ public class Api {
                 .build();
         return retrofit;
     }
+
+    //LOGIN REGISTER
     // tanpa hedaer (register login)
     public static UserService getService() {
         UserService userService = getRetrofit().create(UserService.class);
@@ -79,5 +82,18 @@ public class Api {
         UserService userService = getRetrofit(context).create(UserService.class);
 
         return userService;
+    }
+
+    //KATEGORI
+    public static KategoriService Kategori() {
+        KategoriService kategoriService = getRetrofit().create(KategoriService.class);
+
+        return kategoriService;
+    }
+
+    public static KategoriService Kategori(Context context) {
+        KategoriService kategoriService = getRetrofit(context).create(KategoriService.class);
+
+        return kategoriService;
     }
 }

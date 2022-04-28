@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Response.LoginResponse;
-import com.example.authapp.Response.RegisterResponse;
-import com.example.authapp.SharedPref.SpHelper;
 import com.example.authapp.databinding.ActivityMainBinding;
 
 import retrofit2.Call;
@@ -122,15 +120,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             Password.requestFocus();
             Password.setError("Harap diisi");
-            return false;
+            return true;
 
-        } else if (Email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
+        } else if (!Email.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             Email.requestFocus();
             Email.setError("Masukkan email yang valid");
-            return false;
-        } else {
             return true;
+        } else {
+            Toast.makeText(this, "Harap tunggu...", Toast.LENGTH_SHORT).show();
         }
+        return false;
     }
 
     public void register(View v) {
