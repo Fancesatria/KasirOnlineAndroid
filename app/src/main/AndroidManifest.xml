@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthApp">
         <activity
+            android:name=".ui.pengaturan.MasterPegawai"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pengaturan.MasterPelanggan"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pengaturan.MasterSatuan"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pengaturan.MasterProduk"
+            android:exported="false" />
+        <activity
             android:name=".ui.pengaturan.MasterDaftarKategori"
             android:exported="false" />
         <activity

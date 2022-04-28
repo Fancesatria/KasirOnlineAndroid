@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.pengaturan.PengaturanFragment">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
     <TextView
         android:id="@+id/text_pengaturan"
         android:layout_width="match_parent"
@@ -60,7 +64,7 @@
         android:layout_marginTop="20dp"
         android:padding="10dp"
         android:backgroundTint="#2F4F4F"
-        android:text="sATUAN"
+        android:text="Satuan"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -69,6 +73,37 @@
         app:layout_constraintTop_toBottomOf="@id/masterProduk"
         />
 
+    <Button
+        android:id="@+id/masterPelanggan"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:backgroundTint="#2F4F4F"
+        android:text="Pelanggan"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/masterSatuan"
+        />
+
+    <Button
+        android:id="@+id/masterPegawai"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:backgroundTint="#2F4F4F"
+        android:text="Pegawai"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/masterPelanggan"
+        />
 
     <!--    <TextView-->
     <!--        android:id="@+id/txt4"-->
