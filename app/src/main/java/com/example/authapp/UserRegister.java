@@ -96,21 +96,23 @@ public class UserRegister extends AppCompatActivity {
 
             editTextConfirm.requestFocus();
             editTextConfirm.setError("Harap diisi");
-             return false;
+             return true;
 
-        } else if (editTextPassword.getText().toString() != editTextConfirm.getText().toString()){
+        } else if (!editTextPassword.getText().toString().matches(editTextConfirm.getText().toString())){
             editTextPassword.requestFocus();
             editTextPassword.setError("Password tidak sama");
 
             editTextConfirm.requestFocus();
             editTextConfirm.setError("Password tidak sama");
-            return false;
+            return true;
         } else if (!editTextEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
             editTextEmail.requestFocus();
             editTextEmail.setError("Masukkan email yang valid");
-            return false;
+            return true;
+        } else {
+            Toast.makeText(this, "Harap tunggu...", Toast.LENGTH_SHORT).show();
         }
-        return true;
+        return false;
     }
 
 

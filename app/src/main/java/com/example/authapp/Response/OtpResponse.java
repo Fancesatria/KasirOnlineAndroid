@@ -3,6 +3,15 @@ package com.example.authapp.Response;
 public class OtpResponse {
     private Boolean status;
     private String token;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Boolean getStatus() {
         return status;
