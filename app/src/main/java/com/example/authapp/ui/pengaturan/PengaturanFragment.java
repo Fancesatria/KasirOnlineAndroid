@@ -15,11 +15,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.authapp.R;
+import com.example.authapp.TelpVerification;
+import com.example.authapp.UserRegister;
 import com.example.authapp.databinding.FragmentPengaturanBinding;
 
 public class PengaturanFragment extends Fragment {
 
-    private FragmentPengaturanBinding binding;
+    //private FragmentPengaturanBinding binding;
     FragmentPengaturanBinding bind;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,24 +31,16 @@ public class PengaturanFragment extends Fragment {
         bind = FragmentPengaturanBinding.inflate(getLayoutInflater());
         View root = bind.getRoot();
 
-        final TextView textView = binding.textPengaturan;
+        bind.masterDaftarKategori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(new Intent(PengaturanFragment.this, MasterDaftarKategori.class));
+
+            }
+        });
+
+        TextView textView = bind.textPengaturan;
         pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
 
-//        super.onCreate(savedInstanceState);
-//        bind.masterDaftarKategori.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(PengaturanFragment.this,MasterDaftarKategori.class));
-//                Toast.makeText(PengaturanFragment.this, "MasterDaftarKategori", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        binding = null;
-//    }
-//}}
     }}
