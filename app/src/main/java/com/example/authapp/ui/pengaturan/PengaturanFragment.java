@@ -19,7 +19,7 @@ import com.example.authapp.databinding.FragmentPengaturanBinding;
 
 public class PengaturanFragment extends Fragment {
 
-    private FragmentPengaturanBinding binding;
+    //private FragmentPengaturanBinding binding;
     FragmentPengaturanBinding bind;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,7 +29,7 @@ public class PengaturanFragment extends Fragment {
         bind = FragmentPengaturanBinding.inflate(getLayoutInflater());
         View root = bind.getRoot();
 
-        final TextView textView = binding.textPengaturan;
+        final TextView textView = bind.textPengaturan;
         pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
 

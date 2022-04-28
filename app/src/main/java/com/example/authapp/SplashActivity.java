@@ -35,18 +35,18 @@ public class SplashActivity extends AppCompatActivity{
         } else if (cek.equals("Ubah Data Toko")) {
             startActivity(new Intent(SplashActivity.this, TambahkanProduk.class));
         } else {
-            setContentView(R.layout.splash_activity);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }, SPLASH_SCREEN_TIMEOUT);
+
         }
 
-
+        setContentView(R.layout.splash_activity);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, SPLASH_SCREEN_TIMEOUT);
 
 
         Animation fadeOut=new AlphaAnimation(1,0);
