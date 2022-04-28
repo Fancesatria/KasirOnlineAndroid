@@ -1,5 +1,6 @@
 package com.example.authapp.ui.pengaturan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ public class PengaturanFragment extends Fragment {
 
     //private FragmentPengaturanBinding binding;
     FragmentPengaturanBinding bind;
+    private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -34,8 +36,7 @@ public class PengaturanFragment extends Fragment {
         bind.masterDaftarKategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(PengaturanFragment.this, MasterDaftarKategori.class));
-
+                startActivity(new Intent(getContext(), MasterDaftarKategori.class)); //kalau mangil fragment, itu pakenta getContext() ,bukan this
             }
         });
 

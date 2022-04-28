@@ -28,7 +28,7 @@ public class HomePage extends AppCompatActivity {
         binding = ActivityHomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //setSupportActionBar(binding.appBarHomePage.toolbar);
+        setSupportActionBar(binding.appBarHomePage.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;

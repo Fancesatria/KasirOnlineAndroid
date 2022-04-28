@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tvBarang"
+                android:id="@+id/txtKategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvBarang2"
+                android:id="@+id/TxtHapus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
