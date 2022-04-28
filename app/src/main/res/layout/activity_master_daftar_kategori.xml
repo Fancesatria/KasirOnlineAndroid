@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.pengaturan.MasterDaftarKategori">
 
+    <TextView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:fontFamily="sans-serif-black"
+        android:textAlignment="center"
+        android:text="Daftar Kategori"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/addDaftarKategori"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Kategori"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/banner"
+        />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plusButton"
         android:layout_width="wrap_content"
@@ -18,20 +47,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
-    <TextView
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:fontFamily="sans-serif-black"
-        android:paddingLeft="40dp"
-        android:text="Informasi Bisnis"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
