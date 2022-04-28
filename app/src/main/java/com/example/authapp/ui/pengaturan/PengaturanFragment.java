@@ -19,34 +19,28 @@ import com.example.authapp.databinding.FragmentPengaturanBinding;
 
 public class PengaturanFragment extends Fragment {
 
-    private FragmentPengaturanBinding binding;
-    FragmentPengaturanBinding bind;
+    FragmentPengaturanBinding binding;
+    //FragmentPengaturanBinding bind;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         PengaturanViewModel pengaturanViewModel = new ViewModelProvider(this).get(PengaturanViewModel.class);
 
-        bind = FragmentPengaturanBinding.inflate(getLayoutInflater());
-        View root = bind.getRoot();
+        binding = FragmentPengaturanBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
 
         final TextView textView = binding.textPengaturan;
         pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
 
-//        super.onCreate(savedInstanceState);
-//        bind.masterDaftarKategori.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(PengaturanFragment.this,MasterDaftarKategori.class));
-//                Toast.makeText(PengaturanFragment.this, "MasterDaftarKategori", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        binding = null;
-//    }
-//}}
-    }}
+        //binding.masterDaftarKategori
+
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
