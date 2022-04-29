@@ -28,46 +28,50 @@ import retrofit2.Response;
 
 public class MasterDaftarKategori extends AppCompatActivity {
     ActivityMasterDaftarKategoriBinding bind;
-    ItemKategoriBinding bind2;
+    RecyclerView item ;
+    List<ModelKategori> data= new ArrayList<>();
+    KategoriAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         bind = ActivityMasterDaftarKategoriBinding.inflate(getLayoutInflater());
-        //bind2 = ItemKategoriBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(bind.getRoot());
-        //setContentView(bind2.getRoot());
+         item = bind.item;
+        item.setLayoutManager(new LinearLayoutManager(this));
+        item.setHasFixedSize(true);
+        adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
+        item.setAdapter(adapter);
 
         EditText inKategori = bind.eKategori;
-
         refresh();
 
         bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ModelKategori mk = new ModelKategori();
-                mk.setNama_kategori(inKategori.getText().toString());
-                PostKat(mk);
+                ModelKategori data = new ModelKategori();
+                data.setNama_kategori(inKategori.getText().toString());
+                PostKat(data);
+                refresh();
             }
         });
 
-//        bind2.TxtHapus.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                DeleteKat();
-//            }
-//        });
     }
 
+
+
     public void refresh() {
-        final RecyclerView item = bind.item;
-        item.setLayoutManager(new LinearLayoutManager(this));
-        item.setHasFixedSize(true);
         KategoriService ks = Api.Kategori(MasterDaftarKategori.this);
         Call<KategoriGetResp> call = ks.getKat();
         call.enqueue(new Callback<KategoriGetResp>() {
             @Override
             public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
-                item.setAdapter(new KategoriAdapter(MasterDaftarKategori.this, response.body().getData()));
+                   if(data.size() != response.body().getData().size()) {
+                       data = response.body().getData();
+                       item.invalidate();
+                       adapter.setData(data);
+                       adapter.notifyDataSetChanged();
+                   }
+
             }
 
             @Override
@@ -86,6 +90,11 @@ public class MasterDaftarKategori extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(MasterDaftarKategori.this, "Data ditambahkan", Toast.LENGTH_SHORT).show();
                     inKategori.getText().clear();
+                    data.add(modelKategori);
+                    adapter.setData(data);
+
+                    adapter.notifyItemInserted(data.size());
+                    
                 } else {
                     Toast.makeText(MasterDaftarKategori.this, "DAta gagal ditambahkan", Toast.LENGTH_SHORT).show();
                 }
@@ -98,21 +107,19 @@ public class MasterDaftarKategori extends AppCompatActivity {
         });
     }
 
-    public void DeleteKat(){
-        String id = getIntent().getStringExtra("idtoko");
+    public void DeleteKat(String id){
         Call<KategoriResponse> kategoriResponseCall = Api.Kategori(this).deleteKat(id);
         kategoriResponseCall.enqueue(new Callback<KategoriResponse>() {
             @Override
             public void onResponse(Call<KategoriResponse> call, Response<KategoriResponse> response) {
-                Toast.makeText(MasterDaftarKategori.this, "Data dihapus", Toast.LENGTH_SHORT).show();
-                finish();
+                refresh();
             }
 
             @Override
             public void onFailure(Call<KategoriResponse> call, Throwable t) {
-                Toast.makeText(MasterDaftarKategori.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                finish();
+                refresh();
             }
         });
     }
+
 }

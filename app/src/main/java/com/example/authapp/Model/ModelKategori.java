@@ -4,7 +4,30 @@ public class ModelKategori {
     private String nama_kategori;
     private String idtoko;
 
+    public ModelKategori(String nama_kategori, String idtoko, String idkategori) {
+        this.nama_kategori = nama_kategori;
+        this.idtoko = idtoko;
+        this.idkategori = idkategori;
+    }
+
     public ModelKategori() {
+        this.nama_kategori = nama_kategori;
+        this.idtoko = idtoko;
+        this.idkategori = idkategori;
+    }
+
+
+    public String getIdkategori() {
+        return idkategori;
+    }
+
+    public void setIdkategori(String idkategori) {
+        this.idkategori = idkategori;
+    }
+
+    private  String idkategori;
+
+    public ModelKategori(String id, String s) {
         this.nama_kategori = nama_kategori;
         this.idtoko = idtoko;
     }
