@@ -4,6 +4,11 @@ public class ModelKategori {
     private String nama_kategori;
     private String idtoko;
 
+    public ModelKategori() {
+        this.nama_kategori = nama_kategori;
+        this.idtoko = idtoko;
+    }
+
     public String getNama_kategori() {
         return nama_kategori;
     }
@@ -19,4 +24,5 @@ public class ModelKategori {
     public void setIdtoko(String idtoko) {
         this.idtoko = idtoko;
     }
+
 }

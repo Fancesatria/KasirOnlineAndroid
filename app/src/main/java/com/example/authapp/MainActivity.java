@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(new Intent(MainActivity.this, TambahkanProduk.class));
                     }
 
-
                     finish();
 
                 } else {
