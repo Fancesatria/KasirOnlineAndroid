@@ -47,7 +47,6 @@ public class MasterDaftarKategori extends AppCompatActivity {
                 ModelKategori mk = new ModelKategori();
                 mk.setNama_kategori(inKategori.getText().toString());
                 PostKat(mk);
-                //Toast.makeText(MasterDaftarKategori.this, "hello", Toast.LENGTH_SHORT).show();
             }
         });
 
