@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AuthApp">
         <activity
-            android:name=".ui.pengaturan.DetailKategori"
-            android:exported="false" />
-        <activity
             android:name=".ui.pengaturan.MasterDaftarKategori"
             android:exported="false" />
         <activity
