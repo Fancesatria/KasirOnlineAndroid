@@ -4,14 +4,14 @@ import android.content.Context;
 import com.example.authapp.Model.ModelKategori;
 
 public class KategoriResponse {
-    private String status;
+    private boolean status;
     private ModelKategori data; //ini perhatikan bentuknya, kalau object btkny kaya gini. klau btknya gk tepat nnti masuk ke localizederror
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

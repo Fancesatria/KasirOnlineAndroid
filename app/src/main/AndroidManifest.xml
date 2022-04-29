@@ -16,6 +16,9 @@
             android:name=".ui.pengaturan.MasterDaftarKategori"
             android:exported="false" />
         <activity
+            android:name=".ui.pengaturan.DetailKategori"
+            android:exported="false" />
+        <activity
             android:name=".HomePage"
             android:exported="false"
             android:label="@string/title_activity_home_page"

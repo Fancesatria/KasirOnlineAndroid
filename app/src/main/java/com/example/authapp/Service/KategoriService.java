@@ -23,9 +23,9 @@ public interface KategoriService {
     @POST("kategori")
     Call<KategoriResponse> postKat(@Body ModelKategori modelKategori);
 
-//    //UPDATE DATA
-//    @POST("kategori/{id}")
-//    Call<KategoriResponse> updateKat(@Path("id") String id,@Body ModelBarang barang);
+    //UPDATE DATA
+    @POST("kategori/{id}")
+    Call<KategoriResponse> updateKat(@Path("id") String id,@Body ModelKategori modelKategori);
 
     //DELETE DATA
     @DELETE("kategori/{id}")

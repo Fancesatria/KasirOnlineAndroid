@@ -3,12 +3,13 @@ package com.example.authapp.Response;
 import com.example.authapp.Model.ModelKategori;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class KategoriGetResp {
     private String status;
-    private ArrayList<ModelKategori> data;
+    private List<ModelKategori> data;
 
-    public KategoriGetResp(String status, ArrayList<ModelKategori> data) {
+    public KategoriGetResp(String status, List<ModelKategori> data) {
         this.status = status;
         this.data = data;
     }
@@ -21,11 +22,11 @@ public class KategoriGetResp {
         this.status = status;
     }
 
-    public ArrayList<ModelKategori> getData() {
+    public List<ModelKategori> getData() {
         return data;
     }
 
-    public void setData(ArrayList<ModelKategori> data) {
+    public void setData(List<ModelKategori> data) {
         this.data = data;
     }
 
