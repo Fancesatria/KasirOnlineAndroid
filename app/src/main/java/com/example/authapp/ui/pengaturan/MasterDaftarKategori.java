@@ -51,12 +51,12 @@ public class MasterDaftarKategori extends AppCompatActivity {
             }
         });
 
-        bind2.TxtHapus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DeleteKat();
-            }
-        });
+//        bind2.TxtHapus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DeleteKat();
+//            }
+//        });
     }
 
     public void refresh() {
