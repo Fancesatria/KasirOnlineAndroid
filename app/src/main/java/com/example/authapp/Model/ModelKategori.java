@@ -1,7 +1,17 @@
 package com.example.authapp.Model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import androidx.annotation.NonNull;
+
+@Entity(tableName = "tblkategori")
 public class ModelKategori {
+    @PrimaryKey
+    private String idkategori;
+
     private String nama_kategori;
+
     private String idtoko;
 
     public ModelKategori() {

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.authapp.Model.ModelViewBarang;
+import com.example.authapp.ModelView.ModelViewBarang;
 import com.example.authapp.Response.RegisBarangResponse;
 import com.example.authapp.databinding.ActivityTambahkanProdukBinding;
 

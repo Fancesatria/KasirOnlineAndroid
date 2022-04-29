@@ -1,13 +1,30 @@
 package com.example.authapp.Model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
+@Entity(tableName = "tblbarang")
 public class ModelBarang {
+    @PrimaryKey@NonNull
     private String idbarang;
+
     private String idkategori;
+
     private String idsatuan;
+
     private String barang;
+
     private String harga;
+
     private String hargabeli;
+
     private String idtoko;
+
 
     public String getIdbarang() {
         return idbarang;

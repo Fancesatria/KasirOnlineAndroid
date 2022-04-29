@@ -1,6 +1,6 @@
 package com.example.authapp.Response;
 
-import com.example.authapp.Model.ModelViewBarang;
+import com.example.authapp.ModelView.ModelViewBarang;
 
 public class RegisBarangResponse {
     private Boolean status;

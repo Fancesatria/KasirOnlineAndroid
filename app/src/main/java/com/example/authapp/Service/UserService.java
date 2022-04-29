@@ -4,7 +4,7 @@ import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
-import com.example.authapp.Model.ModelViewBarang;
+import com.example.authapp.ModelView.ModelViewBarang;
 import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.Response.OtpResponse;
