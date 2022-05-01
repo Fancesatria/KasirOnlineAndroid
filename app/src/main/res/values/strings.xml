@@ -22,4 +22,11 @@
     <string name="tab_text_1">-</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_kategori_message">Kategori telah dipakai tidak dapat dihapus</string>
+    <string name="add_kategori_error">Data gagal ditambahkan</string>
+    <string name="success_added">Data Berhasil ditambahkan</string>
+    <string name="deleted_success">Data berhasil dihapus</string>
+    <string name="error_fetch">Terjadi kesalahan harap coba lagi</string>
+    <string name="updated_success">Data Berhasil diubah</string>
+    <string name="updated_error">Data gagal diubah</string>
 </resources>

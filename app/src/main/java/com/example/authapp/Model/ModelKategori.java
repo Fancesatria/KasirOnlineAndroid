@@ -1,45 +1,38 @@
 package com.example.authapp.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import androidx.annotation.NonNull;
 
 @Entity(tableName = "tblkategori")
 public class ModelKategori {
-    @PrimaryKey
-    private String idkategori;
+    @PrimaryKey(autoGenerate = true)
+    private int idkategori;
 
     private String nama_kategori;
 
+    @Ignore
     private String idtoko;
 
-    public ModelKategori(String nama_kategori, String idtoko, String idkategori) {
+    @Ignore
+    public ModelKategori(String nama_kategori, String idtoko, int idkategori) {
         this.nama_kategori = nama_kategori;
         this.idtoko = idtoko;
         this.idkategori = idkategori;
     }
 
-    public ModelKategori() {
+    public ModelKategori(String nama_kategori) {
         this.nama_kategori = nama_kategori;
-        this.idtoko = idtoko;
-        this.idkategori = idkategori;
     }
 
-
-    public String getIdkategori() {
+    public int getIdkategori() {
         return idkategori;
     }
 
-    public void setIdkategori(String idkategori) {
+    public void setIdkategori(int idkategori) {
         this.idkategori = idkategori;
-    }
-
-    private  String idkategori;
-
-    public ModelKategori(String id, String s) {
-        this.nama_kategori = nama_kategori;
-        this.idtoko = idtoko;
     }
 
     public String getNama_kategori() {
@@ -57,5 +50,4 @@ public class ModelKategori {
     public void setIdtoko(String idtoko) {
         this.idtoko = idtoko;
     }
-
 }

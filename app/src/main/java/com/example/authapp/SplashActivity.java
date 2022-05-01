@@ -5,19 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.authapp.SharedPref.SpHelper;
 
 
 public class SplashActivity extends AppCompatActivity{
-    private static int SPLASH_SCREEN_TIMEOUT = 1000;
+    private static final int SPLASH_SCREEN_TIMEOUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,24 +24,28 @@ public class SplashActivity extends AppCompatActivity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //pengecekan
         SpHelper sp = new SpHelper(this);
-        String cek = sp.getValue("page");
+        String cek = sp.getValue(Config.lastPageSign);
 
-        if (cek.equals("Dashboard")){
-            startActivity(new Intent(SplashActivity.this, HomePage.class));
-        } else if (cek.equals("Verifikasi OTP")) {
-            startActivity(new Intent(SplashActivity.this, OTPVerification.class));
-        } else if (cek.equals("Ubah Data Toko")) {
-            startActivity(new Intent(SplashActivity.this, TambahkanProduk.class));
-        } else {
 
-        }
 
         setContentView(R.layout.splash_activity);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
+                switch (cek) {
+                    case Config.PageSigned.DASHBOARD:
+                        startActivity(new Intent(SplashActivity.this, HomePage.class));
+                        break;
+                    case Config.PageSigned.OTP:
+                        startActivity(new Intent(SplashActivity.this, TelpVerification.class));
+                        break;
+                    case Config.PageSigned.PROFIL:
+                        startActivity(new Intent(SplashActivity.this, InformasiBisnis.class));
+                        break;
+                    default:
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                        break;
+                }
                 finish();
             }
         }, SPLASH_SCREEN_TIMEOUT);

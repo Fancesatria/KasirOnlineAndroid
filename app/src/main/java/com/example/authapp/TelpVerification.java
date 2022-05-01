@@ -26,7 +26,6 @@ import retrofit2.Response;
 public class TelpVerification extends AppCompatActivity {
     private EditText NoTelp;
     private TextView btnOtp;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class TelpVerification extends AppCompatActivity {
             public void onClick(View v) {
                 ModelToko modelToko = new ModelToko();
                 modelToko.setNomer_toko(NoTelp.getText().toString());
-                sp.setValue("NoTelp", NoTelp.getText().toString()); //ini menyimpan notelpon ke dlm shared pref
+                sp.setValue(Config.phoneOTP, NoTelp.getText().toString()); //ini menyimpan notelpon ke dlm shared pref
                 MintaOtp(modelToko);
             }
         });
@@ -51,28 +50,24 @@ public class TelpVerification extends AppCompatActivity {
     public void MintaOtp(ModelToko modelToko) {
         //kalau di file java pakainya this atau nama file.this, bukan pakaia context
         Call<OtpResponse> OtpResponseCall = Api.getService(this).mintaOtp(modelToko); //ini pake getsrvice yg ada headernya
-//        SpHelper sp = new SpHelper(this);
         OtpResponseCall.enqueue(new Callback<OtpResponse>() {
             @Override
             public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
                 if(response.isSuccessful()){
                     String message = "Kode OTP terkirim";
-                    //sp.setToken(response.body().getToken());
-                    Toast.makeText(com.example.authapp.TelpVerification.this, message, Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(TelpVerification.this, message, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(TelpVerification.this, OTPVerification.class));
                     finish();
-
                 } else {
                     String message = "Nomor telepon tidak valid";
-                    Toast.makeText(com.example.authapp.TelpVerification.this, message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(TelpVerification.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<OtpResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
-                Toast.makeText(com.example.authapp.TelpVerification.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(TelpVerification.this, message, Toast.LENGTH_LONG).show();
             }
         });
     }

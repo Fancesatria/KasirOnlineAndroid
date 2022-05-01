@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KategoriGetResp {
-    private String status;
+    private boolean status;
     private List<ModelKategori> data;
 
-    public KategoriGetResp(String status, List<ModelKategori> data) {
+    public KategoriGetResp(boolean status, List<ModelKategori> data) {
         this.status = status;
         this.data = data;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

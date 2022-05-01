@@ -5,20 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.authapp.Model.ModelKategori;
-import com.example.authapp.R;
-import com.example.authapp.UserRegister;
 import com.example.authapp.databinding.ItemKategoriBinding;
-import com.example.authapp.ui.pengaturan.DetailKategori;
-import com.example.authapp.ui.pengaturan.MasterDaftarKategori;
+import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,36 +38,24 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
     //ini utk menampilkan data atau menambahlan event
     @Override
     public void onBindViewHolder(@NonNull KategoriAdapter.ViewHolder holder, int position) {
-        ModelKategori nama_kategori = data.get(position);
+        ModelKategori kategori = data.get(position);
 
-        holder.bind.txtKategori.setText(nama_kategori.getNama_kategori());
+        holder.bind.txtKategori.setText(kategori.getNama_kategori());
         //ini buat detail
         holder.bind.TxtHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //memanggil function dr file master kategori
-                ((MasterDaftarKategori)context).DeleteKat(nama_kategori.getIdkategori());
+                ((MasterDaftarKategori)context).DeleteKat(kategori.getIdkategori());
             }
         });
         holder.bind.txtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, DetailKategori.class);
-                i.putExtra("idkategori", nama_kategori.getIdkategori());
-                i.putExtra("nama_kategori", nama_kategori.getNama_kategori());
-                i.putExtra("idtoko", nama_kategori.getIdtoko());
-                context.startActivity(i);
+              ((MasterDaftarKategori)context).dialogEditKategori(kategori);
             }
         });
     }
-
-    public void setData(List<ModelKategori> data) {
-        this.data.clear();
-        this.data.addAll(data);
-        notifyDataSetChanged();
-    }
-
-
 
     @Override
     public int getItemCount() {

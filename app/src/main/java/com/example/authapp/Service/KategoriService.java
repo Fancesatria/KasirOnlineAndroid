@@ -25,10 +25,10 @@ public interface KategoriService {
 
     //UPDATE DATA
     @POST("kategori/{id}")
-    Call<KategoriResponse> updateKat(@Path("id") String id,@Body ModelKategori modelKategori);
+    Call<KategoriResponse> updateKat(@Path("id") int id,@Body ModelKategori modelKategori);
 
     //DELETE DATA
     @DELETE("kategori/{id}")
-    Call<KategoriResponse> deleteKat(@Path("id") String id);
+    Call<KategoriResponse> deleteKat(@Path("id") int id);
 
 }

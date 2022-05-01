@@ -13,18 +13,80 @@ import java.util.List;
 
 public class KategoriRepository {
     public KategoriDao kategoriDao;
-    public List<ModelKategori> allKategori;
+    private LiveData<List<ModelKategori>> allKategori;
     private KasirDatabase kasirDatabase;
 
     public KategoriRepository(Application application){
         kasirDatabase = KasirDatabase.getInstance(application);
         kategoriDao = kasirDatabase.kategoriDao();
-        allKategori = kategoriDao.getKategori().getValue();
+        allKategori = kategoriDao.getKategori();
+    }
+
+    public LiveData<List<ModelKategori>> getAllKategori() {
+        return kategoriDao.getKategori();
     }
 
     public void insertAll(List<ModelKategori> data, boolean truncate){
         new InsertKategoriAll(kategoriDao,truncate).execute(data);
     }
+
+    public void insert(ModelKategori kategori){
+        new InsertKategori(kategoriDao).execute(kategori);
+    }
+
+    public void delete(ModelKategori kategori){
+        new DeleteKategori(kategoriDao).execute(kategori);
+    }
+
+    public void update(ModelKategori kategori){
+        new UpdateKategori(kategoriDao).execute(kategori);
+    }
+
+    private static class DeleteKategori extends AsyncTask<ModelKategori,Void,Void> {
+        private KategoriDao kategoriDao;
+
+        public DeleteKategori(KategoriDao kategoriDao) {
+            this.kategoriDao = kategoriDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelKategori... lists) {
+
+            kategoriDao.delete(lists[0]);
+            return null;
+        }
+    }
+
+    private static class InsertKategori extends AsyncTask<ModelKategori,Void,Void> {
+        private KategoriDao kategoriDao;
+
+        public InsertKategori(KategoriDao kategoriDao) {
+            this.kategoriDao = kategoriDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelKategori... lists) {
+
+            kategoriDao.insert(lists[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateKategori extends AsyncTask<ModelKategori,Void,Void> {
+        private KategoriDao kategoriDao;
+
+        public UpdateKategori(KategoriDao kategoriDao) {
+            this.kategoriDao = kategoriDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelKategori... lists) {
+
+            kategoriDao.update(lists[0]);
+            return null;
+        }
+    }
+
 
     private static class InsertKategoriAll extends AsyncTask<List<ModelKategori>,Void,Void> {
         private KategoriDao kategoriDao;
