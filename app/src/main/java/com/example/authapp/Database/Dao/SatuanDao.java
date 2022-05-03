@@ -6,6 +6,8 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
+
 import com.example.authapp.Model.ModelSatuan;
 
 import java.util.List;
@@ -20,6 +22,10 @@ public interface SatuanDao {
 
     @Query("select * from tblsatuan")
     LiveData<List<ModelSatuan>> getSatuans();
+
+
+    @Update
+    void update(ModelSatuan satuan);
 
     @Delete
     void delete(ModelSatuan satuan);

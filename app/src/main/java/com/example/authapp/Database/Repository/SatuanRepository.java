@@ -88,4 +88,23 @@ public class SatuanRepository {
     }
 
 
+
+    public void update(ModelSatuan satuan){
+        new UpdateSatuan(satuanDao).execute(satuan);
+    }
+
+    private static class UpdateSatuan extends AsyncTask<ModelSatuan,Void,Void>{
+        private SatuanDao satuanDao;
+
+        public UpdateSatuan(SatuanDao satuanDao) {
+            this.satuanDao = satuanDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelSatuan... modelSatuans) {
+            satuanDao.update(modelSatuans[0]);
+            return null;
+        }
+    }
+
 }

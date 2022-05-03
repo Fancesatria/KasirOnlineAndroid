@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.authapp.Model.ModelDetailJual;
 
@@ -20,7 +21,10 @@ public interface DetailJualDao {
     void insert(ModelDetailJual detailjual);
 
     @Query("select * from tbldetailjual")
-    LiveData<List<ModelDetailJual>> getAllJual();
+    LiveData<List<ModelDetailJual>> getAllJual();\
+
+    @Update
+    void update(ModelDetailJual detailJual);
 
     @Delete
     void delete(ModelDetailJual detailjual);

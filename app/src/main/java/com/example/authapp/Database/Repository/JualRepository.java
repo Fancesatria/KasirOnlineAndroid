@@ -95,4 +95,25 @@ public class JualRepository {
     }
 
 
+    public void update(ModelJual modelJual){
+        new UpdateJual(jualDao).execute(modelJual);
+    }
+
+
+    private static class UpdateJual extends AsyncTask<ModelJual,Void,Void>{
+
+        private JualDao jualDao;
+
+        public UpdateJual(JualDao jualDao) {
+            this.jualDao = jualDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelJual... modelJuals) {
+            jualDao.update(modelJuals[0]);
+            return null;
+        }
+    }
+
+
 }

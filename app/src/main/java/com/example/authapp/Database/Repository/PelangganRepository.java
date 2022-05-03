@@ -94,5 +94,23 @@ public class PelangganRepository {
         }
     }
 
+    public void update(ModelPelanggan pelanggan){
+        new UpdatePelanggan(pelangganDao).execute(pelanggan);
+    }
+
+    private static class UpdatePelanggan extends AsyncTask<ModelPelanggan,Void,Void>{
+        private  PelangganDao pelangganDao;
+
+        public UpdatePelanggan(PelangganDao pelangganDao) {
+            this.pelangganDao = pelangganDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelPelanggan... modelPelanggans) {
+            pelangganDao.update(modelPelanggans[0]);
+            return null;
+        }
+    }
+
 
 }

@@ -60,6 +60,26 @@ public class BarangRepository {
         }
     }
 
+
+    public void update(ModelBarang barang){
+        new UpdateBarang(barangDao).execute(barang);
+    }
+
+
+    private static class UpdateBarang extends  AsyncTask<ModelBarang,Void,Void>{
+        BarangDao barangDao;
+
+        public UpdateBarang(BarangDao barangDao) {
+            this.barangDao = barangDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelBarang... modelBarangs) {
+            barangDao.update(modelBarangs[0]);
+            return null;
+        }
+    }
+
     private static class InsertBarang extends AsyncTask<ModelBarang,Void,Void> {
         private BarangDao barangDao;
 

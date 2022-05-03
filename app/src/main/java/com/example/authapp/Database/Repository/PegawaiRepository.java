@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.authapp.Database.Dao.JualDao;
 import com.example.authapp.Database.Dao.PegawaiDao;
 import com.example.authapp.Database.KasirDatabase;
 import com.example.authapp.Model.ModelPegawai;
@@ -94,5 +95,23 @@ public class PegawaiRepository {
         }
     }
 
+
+    public void update(ModelPegawai pegawai){
+        new UpdatePegawai(pegawaiDao).execute(pegawai);
+    }
+
+    private static class UpdatePegawai extends AsyncTask<ModelPegawai,Void,Void>{
+        private PegawaiDao pegawaiDao;
+
+        public UpdatePegawai(PegawaiDao pegawaiDao) {
+            this.pegawaiDao = pegawaiDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelPegawai... modelPegawais) {
+            pegawaiDao.update(modelPegawais[0]);
+            return null;
+        }
+    }
 
 }

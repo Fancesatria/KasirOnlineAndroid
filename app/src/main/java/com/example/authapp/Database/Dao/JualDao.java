@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.authapp.Model.ModelJual;
 
@@ -24,6 +25,9 @@ public interface JualDao {
 
     @Delete
     void delete(ModelJual jual);
+
+    @Update
+    void update(ModelJual jual);
 
     @Query("DELETE FROM tbljual")
     void deleteAll();

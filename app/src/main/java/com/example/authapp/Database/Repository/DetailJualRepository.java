@@ -88,4 +88,24 @@ public class DetailJualRepository {
     }
 
 
+    public void update(ModelDetailJual detailJual){
+        new UpdateDetailJual(detailJualDao).execute(detailJual);
+    }
+
+    private static class UpdateDetailJual extends AsyncTask<ModelDetailJual,Void,Void>
+    {
+        private DetailJualDao detailJualDao;
+
+        public UpdateDetailJual(DetailJualDao detailJualDao) {
+            this.detailJualDao = detailJualDao;
+        }
+
+        @Override
+        protected Void doInBackground(ModelDetailJual... modelDetailJuals) {
+            detailJualDao.update(modelDetailJuals[0]);
+            return null;
+        }
+    }
+
+
 }

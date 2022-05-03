@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.authapp.Model.ModelPegawai;
 
@@ -21,6 +22,9 @@ public interface PegawaiDao {
 
     @Query("select * from tblpegawai where nama_pegawai like :keyword")
     LiveData<List<ModelPegawai>> getPegawai(String keyword);
+
+    @Update
+    void update(ModelPegawai pegawai);
 
     @Delete
     void delete(ModelPegawai pegawai);
