@@ -21,7 +21,7 @@ public interface DetailJualDao {
     void insert(ModelDetailJual detailjual);
 
     @Query("select * from tbldetailjual")
-    LiveData<List<ModelDetailJual>> getAllJual();\
+    LiveData<List<ModelDetailJual>> getAllJual();
 
     @Update
     void update(ModelDetailJual detailJual);
