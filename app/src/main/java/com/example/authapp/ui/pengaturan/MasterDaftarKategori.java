@@ -49,7 +49,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
                     Toast.makeText(MasterDaftarKategori.this, "Data ditambahkan", Toast.LENGTH_SHORT).show();
                     inKategori.getText().clear();
                 } else {
-                    Toast.makeText(MasterDaftarKategori.this, "DAta gagal ditambahkan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MasterDaftarKategori.this, "Data gagal ditambahkan", Toast.LENGTH_SHORT).show();
                 }
             }
 

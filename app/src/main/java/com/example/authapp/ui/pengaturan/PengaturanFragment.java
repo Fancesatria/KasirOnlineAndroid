@@ -22,26 +22,24 @@ import com.example.authapp.databinding.FragmentPengaturanBinding;
 
 public class PengaturanFragment extends Fragment {
 
-    //private FragmentPengaturanBinding binding;
-    FragmentPengaturanBinding bind;
-    private Context context;
+    private FragmentPengaturanBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
-            ViewGroup container, Bundle savedInstanceState) {
-        PengaturanViewModel pengaturanViewModel = new ViewModelProvider(this).get(PengaturanViewModel.class);
+                             ViewGroup container, Bundle savedInstanceState) {
+        PengaturanViewModel pengaturanViewModel =
+                new ViewModelProvider(this).get(PengaturanViewModel.class);
 
-        bind = FragmentPengaturanBinding.inflate(getLayoutInflater());
-        View root = bind.getRoot();
+        binding = FragmentPengaturanBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        bind.masterDaftarKategori.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), MasterDaftarKategori.class)); //kalau mangil fragment, itu pakenta getContext() ,bukan this
-            }
-        });
-
-        TextView textView = bind.textPengaturan;
+        final TextView textView = binding.textPengaturan;
         pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
 
-    }}
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
