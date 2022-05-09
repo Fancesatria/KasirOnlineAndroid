@@ -41,7 +41,7 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
     public void onBindViewHolder(@NonNull KategoriAdapter.ViewHolder holder, int position) {
         ModelKategori kategori = data.get(position);
 
-        if(kategori.getNama_kategori().equals(Config.PageSigned.DASHBOARD))
+        //if(kategori.getNama_kategori().equals(Config.PageSigned.DASHBOARD)) ini buat nyoba manggil config
         holder.bind.txtKategori.setText(kategori.getNama_kategori());
         //ini buat detail
         holder.bind.TxtHapus.setOnClickListener(new View.OnClickListener() {
