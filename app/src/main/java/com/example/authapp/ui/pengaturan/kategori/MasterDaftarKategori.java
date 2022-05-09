@@ -184,7 +184,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
                         LoadingDialog.close();
                         if(response.isSuccessful()){
                             if(response.body().isStatus()) {
-                                kategoriRepository.delete(response.body().getData()); //get data krnnhasilnya get kategori
+                                kategoriRepository.delete(response.body().getData()); //get data krn hasilnya get kategori
                                 SuccessDialog.message(
                                         MasterDaftarKategori.this,
                                         getString(R.string.deleted_success),

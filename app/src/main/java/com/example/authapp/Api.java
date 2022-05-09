@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.example.authapp.Service.KategoriService;
+import com.example.authapp.Service.SatuanService;
 import com.example.authapp.Service.UserService;
 import com.example.authapp.SharedPref.SpHelper;
 
@@ -95,5 +96,18 @@ public class Api {
         KategoriService kategoriService = getRetrofit(context).create(KategoriService.class);
 
         return kategoriService;
+    }
+
+    //SATUAN
+    public static SatuanService Satuan() {
+        SatuanService satuanService = getRetrofit().create(SatuanService.class);
+
+        return satuanService;
+    }
+
+    public static SatuanService Satuan(Context context) {
+        SatuanService satuanService = getRetrofit(context).create(SatuanService.class);
+
+        return satuanService;
     }
 }

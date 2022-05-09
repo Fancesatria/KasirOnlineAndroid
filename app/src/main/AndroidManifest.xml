@@ -51,6 +51,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"/>
+        <activity android:name=".ui.pengaturan.satuan.MasterSatuan" />
     </application>
 
 </manifest>
