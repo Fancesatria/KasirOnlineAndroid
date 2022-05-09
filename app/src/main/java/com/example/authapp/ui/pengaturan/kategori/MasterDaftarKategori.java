@@ -47,6 +47,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(bind.getRoot());
 //       Repo sqlite
+        //manggil database (sqlite)
         kategoriRepository = new KategoriRepository(getApplication());
 
 //      Definisi Reclerview
@@ -183,7 +184,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
                         LoadingDialog.close();
                         if(response.isSuccessful()){
                             if(response.body().isStatus()) {
-                                kategoriRepository.delete(response.body().getData());
+                                kategoriRepository.delete(response.body().getData()); //get data krnnhasilnya get kategori
                                 SuccessDialog.message(
                                         MasterDaftarKategori.this,
                                         getString(R.string.deleted_success),
