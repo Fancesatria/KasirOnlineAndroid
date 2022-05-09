@@ -1,4 +1,4 @@
-package com.example.authapp.Model;
+package com.example.authapp.ModelView;
 
 public class ModelViewBarang {
     private String idbarang;

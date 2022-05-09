@@ -4,7 +4,7 @@ import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
-import com.example.authapp.Model.ModelViewBarang;
+import com.example.authapp.ModelView.ModelViewBarang;
 import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.Response.OtpResponse;
@@ -13,6 +13,8 @@ import com.example.authapp.Response.RegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface UserService {
@@ -29,8 +31,9 @@ public interface UserService {
     Call<OtpResponse> mintaOtp(@Body ModelToko modelToko);
 
     //VERIFIKASI OTP(ini butuh token yg hrs dimasukkan dulu lewat okhttp)
+    @FormUrlEncoded
     @POST("register/verifikasi")
-    Call<OtpResponse> verifOtp(@Body ModelOtp modelOtp);
+    Call<OtpResponse> verifOtp(@Field("otp") String otp);
 
     //REGISTER INFORMASI BISNIS
     @POST("register/profile")

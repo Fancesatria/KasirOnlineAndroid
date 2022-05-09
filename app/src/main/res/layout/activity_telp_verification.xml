@@ -42,7 +42,7 @@
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="Nomor Telefon"
-        android:inputType="number"
+        android:inputType="number|phone"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

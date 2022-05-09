@@ -28,6 +28,15 @@ public class SpHelper {
         editor.commit(); //share pref hrs di commit dulu
     }
 
+    public void setBoolean(String key, boolean value){
+        editor.putBoolean(key,value);
+        editor.commit();
+    }
+
+    public boolean getBoolean(String key){
+        return sp.getBoolean(key,false);
+    }
+
     public String getValue(String key){
         return sp.getString(key, "");
     }

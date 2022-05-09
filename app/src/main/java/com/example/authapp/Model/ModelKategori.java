@@ -1,8 +1,39 @@
 package com.example.authapp.Model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import androidx.annotation.NonNull;
+
+@Entity(tableName = "tblkategori")
 public class ModelKategori {
+    @PrimaryKey(autoGenerate = true)
+    private int idkategori;
+
     private String nama_kategori;
+
+    @Ignore
     private String idtoko;
+
+    @Ignore
+    public ModelKategori(String nama_kategori, String idtoko, int idkategori) {
+        this.nama_kategori = nama_kategori;
+        this.idtoko = idtoko;
+        this.idkategori = idkategori;
+    }
+
+    public ModelKategori(String nama_kategori) {
+        this.nama_kategori = nama_kategori;
+    }
+
+    public int getIdkategori() {
+        return idkategori;
+    }
+
+    public void setIdkategori(int idkategori) {
+        this.idkategori = idkategori;
+    }
 
     public String getNama_kategori() {
         return nama_kategori;

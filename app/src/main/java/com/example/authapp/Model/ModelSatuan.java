@@ -1,8 +1,31 @@
 package com.example.authapp.Model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "tblsatuan")
 public class ModelSatuan {
+    @PrimaryKey(autoGenerate = true)
+    private int idsatuan;
+
     private String nama_satuan;
+
+    @Ignore
     private String idtoko;
+
+
+    public ModelSatuan(String nama_satuan) {
+        this.nama_satuan = nama_satuan;
+    }
+
+    public int getIdsatuan() {
+        return idsatuan;
+    }
+
+    public void setIdsatuan(int idsatuan) {
+        this.idsatuan = idsatuan;
+    }
 
     public String getNama_satuan() {
         return nama_satuan;

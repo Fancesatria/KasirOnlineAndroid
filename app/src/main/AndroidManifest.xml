@@ -11,21 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AuthApp">
         <activity
-            android:name=".ui.pengaturan.MasterPegawai"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pengaturan.MasterPelanggan"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pengaturan.MasterSatuan"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pengaturan.MasterProduk"
-            android:exported="false" />
-        <activity
-            android:name=".ui.pengaturan.MasterDaftarKategori"
+            android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false" />
         <activity
             android:name=".HomePage"
@@ -60,14 +49,8 @@
             android:name=".UserRegister"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".LoginActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

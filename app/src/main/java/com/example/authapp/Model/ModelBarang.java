@@ -1,13 +1,45 @@
 package com.example.authapp.Model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import androidx.annotation.NonNull;
+
+@Entity(tableName = "tblbarang")
 public class ModelBarang {
+    @PrimaryKey@NonNull
     private String idbarang;
+
     private String idkategori;
+
     private String idsatuan;
+
     private String barang;
-    private String harga;
-    private String hargabeli;
+
+    private double harga;
+
+    private double hargabeli;
+
+    private double stok;
+
+    private int flag_stok;
+
+    @Ignore
     private String idtoko;
+
+
+    public ModelBarang(@NonNull String idbarang, String idkategori, String idsatuan, String barang, double harga, double hargabeli, double stok, int flag_stok) {
+        this.idbarang = idbarang;
+        this.idkategori = idkategori;
+        this.idsatuan = idsatuan;
+        this.barang = barang;
+        this.harga = harga;
+        this.hargabeli = hargabeli;
+        this.stok = stok;
+        this.flag_stok = flag_stok;
+    }
 
     public String getIdbarang() {
         return idbarang;
@@ -41,21 +73,6 @@ public class ModelBarang {
         this.barang = barang;
     }
 
-    public String getHarga() {
-        return harga;
-    }
-
-    public void setHarga(String harga) {
-        this.harga = harga;
-    }
-
-    public String getHargabeli() {
-        return hargabeli;
-    }
-
-    public void setHargabeli(String hargabeli) {
-        this.hargabeli = hargabeli;
-    }
 
     public String getIdtoko() {
         return idtoko;
@@ -63,5 +80,37 @@ public class ModelBarang {
 
     public void setIdtoko(String idtoko) {
         this.idtoko = idtoko;
+    }
+
+    public double getHarga() {
+        return harga;
+    }
+
+    public void setHarga(double harga) {
+        this.harga = harga;
+    }
+
+    public double getHargabeli() {
+        return hargabeli;
+    }
+
+    public void setHargabeli(double hargabeli) {
+        this.hargabeli = hargabeli;
+    }
+
+    public double getStok() {
+        return stok;
+    }
+
+    public void setStok(double stok) {
+        this.stok = stok;
+    }
+
+    public int getFlag_stok() {
+        return flag_stok;
+    }
+
+    public void setFlag_stok(int flag_stok) {
+        this.flag_stok = flag_stok;
     }
 }
