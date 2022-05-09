@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_detail_kategori.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_home_page.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_main.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_master_daftar_kategori.xml" value="0.4" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_master_pelanggan.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_master_produk.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_master_satuan.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_otpverification.xml" value="0.4" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/activity_telp_verification.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/dialog_detail_kategori.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.20244565217391305" />
+        <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_kategori.xml" value="0.264" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable-anydpi/ic_opsi.xml" value="0.184" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1275" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1055" />
@@ -47,15 +59,12 @@
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/activity_user_register.xml" value="0.25" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/app_bar_home_page.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/content_home_page.xml" value="0.1" />
-        <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/dialog_detail_kategori.xml" value="0.17324561403508773" />
-        <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/dialog_detail_satuan.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/fragment_detail_kategori.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/fragment_home.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/fragment_item_kategori.xml" value="0.25" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/fragment_laporan.xml" value="0.1" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/fragment_pengaturan.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/item_kategori.xml" value="0.25" />
-        <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/item_satuan.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/nav_header_home_page.xml" value="0.1" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/layout/splash_activity.xml" value="0.17324561403508773" />
         <entry key="..\:/Users/fance/AndroidStudioProjects/AuthApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
