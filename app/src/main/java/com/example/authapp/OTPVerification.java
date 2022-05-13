@@ -51,7 +51,7 @@ public class OTPVerification extends AppCompatActivity {
                     kode.requestFocus();
                     kode.setError("Harap diisi");
                 } else {
-                    Toast.makeText(OTPVerification.this, "...", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(OTPVerification.this, "...", Toast.LENGTH_SHORT).show();
                     VerifOtp(kode.getText().toString());
 
                 }

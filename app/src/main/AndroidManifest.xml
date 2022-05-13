@@ -51,6 +51,19 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"/>
+        <activity android:name=".ui.pengaturan.satuan.MasterSatuan" />
+        <activity android:name=".ui.pengaturan.pelanggan.MasterPelanggan" />
+        <activity android:name=".ui.pengaturan.pelanggan.TambahPelanggan" />
+        <activity android:name=".ui.pengaturan.pelanggan.EditPelanggan" />
+        <activity android:name=".ui.pengaturan.pegawai.MasterPegawai" />
+        <activity android:name=".ui.pengaturan.pegawai.EditPegawai" />
+        <activity android:name=".ui.pengaturan.pegawai.TambahPegawai" />
+        <activity android:name=".ui.pengaturan.pegawai.LoginPegawai" />
+        <activity android:name=".Response.BarangResponse" />
+        <activity android:name=".ui.pengaturan.produk.MasterProduk" />
+        <activity android:name=".ui.pengaturan.produk.TambahProduk" />
+        <activity android:name=".ui.pengaturan.produk.EditProduk" />
+        <activity android:name=".Adapter.ProdukAdapter" />
     </application>
 
 </manifest>

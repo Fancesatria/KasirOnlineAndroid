@@ -29,6 +29,14 @@ public class ModelBarang {
     @Ignore
     private String idtoko;
 
+    //buat update / post barang scr manual
+    @Ignore
+    public ModelBarang() {
+    }
+
+
+
+
 
     public ModelBarang(@NonNull String idbarang, String idkategori, String idsatuan, String barang, double harga, double hargabeli, double stok, int flag_stok) {
         this.idbarang = idbarang;

@@ -63,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/namaUsaha"
         />
 
+
     <Spinner
         android:id="@+id/jenisUsaha"
         android:layout_width="match_parent"

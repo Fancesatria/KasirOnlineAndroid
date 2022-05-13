@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.authapp.Config;
 import com.example.authapp.Model.ModelKategori;
 import com.example.authapp.databinding.ItemKategoriBinding;
 import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
@@ -40,6 +41,7 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
     public void onBindViewHolder(@NonNull KategoriAdapter.ViewHolder holder, int position) {
         ModelKategori kategori = data.get(position);
 
+        //if(kategori.getNama_kategori().equals(Config.PageSigned.DASHBOARD)) ini buat nyoba manggil config
         holder.bind.txtKategori.setText(kategori.getNama_kategori());
         //ini buat detail
         holder.bind.TxtHapus.setOnClickListener(new View.OnClickListener() {
