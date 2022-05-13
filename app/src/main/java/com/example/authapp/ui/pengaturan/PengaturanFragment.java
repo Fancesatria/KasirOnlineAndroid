@@ -27,8 +27,8 @@ public class PengaturanFragment extends Fragment {
         binding = FragmentPengaturanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textPengaturan;
-        pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textPengaturan;
+//        pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
