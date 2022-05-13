@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.example.authapp.Response.SatuanResponse;
 import com.example.authapp.Service.SatuanService;
 import com.example.authapp.databinding.ActivityMasterSatuanBinding;
 import com.example.authapp.databinding.DialogDetailSatuanBinding;
+import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +129,7 @@ public class MasterSatuan extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SatuanGetResp> call, Throwable t) {
-
+                Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -160,7 +162,7 @@ public class MasterSatuan extends AppCompatActivity {
             @Override
             public void onFailure(Call<SatuanResponse> call, Throwable t) {
                 LoadingDialog.close();
-                ErrorDialog.message(MasterSatuan.this, getString(R.string.error_fetch), bind.getRoot());
+                Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 inSatuan.setEnabled(true);
                 bind.btnSimpan.setEnabled(true);
             }
@@ -195,7 +197,7 @@ public class MasterSatuan extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<SatuanResponse> call, Throwable t) {
                         LoadingDialog.close();
-                        ErrorDialog.message(MasterSatuan.this, getString(R.string.error_fetch), bind.getRoot());
+                        Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -229,7 +231,7 @@ public class MasterSatuan extends AppCompatActivity {
             @Override
             public void onFailure(Call<SatuanResponse> call, Throwable t) {
                 LoadingDialog.close();
-                ErrorDialog.message(MasterSatuan.this, getString(R.string.error_fetch), bind.getRoot());
+                Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

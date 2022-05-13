@@ -1,11 +1,10 @@
 package com.example.authapp.Response;
 
+import com.example.authapp.Model.ModelPelanggan;
 
-import com.example.authapp.Model.ModelBarang;
-
-public class BarangResponse {
+public class PelangganResponse {
     private boolean status;
-    private ModelBarang data;
+    private ModelPelanggan data;
 
     public boolean isStatus() {
         return status;
@@ -15,11 +14,11 @@ public class BarangResponse {
         this.status = status;
     }
 
-    public ModelBarang getData() {
+    public ModelPelanggan getData() {
         return data;
     }
 
-    public void setData(ModelBarang data) {
+    public void setData(ModelPelanggan data) {
         this.data = data;
     }
 }

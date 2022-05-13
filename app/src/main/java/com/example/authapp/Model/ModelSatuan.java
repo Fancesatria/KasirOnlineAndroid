@@ -9,6 +9,10 @@ public class ModelSatuan {
     @PrimaryKey(autoGenerate = true)
     private int idsatuan;
 
+    public String getNama_satuan() {
+        return nama_satuan;
+    }
+
     private String nama_satuan;
 
     @Ignore
@@ -27,9 +31,7 @@ public class ModelSatuan {
         this.idsatuan = idsatuan;
     }
 
-    public String getNama_satuan() {
-        return nama_satuan;
-    }
+
 
     public void setNama_satuan(String nama_satuan) {
         this.nama_satuan = nama_satuan;

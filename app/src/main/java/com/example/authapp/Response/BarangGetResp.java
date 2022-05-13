@@ -1,11 +1,17 @@
 package com.example.authapp.Response;
 
-
 import com.example.authapp.Model.ModelBarang;
 
-public class BarangResponse {
+import java.util.List;
+
+public class BarangGetResp {
     private boolean status;
-    private ModelBarang data;
+    private List<ModelBarang> data;
+
+    public BarangGetResp(boolean status, List<ModelBarang> data) {
+        this.status = status;
+        this.data = data;
+    }
 
     public boolean isStatus() {
         return status;
@@ -15,11 +21,11 @@ public class BarangResponse {
         this.status = status;
     }
 
-    public ModelBarang getData() {
+    public List<ModelBarang> getData() {
         return data;
     }
 
-    public void setData(ModelBarang data) {
+    public void setData(List<ModelBarang> data) {
         this.data = data;
     }
 }

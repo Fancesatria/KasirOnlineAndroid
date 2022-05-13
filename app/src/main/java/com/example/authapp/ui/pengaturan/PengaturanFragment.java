@@ -14,6 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.authapp.databinding.FragmentPengaturanBinding;
 import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
+import com.example.authapp.ui.pengaturan.pegawai.LoginPegawai;
+import com.example.authapp.ui.pengaturan.pegawai.MasterPegawai;
+import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
+import com.example.authapp.ui.pengaturan.produk.MasterProduk;
+import com.example.authapp.ui.pengaturan.satuan.MasterSatuan;
 
 public class PengaturanFragment extends Fragment {
 
@@ -32,6 +37,34 @@ public class PengaturanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MasterDaftarKategori.class)); //kalau mangil fragment, itu pakenta getContext() ,bukan this
+            }
+        });
+
+        bind.masterSatuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MasterSatuan.class));
+            }
+        });
+
+        bind.masterPelanggan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MasterPelanggan.class));
+            }
+        });
+
+        bind.masterPegawai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MasterPegawai.class));
+            }
+        });
+
+        bind.masterProduk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MasterProduk.class));
             }
         });
 

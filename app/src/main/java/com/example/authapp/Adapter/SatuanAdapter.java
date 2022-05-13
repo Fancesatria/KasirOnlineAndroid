@@ -58,14 +58,12 @@ public class SatuanAdapter extends RecyclerView.Adapter<SatuanAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tSatuan, tHapus, tEdit;
-        CardView cv;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tSatuan = (TextView)itemView.findViewById(R.id.txtSatuan);
             tHapus = (TextView)itemView.findViewById(R.id.txtHapus);
             tEdit = (TextView)itemView.findViewById(R.id.txtEdit);
-            cv = itemView.findViewById(R.id.cv);
         }
     }
 }

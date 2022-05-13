@@ -10,9 +10,7 @@ public class ModelPelanggan {
     private int idpelanggan;
 
     private String nama_pelanggan;
-
     private String alamat_pelanggan;
-
     private String no_telepon;
 
     @Ignore
@@ -23,6 +21,7 @@ public class ModelPelanggan {
         this.alamat_pelanggan = alamat_pelanggan;
         this.no_telepon = no_telepon;
     }
+
 
     public int getIdpelanggan() {
         return idpelanggan;

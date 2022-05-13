@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.authapp.Component.ErrorDialog;
+import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.SharedPref.SpHelper;
 import com.example.authapp.databinding.ActivityMainBinding;
+import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,9 +53,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(response.isSuccessful()) {
 
                     String message = "Login berhasil";
-                    sp.setToken(response.body().getToken());
-                    sp.setValue(Config.lastPageSign, response.body().getPage());
-                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    sp.setToken(response.body().getToken()); //mencari session dg data token yg sama
+                    sp.setValue(Config.lastPageSign, response.body().getPage()); //ini buat mencari pae
+                    SuccessDialog.message(LoginActivity.this, message, bind.getRoot());
                     if (response.body().getPage().equals(Config.PageSigned.DASHBOARD)) {
                         startActivity(new Intent(LoginActivity.this, HomePage.class));
                     } else if (response.body().getPage().equals(Config.PageSigned.OTP)) {
@@ -64,14 +67,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 } else {
                     String message = "Akun tidak ditemukan";
-                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    ErrorDialog.message(LoginActivity.this, message, bind.getRoot());
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 String message = t.getLocalizedMessage();
-                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();;
             }
         });
     }

@@ -4,30 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformasiBisnis">
+    tools:context=".ui.pengaturan.pelanggan.EditPelanggan">
 
     <TextView
         android:id="@+id/banner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-black"
-        android:paddingLeft="40dp"
-        android:text="Informasi Bisnis"
+        android:text="Edit Pelanggan"
+        android:textAlignment="textStart"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/inNama"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/namaPemilik"
-        android:layout_width="320dp"
+        android:id="@+id/inNama"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Nama Pemilik"
+        android:hint="Nama Pelanggan"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,72 +37,58 @@
         />
 
     <EditText
-        android:id="@+id/namaUsaha"
-        android:layout_width="320dp"
+        android:id="@+id/inAlamat"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Nama Usaha"
+        android:hint="Alamat"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namaPemilik"
+        app:layout_constraintTop_toBottomOf="@+id/inNama"
         />
 
     <EditText
-        android:id="@+id/lokasiUsaha"
-        android:layout_width="320dp"
+        android:id="@+id/inTelp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Lokasi Usaha"
-        android:inputType="text"
+        android:hint="Nomor Telepon"
+        android:inputType="number|phone"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namaUsaha"
+        app:layout_constraintTop_toBottomOf="@+id/inAlamat"
         />
 
-
-    <Spinner
-        android:id="@+id/jenisUsaha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:paddingLeft="8dp"
-        android:layout_margin="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lokasiUsaha"/>
-
     <Button
-        android:id="@+id/nextToTambahProduk"
+        android:id="@+id/btnSubmit"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#2F4F4F"
-        android:text="Next"
+        android:text="Save Changes"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:textStyle="bold"
+        app:cornerRadius="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jenisUsaha"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/inTelp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
 
+
+    <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--            android:id="@+id/plusBtnProduk"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="bottom|center"-->
+    <!--            android:layout_marginBottom="50dp"-->
+    <!--            app:srcCompat="@android:drawable/ic_plus"-->
+    <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--            app:layout_constraintRight_toRightOf="parent"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@ public class PengaturanViewModel extends ViewModel {
 
     public PengaturanViewModel() {
         mText = new MutableLiveData<>();
-        ;
+
     }
 
     public LiveData<String> getText() {

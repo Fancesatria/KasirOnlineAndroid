@@ -4,7 +4,10 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.example.authapp.Service.BarangService;
 import com.example.authapp.Service.KategoriService;
+import com.example.authapp.Service.PegawaiService;
+import com.example.authapp.Service.PelangganService;
 import com.example.authapp.Service.SatuanService;
 import com.example.authapp.Service.UserService;
 import com.example.authapp.SharedPref.SpHelper;
@@ -99,15 +102,30 @@ public class Api {
     }
 
     //SATUAN
-    public static SatuanService Satuan() {
-        SatuanService satuanService = getRetrofit().create(SatuanService.class);
-
-        return satuanService;
-    }
-
     public static SatuanService Satuan(Context context) {
         SatuanService satuanService = getRetrofit(context).create(SatuanService.class);
 
         return satuanService;
+    }
+
+    //PELANGGAN
+    public static PelangganService Pelanggan(Context context){
+        PelangganService pelangganService = getRetrofit(context).create(PelangganService.class);
+
+        return pelangganService;
+    }
+
+    //PEGAWAI
+    public static PegawaiService Pegawai(Context context) {
+        PegawaiService pegawaiService = getRetrofit(context).create(PegawaiService.class);
+
+        return pegawaiService;
+    }
+
+    //PRODUK
+    public static BarangService Barang(Context context) {
+        BarangService barangService = getRetrofit(context).create(BarangService.class);
+
+        return barangService;
     }
 }

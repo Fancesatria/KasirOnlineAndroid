@@ -20,7 +20,7 @@ public interface PegawaiDao {
     @Insert(onConflict  = OnConflictStrategy.REPLACE)
     void insert(ModelPegawai pegawai);
 
-    @Query("select * from tblpegawai where nama_pegawai like :keyword")
+    @Query("select * from tblpegawai where nama_pegawai like '%' || :keyword || '%'")
     LiveData<List<ModelPegawai>> getPegawai(String keyword);
 
     @Update

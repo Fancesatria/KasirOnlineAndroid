@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".ui.pengaturan.pegawai.LoginPegawai">
 
     <TextView
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="sans-serif-black"
-        android:text="LokaKarya"
+        android:text="Login Pegawai"
         android:textAlignment="center"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -33,56 +33,30 @@
         app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/idpegawai"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Id Pegawai"
+        android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bannerDescription" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/pin"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:hint="Pin Pegawai"
+        android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />'
-
-    <TextView
-        android:onClick="forgotPassword"
-        android:id="@+id/forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="18dp"
-        android:text="Forgot Password"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <TextView
-        android:onClick="register"
-        android:id="@+id/userRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="0dp"
-        android:text="Register"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/forgotPassword"
-        app:layout_constraintTop_toTopOf="@+id/forgotPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/idpegawai" />'
 
     <Button
         android:id="@+id/signIn"
@@ -96,29 +70,10 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/pin" />
 
-    <TextView
-        android:id="@+id/beta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:onClick="tester"
-        android:text="Tester"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/signIn" />
 
-    <TextView
-        android:id="@+id/homePage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:onClick="mainPage"
-        android:text="Home Page"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/beta" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"

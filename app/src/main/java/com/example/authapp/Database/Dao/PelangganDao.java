@@ -15,12 +15,12 @@ import java.util.List;
 @Dao
 public interface PelangganDao {
     @Insert(onConflict  = OnConflictStrategy.REPLACE)
-    void insertAll(List<ModelPelanggan> satuans);
+    void insertAll(List<ModelPelanggan> pelanggans);
 
     @Insert(onConflict  = OnConflictStrategy.REPLACE)
     void insert(ModelPelanggan pelanggan);
 
-    @Query("select * from tblpelanggan where nama_pelanggan like :keyword")
+    @Query("select * from tblpelanggan where nama_pelanggan like '%' || :keyword || '%' ")
     LiveData<List<ModelPelanggan>> getPelanggans(String keyword);
 
     @Update
