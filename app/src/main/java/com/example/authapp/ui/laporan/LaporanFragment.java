@@ -24,8 +24,8 @@ public class LaporanFragment extends Fragment {
         binding = FragmentLaporanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textLaporan;
-        laporanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textLaporan;
+//        laporanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
