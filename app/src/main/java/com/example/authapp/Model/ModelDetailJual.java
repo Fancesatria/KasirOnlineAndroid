@@ -72,4 +72,8 @@ public class ModelDetailJual
     public void setIdtoko(int idtoko) {
         this.idtoko = idtoko;
     }
+
+    public void addJumlah(){
+        this.jumlahjual++;
+    }
 }

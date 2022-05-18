@@ -28,6 +28,15 @@ public class SpHelper {
         editor.commit(); //share pref hrs di commit dulu
     }
 
+    public void setEmail(String email){
+        editor.putString("email", email);
+        editor.commit();
+    }
+
+//    public String getEmail(){
+//        return getValue("email");
+//    }
+
     public void setBoolean(String key, boolean value){
         editor.putBoolean(key,value);
         editor.commit();

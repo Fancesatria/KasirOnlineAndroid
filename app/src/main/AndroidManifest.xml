@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AuthApp">
+
         <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false" />
@@ -59,11 +60,9 @@
         <activity android:name=".ui.pengaturan.pegawai.EditPegawai" />
         <activity android:name=".ui.pengaturan.pegawai.TambahPegawai" />
         <activity android:name=".ui.pengaturan.pegawai.LoginPegawai" />
-        <activity android:name=".Response.BarangResponse" />
         <activity android:name=".ui.pengaturan.produk.MasterProduk" />
         <activity android:name=".ui.pengaturan.produk.TambahProduk" />
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
-        <activity android:name=".Adapter.ProdukAdapter" />
     </application>
 
 </manifest>

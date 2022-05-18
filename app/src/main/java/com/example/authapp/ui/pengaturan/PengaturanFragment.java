@@ -69,8 +69,8 @@ public class PengaturanFragment extends Fragment {
             }
         });
 
-        TextView textView = bind.textPengaturan;
-        pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        TextView textView = bind.textPengaturan;
+//        pengaturanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
 
     }

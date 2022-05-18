@@ -9,6 +9,10 @@ public class ModelLogin {
         this.password = password;
     }
 
+    public ModelLogin() {
+
+    }
+
     public String getEmail() {
         return email;
     }

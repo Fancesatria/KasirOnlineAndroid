@@ -56,12 +56,14 @@ public class UserRegister extends AppCompatActivity {
 
     //function register ini ngisi func registerusers yg diambil dr interface file useRegister, jadi diisi dulu baru dipanggil waktu onclick nnti
     public void registerUser(ModelRegister modelRegister){
-        //SpHelper sp = new SpHelper(this);
+        SpHelper sp = new SpHelper(this);
         Call<RegisterResponse> registerResponseCall = Api.getService().registerUsers(modelRegister);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 if(response.isSuccessful()) {
+
+                    //sp.setEmail(response.body());
 
                     String message = "Registrasi berhasil";
                     //sp.setToken(response.body().getToken());

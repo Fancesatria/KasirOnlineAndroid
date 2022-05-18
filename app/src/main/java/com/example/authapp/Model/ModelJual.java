@@ -4,6 +4,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.authapp.Service.OrderService;
+
 @Entity(tableName = "tbljual")
 public class ModelJual  {
     @PrimaryKey(autoGenerate = true)
@@ -37,6 +39,8 @@ public class ModelJual  {
         this.idpelanggan = idpelanggan;
         this.idpegawai = idpegawai;
         this.tanggal_jual = tanggal_jual;
+
+
     }
 
     public int getIdjual() {

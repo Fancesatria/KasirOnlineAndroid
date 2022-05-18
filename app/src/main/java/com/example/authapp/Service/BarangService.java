@@ -17,6 +17,10 @@ public interface BarangService {
     @GET("barang")
     Call<BarangGetResp> getBarang(@Query("cari") String cari);
 
+    //GET DATA
+    @GET("barang")
+    Call<BarangGetResp> getBarangz();
+
 //    //SELECT DATA
 //    @GET("barang/{id}")
 //    Call<InfoBisnisResponse> barang(@Path("id") String id);

@@ -45,10 +45,9 @@
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomHorizontalDivider"
@@ -56,69 +55,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topHorizontalDivider">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
-                android:orientation="horizontal">
+                android:id="@id/viewTotal"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:weightSum="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/teal_700">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/tvJumlah"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp">
+                    android:fontFamily="sans-serif-black"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/white"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textviewtotal"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Total  Rp."
+                    android:textColor="@color/white" />
 
-                        <ImageView
-                            android:id="@+id/imageCardOne"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:background="#CFCFCF"
-                            android:src="@drawable/ic_dashboard_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textCardOne"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="7dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:padding="2dp"
-                                android:text="Contoh Text 1"
-                                android:textAlignment="center"
-                                android:textColor="#2F4F4F"
-                                android:textSize="12sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
+                    android:text="0"
+                    android:textColor="@color/white" />
             </LinearLayout>
-            </ScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteY="654dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

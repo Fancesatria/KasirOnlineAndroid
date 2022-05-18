@@ -25,6 +25,9 @@ import com.example.authapp.Model.ModelKategori;
 import com.example.authapp.Model.ModelSatuan;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangResponse;
+import com.example.authapp.Response.KategoriGetResp;
+import com.example.authapp.Response.SatuanGetResp;
+import com.example.authapp.Response.SatuanResponse;
 import com.example.authapp.databinding.InsertProdukBinding;
 
 import java.util.ArrayList;
@@ -87,8 +90,14 @@ public class TambahProduk extends AppCompatActivity {
                 }
                 adapterSatuan = new ArrayAdapter(TambahProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
                 bind.spinnerSatuan.setAdapter(adapterSatuan);
+
+                //memaggil function kategori/satuan biar bisa berjalan saat online
+                refreshKategori();
+                refreshSatuan();
             }
         });
+
+
 
         //post data
         barangRepository = new BarangRepository(getApplication());
@@ -136,6 +145,55 @@ public class TambahProduk extends AppCompatActivity {
                     modelBarang.setStok(stokBarang);
                     addBarang(modelBarang);
                 }
+            }
+        });
+    }
+
+    //menjalankan saat online
+    public void refreshSatuan(){
+        Call<SatuanGetResp> satuanResponseCall = Api.Satuan(TambahProduk.this).getSat();
+        satuanResponseCall.enqueue(new Callback<SatuanGetResp>() {
+            @Override
+            public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
+                if (dataSatuan.size() != response.body().getData().size() ) {
+                    dataSatuan.clear();
+                    dataSatuan.addAll(response.body().getData());
+                    for (ModelSatuan satuanModel : response.body().getData()){
+                        satuan.add(satuanModel.getNama_satuan());
+                    }
+                    adapterSatuan = new ArrayAdapter(TambahProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
+                    bind.spinnerSatuan.setAdapter(adapterSatuan);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<SatuanGetResp> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void refreshKategori(){
+        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(TambahProduk.this).getKat();
+        kategoriGetRespCall.enqueue(new Callback<KategoriGetResp>() {
+            @Override
+            public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
+                if(dataKategori.size() != response.body().getData().size()){
+                    dataKategori.clear();
+                    dataKategori.addAll(response.body().getData());
+                    for(ModelKategori kategorimodel : response.body().getData()){
+                        kategori.add(kategorimodel.getNama_kategori());
+
+                    }
+                    adapterKategori = new ArrayAdapter(TambahProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
+                    bind.spinnerKategori.setAdapter(adapterKategori);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KategoriGetResp> call, Throwable t) {
+
             }
         });
     }
