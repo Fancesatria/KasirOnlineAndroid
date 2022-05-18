@@ -24,8 +24,8 @@ public class PenjualanFragment extends Fragment {
         binding = FragmentPenjualanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textPenjualan;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+//        final TextView textView = binding.textPenjualan;
+//        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
