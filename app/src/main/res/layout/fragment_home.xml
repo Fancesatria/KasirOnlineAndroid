@@ -57,7 +57,7 @@
 
 
             <LinearLayout
-                android:id="@id/viewTotal"
+                android:id="@+id/viewTotal"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:weightSum="1"
