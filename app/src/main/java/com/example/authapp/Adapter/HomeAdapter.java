@@ -42,11 +42,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(service.getBarang().size() == 0){
-            bind.viewTotal.setVisibility(View.GONE);
-        } else {
-            bind.viewTotal.setVisibility(View.VISIBLE);
-        }
+//        if(service.getBarang().size() == 0){
+//            bind.viewTotal.setVisibility(View.GONE);
+//        } else {
+//
+//            bind.tvJumlah.setText();
+//        }
         ModelBarang modelBarang = data.get(position);
         //ngecek barang masuk atau gk
         ModelDetailJual detail = null;
@@ -72,7 +73,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             public void onClick(View view) {
                 service.add(finalModelBarang);
                 notifyItemChanged(position); //mereload posisi item
-                Toast.makeText(context, String.valueOf(service.getTotal()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, String.valueOf(service.getTotal()), Toast.LENGTH_SHORT).show();
+                //
+                // Toast.makeText(context, String.valueOf(detail), Toast.LENGTH_SHORT).show();
+                bind.viewTotal.setVisibility(View.VISIBLE);
+                //bind.tvJumlah.setText(String.valueOf(service.add(finalModelBarang).det));
+                bind.tvTotal.setText(String.valueOf(service.getTotal()));
             }
         });
     }
