@@ -20,6 +20,7 @@ import com.example.authapp.R;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.FragmentHomeBinding;
 import com.example.authapp.ui.home.HomeFragment;
+import com.example.authapp.util.Modul;
 
 import java.util.List;
 
@@ -51,26 +52,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ModelBarang modelBarang = data.get(position);
         //ngecek barang masuk atau gk
-        ModelDetailJual detail = null;
-        for(ModelBarang item: service.getBarang()){
-            //ketika direfresh modelbarangnya ganti krn di clear, jd perlu pake yg lama buat mencocokkan idnya
-            if (modelBarang.getIdbarang().equals(item.getIdbarang())){
-                detail = service.getDetailJual(item);
-                modelBarang = item;
+        ModelDetailJual detail = service.getDetailJual(modelBarang);
+        holder.tNama.setText(Modul.upperCaseFirst(modelBarang.getBarang()));
 
-            }
-        }
-        holder.tNama.setText(modelBarang.getBarang());
-        holder.tHarga.setText(String.valueOf(modelBarang.getHarga()));
         if (detail == null){
-            holder.tGambar.setText(modelBarang.getBarang().substring(0, 1)); //klu jmlhnya nol mka akan tampil huruf
+            holder.tGambar.setText(modelBarang.getBarang().substring(0, 1).toUpperCase()); //klu jmlhnya nol mka akan tampil huruf
             holder.linear.setBackgroundColor(context.getColor(R.color.darkgrey));
             holder.tGambar.setBackgroundColor(context.getColor(R.color.darkgrey));
+            holder.tGambar.setTextColor(context.getColor(R.color.black)); //ganti warna teks
+            holder.tHarga.setText(Modul.removeE(modelBarang.getHarga()));
         } else {
             holder.tGambar.setText(String.valueOf(detail.getJumlahjual()));
             holder.tGambar.setBackgroundColor(context.getColor(R.color.teal_700)); //ganti warna background
             holder.tGambar.setTextColor(context.getColor(R.color.white)); //ganti warna teks
             holder.linear.setBackgroundColor(context.getColor(R.color.teal_700));
+            holder.tHarga.setText(Modul.removeE(detail.getHargajual()));
         }
 
         ModelBarang finalModelBarang = modelBarang;
