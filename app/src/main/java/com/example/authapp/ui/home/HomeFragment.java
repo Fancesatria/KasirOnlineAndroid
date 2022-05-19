@@ -1,5 +1,6 @@
 package com.example.authapp.ui.home;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -19,12 +21,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.authapp.Adapter.HomeAdapter;
 import com.example.authapp.Adapter.ProdukAdapter;
 import com.example.authapp.Api;
+import com.example.authapp.Component.LoadingDialog;
+import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.BarangRepository;
 import com.example.authapp.Model.ModelBarang;
+import com.example.authapp.Model.ModelDetailJual;
+import com.example.authapp.Model.ModelJual;
+import com.example.authapp.R;
 import com.example.authapp.Response.BarangGetResp;
 import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.Service.OrderService;
+import com.example.authapp.databinding.DialogKeteranganOrderBinding;
 import com.example.authapp.databinding.FragmentHomeBinding;
+import com.example.authapp.ui.pengaturan.produk.MasterProduk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +44,7 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
-    FragmentHomeBinding binding;
+    public FragmentHomeBinding binding;
     BarangRepository barangRepository;
     HomeAdapter produkAdapter;
     private List<ModelBarang> data = new ArrayList<>();
@@ -58,7 +67,7 @@ public class HomeFragment extends Fragment {
 
         //recyclerview
         binding.item.setLayoutManager(new GridLayoutManager(getActivity(), 3)); //buat grid biar 1 row ada 3 item
-        produkAdapter = new HomeAdapter(getActivity(), data, service, binding);
+        produkAdapter = new HomeAdapter(getActivity(), data, service, this);
         binding.item.setAdapter(produkAdapter);
 
         refreshData(true);
@@ -127,6 +136,57 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+    }
 
+    public void DialogTotal(ModelDetailJual modelDetailJual, ModelBarang modelBarang){
+        int jumlahLama = modelDetailJual.getJumlahjual();
+        DialogKeteranganOrderBinding binder = DialogKeteranganOrderBinding.inflate(LayoutInflater.from(getContext()));
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
+        alertBuilder.setView(binder.getRoot());
+        alertBuilder.setTitle("JUMLAH ORDER");
+        alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                service.setJumlahBeli(modelBarang, jumlahLama, modelDetailJual.getJumlahjual());
+                //Toast.makeText(getContext(), String.valueOf(modelDetailJual.getJumlahjual()), Toast.LENGTH_SHORT).show();
+                setTotal();
+                produkAdapter.notifyDataSetChanged();
+            }
+        }).setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        binder.tvJumlah.setText(String.valueOf(modelDetailJual.getJumlahjual()));
+        binder.tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                modelDetailJual.addJumlah();
+                binder.tvJumlah.setText(String.valueOf(modelDetailJual.getJumlahjual()));
+            }
+        });
+        binder.kurang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                modelDetailJual.relieveJumlah();
+                if (service.getJumlah() < 1){
+                    binder.kurang.setEnabled(false);
+                    binder.kurang.setTextColor(getContext().getColor(R.color.darkgrey));
+                }
+
+                binder.tvJumlah.setText(String.valueOf(modelDetailJual.getJumlahjual()));
+
+            }
+        });
+        AlertDialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
+    public void setTotal(){
+        binding.tvJumlah.setText(String.valueOf(service.getJumlah()));
+        binding.tvTotal.setText(String.valueOf(service.getTotal()));
     }
 }
