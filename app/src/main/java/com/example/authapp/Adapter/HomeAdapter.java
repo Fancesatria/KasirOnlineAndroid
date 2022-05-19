@@ -65,6 +65,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         if (detail == null){
             holder.tGambar.setText(modelBarang.getBarang().substring(0, 1)); //klu jmlhnya nol mka akan tampil huruf
             holder.linear.setBackgroundColor(context.getColor(R.color.darkgrey));
+            holder.tGambar.setBackgroundColor(context.getColor(R.color.darkgrey));
         } else {
             holder.tGambar.setText(String.valueOf(detail.getJumlahjual()));
             holder.tGambar.setBackgroundColor(context.getColor(R.color.teal_700)); //ganti warna background
