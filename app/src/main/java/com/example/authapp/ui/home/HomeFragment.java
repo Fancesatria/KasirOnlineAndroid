@@ -251,6 +251,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        binder.eHarga.setText(Modul.toString(modelDetailJual.getHargajual()));
         binder.cbHarga.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
