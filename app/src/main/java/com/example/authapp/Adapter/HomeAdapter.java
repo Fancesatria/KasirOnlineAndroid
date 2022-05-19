@@ -92,6 +92,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                if(finalDetail == null){
+                    return false; //mengembalikan ke onclick
+                }
                 fragment.DialogTotal(finalDetail,finalModelBarang);
 
 //                Toast.makeText(context, "long", Toast.LENGTH_SHORT).show();

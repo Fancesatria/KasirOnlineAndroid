@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void DialogTotal(ModelDetailJual modelDetailJual, ModelBarang modelBarang){
-        int jumlahLama = modelDetailJual.getJumlahjual();
+
         DialogKeteranganOrderBinding binder = DialogKeteranganOrderBinding.inflate(LayoutInflater.from(getContext()));
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
         alertBuilder.setView(binder.getRoot());
@@ -147,7 +147,8 @@ public class HomeFragment extends Fragment {
         alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                service.setJumlahBeli(modelBarang, jumlahLama, modelDetailJual.getJumlahjual());
+                int jumlah = Integer.parseInt(binder.tvJumlah.getText().toString());
+                service.setJumlahBeli(modelBarang,  modelDetailJual.getJumlahjual(),jumlah);
                 //Toast.makeText(getContext(), String.valueOf(modelDetailJual.getJumlahjual()), Toast.LENGTH_SHORT).show();
                 setTotal();
                 produkAdapter.notifyDataSetChanged();
@@ -162,23 +163,22 @@ public class HomeFragment extends Fragment {
         binder.tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                modelDetailJual.addJumlah();
-                binder.tvJumlah.setText(String.valueOf(modelDetailJual.getJumlahjual()));
+                int jumlah = Integer.parseInt(binder.tvJumlah.getText().toString());
+                jumlah++;
+                binder.tvJumlah.setText(String.valueOf(jumlah));
             }
         });
         binder.kurang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int jumlah = Integer.parseInt(binder.tvJumlah.getText().toString());
 
-                modelDetailJual.relieveJumlah();
-                if (service.getJumlah() < 1){
+                if (jumlah == 1){
                     binder.kurang.setEnabled(false);
                     binder.kurang.setTextColor(getContext().getColor(R.color.darkgrey));
                 }
-
-                binder.tvJumlah.setText(String.valueOf(modelDetailJual.getJumlahjual()));
-
+                jumlah--;
+                binder.tvJumlah.setText(String.valueOf(jumlah));
             }
         });
         AlertDialog dialog = alertBuilder.create();

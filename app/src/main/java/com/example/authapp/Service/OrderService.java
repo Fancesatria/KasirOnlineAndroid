@@ -76,17 +76,20 @@ public class OrderService {
     }
 
     public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli){
-        ModelDetailJual detailJual = detail.get(modelBarangs.indexOf(modelBarang));
-        total -= modelBarang.getHarga()*jumlahLama;
-        Log.d("jumlahjual", String.valueOf(total));
-        detailJual.setJumlahjual(jumlahBeli);
-        detail.set(modelBarangs.indexOf(modelBarang), detailJual);
-        total += modelBarang.getHarga()*jumlahBeli;
-        Log.d("jumlahjual", String.valueOf(total));
-    }
+        int posisi = modelBarangs.indexOf(modelBarang);
+        if( jumlahBeli == 0){
+            modelBarangs.remove(posisi);
+            detail.remove(posisi);
+        }else{
 
-    public void totalEdit(){
-
+            ModelDetailJual detailJual = detail.get(posisi);
+            total -= modelBarang.getHarga()*jumlahLama;
+            Log.d("jumlahjual", String.valueOf(total));
+            detailJual.setJumlahjual(jumlahBeli);
+            detail.set(modelBarangs.indexOf(modelBarang), detailJual);
+            total += modelBarang.getHarga()*jumlahBeli;
+        }
+        Log.d("jumlahjual", String.valueOf(total));
     }
 
     //get list barang buat ngecek jumlah atau counter
