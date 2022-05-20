@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +26,12 @@
             android:theme="@style/Theme.AuthApp.NoActionBar" />
         <activity
             android:name=".TambahkanProduk"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ScanBarcode"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ScanScreen"
             android:exported="false" />
         <activity
             android:name=".InformasiBisnis"
@@ -65,6 +71,7 @@
         <activity android:name=".ui.pengaturan.produk.MasterProduk" />
         <activity android:name=".ui.pengaturan.produk.TambahProduk" />
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
+        <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
     </application>
 
 </manifest>

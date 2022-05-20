@@ -60,7 +60,7 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
                 i.putExtra("idsatuan", mb.getIdsatuan());
                 i.putExtra("harga", Double.toString(mb.getHarga()));
                 i.putExtra("hargaBeli", Double.toString(mb.getHargabeli()));
-                i.putExtra("stok", Double.toString(mb.getStok()));
+                i.putExtra("stok", Integer.toString((int) mb.getStok()));
                 context.startActivity(i);
             }
         });

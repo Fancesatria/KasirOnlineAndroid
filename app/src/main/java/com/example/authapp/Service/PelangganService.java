@@ -20,6 +20,9 @@ public interface PelangganService {
     @GET("pelanggan")
     Call<PelangganGetResp> getPel(@Query("cari") String cari);
 
+    @GET("pelanggan")
+    Call<PelangganGetResp> getPel2();
+
 //    //SELECT DATA
 //    @GET("pelanggan/{id}")
 //    Call<InfoBisnisResponse> barang(@Path("id") String id);

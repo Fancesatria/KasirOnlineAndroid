@@ -33,6 +33,43 @@ public class BarangRepository {
         return allBarang;
     }
 
+
+    public void get(String idproduk, OnSearch onSearch ){
+        new GetBarang(onSearch,barangDao).execute(idproduk);
+    }
+
+    public interface OnSearch{
+        void findResult(ModelBarang modelBarang);
+        void notFound();
+    }
+
+    private static class GetBarang extends  AsyncTask<String,Void,ModelBarang>{
+        OnSearch onSearch;
+        BarangDao barangDao;
+
+        public GetBarang(OnSearch onSearch, BarangDao barangDao) {
+            this.onSearch = onSearch;
+            this.barangDao = barangDao;
+        }
+
+        @Override
+        protected ModelBarang doInBackground(String... idbarang) {
+
+            return barangDao.get(idbarang[0]);
+        }
+
+
+        @Override
+        protected void onPostExecute(ModelBarang modelBarang) {
+            super.onPostExecute(modelBarang);
+            if(modelBarang!=null){
+                onSearch.findResult(modelBarang);
+            }else{
+                onSearch.notFound();
+            }
+        }
+    }
+
     public void insertAll(List<ModelBarang> data, boolean truncate){
         new InsertBarangAll(barangDao,truncate).execute(data);
     }
@@ -80,6 +117,8 @@ public class BarangRepository {
         }
     }
 
+
+
     private static class InsertBarang extends AsyncTask<ModelBarang,Void,Void> {
         private BarangDao barangDao;
 
@@ -94,6 +133,7 @@ public class BarangRepository {
             return null;
         }
     }
+
 
     private static class InsertBarangAll extends AsyncTask<List<ModelBarang>,Void,Void> {
         private BarangDao barangDao;

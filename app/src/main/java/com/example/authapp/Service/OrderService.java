@@ -1,10 +1,9 @@
 package com.example.authapp.Service;
 
-import android.graphics.ColorSpace;
-
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.Model.ModelPelanggan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ public class OrderService {
     private List<ModelBarang> modelBarangs;
     private int idjual;
     private double total;
+    private ModelPelanggan modelPelanggan;
 
 
     private static OrderService instance;
@@ -29,6 +29,15 @@ public class OrderService {
 
     //OrderService service = OrderService.getInstance(); //ini buat sekai pengecekan / konstruksi biar gk makan memori dn gk bakal di destroy
     //
+
+    public int getJumlah(){
+        int jumlah = 0;
+        for(ModelDetailJual detailJual : detail){
+            jumlah += detailJual.getJumlahjual();
+
+        }
+        return jumlah;
+    }
     public static OrderService getInstance(){
         if (instance == null){
             instance = new OrderService();
@@ -36,9 +45,24 @@ public class OrderService {
         return instance;
     }
 
+
+    public int getIndexBarang(ModelBarang barang){
+        int index =0;
+        for (ModelBarang produk:
+             modelBarangs) {
+            if(produk.getIdbarang().equals(barang.getIdbarang())){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+
+
     //buat nambah produk/pembelian
     public void add(ModelBarang modelBarang){
-        if (modelBarangs.indexOf(modelBarang) == -1){
+        if (getIndexBarang(modelBarang) == -1){
             //yg dibawah in buat mengetahui item ap sj yg akan dipanggil item
             modelBarangs.add(modelBarang);
             ModelDetailJual detailJual = new ModelDetailJual(idjual, modelBarang.getIdbarang(), 1, modelBarang.getHarga());
@@ -46,14 +70,57 @@ public class OrderService {
             total += modelBarang.getHarga()*1;
 
         } else {
-            ModelDetailJual detailJual = detail.get(modelBarangs.indexOf(modelBarang));
+            ModelDetailJual detailJual = detail.get(getIndexBarang(modelBarang));
             detailJual.addJumlah();
-            detail.set(modelBarangs.indexOf(modelBarang), detailJual);
-            total += modelBarang.getHarga();
-            //tota; = modelBarang.getHarga() + total
-            //tota; = total + modelBarang.getHarga() * jumlah jual
+            detail.set(getIndexBarang(modelBarang), detailJual);
+            total += detailJual.getHargajual();
+            //total = modelBarang.getHarga() + total
+            //total = total + modelBarang.getHarga() * jumlah jual
         }
 
+    }
+
+    //kurangi produk
+    public void relieve(ModelBarang modelBarang){
+        if(getIndexBarang(modelBarang)>=0){
+            ModelDetailJual detailJual = detail.get(getIndexBarang(modelBarang));
+            detailJual.relieveJumlah();
+            detail.set(getIndexBarang(modelBarang), detailJual);
+            total -= detailJual.getHargajual();
+        }
+    }
+
+    public void setPelanggan(ModelPelanggan pelanggan){
+        this.modelPelanggan = pelanggan;
+        this.jual.setIdpelanggan(pelanggan.getIdpelanggan());
+    }
+
+    //ganti nama
+    public ModelPelanggan getPelanggan(){
+        if(this.modelPelanggan == null){
+            ModelPelanggan pelanggan = new ModelPelanggan("Umum","","");
+            return pelanggan;
+        }
+        return this.modelPelanggan;
+    }
+
+    public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli,double hargaBaru){
+        int posisi = getIndexBarang(modelBarang);
+        if(posisi>=0) {
+            if (jumlahBeli == 0) {
+                modelBarangs.remove(posisi);
+                detail.remove(posisi);
+            } else {
+
+                ModelDetailJual detailJual = detail.get(posisi);
+
+                total -= modelBarang.getHarga() * jumlahLama;
+                detailJual.setHargajual(hargaBaru);
+                detailJual.setJumlahjual(jumlahBeli);
+                detail.set(getIndexBarang(modelBarang), detailJual);
+                total += detailJual.getHargajual() * jumlahBeli;
+            }
+        }
     }
 
     //get list barang buat ngecek jumlah atau counter
@@ -61,12 +128,13 @@ public class OrderService {
         return this.modelBarangs;
 
     }
-//buat detai jual
+
+    //buat detai jual
     public ModelDetailJual getDetailJual(ModelBarang modelBarang){
-        if (modelBarangs.indexOf(modelBarang) == -1) {
+        if (getIndexBarang(modelBarang) == -1) {
             return null;
         }
-        return detail.get(modelBarangs.indexOf(modelBarang));
+        return detail.get(getIndexBarang(modelBarang));
     }
 
     public void clearCart(){

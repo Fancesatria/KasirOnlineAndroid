@@ -76,4 +76,8 @@ public class ModelDetailJual
     public void addJumlah(){
         this.jumlahjual++;
     }
+
+    public void relieveJumlah() {
+        this.jumlahjual--;
+    }
 }
