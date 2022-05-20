@@ -42,6 +42,7 @@ public class Modul {
         return formattedDate ;
     }
 
+    //buat memperjelas angka/menambah format
     public static String removeE(double value){
         DecimalFormat df = new DecimalFormat("#");
         df.setMaximumFractionDigits(8);
@@ -60,6 +61,7 @@ public class Modul {
         return rounded;
     }
 
+    //buat membuat huruf pertama jd kapital
     public static String upperCaseFirst(String value) {
 
         // Convert String to char array.

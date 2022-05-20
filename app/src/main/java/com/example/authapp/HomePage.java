@@ -3,7 +3,9 @@ package com.example.authapp;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
+import com.example.authapp.SharedPref.SpHelper;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -28,10 +30,19 @@ public class HomePage extends AppCompatActivity {
         binding = ActivityHomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         setSupportActionBar(binding.appBarHomePage.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        View headerView = navigationView.getHeaderView(0);
+
+        //mengatur email/username di sidebar
+        SpHelper sp = new SpHelper(this);
+        TextView tvnama = headerView.findViewById(R.id.user);
+        tvnama.setText(sp.getUsername());
+        TextView tvEmail = headerView.findViewById(R.id.email);
+        tvEmail.setText(sp.getEmail());
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

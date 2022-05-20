@@ -3,6 +3,7 @@ package com.example.authapp.Service;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.Model.ModelPelanggan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class OrderService {
     private List<ModelBarang> modelBarangs;
     private int idjual;
     private double total;
+    private ModelPelanggan modelPelanggan;
 
 
     private static OrderService instance;
@@ -86,6 +88,20 @@ public class OrderService {
             detail.set(getIndexBarang(modelBarang), detailJual);
             total -= detailJual.getHargajual();
         }
+    }
+
+    public void setPelanggan(ModelPelanggan pelanggan){
+        this.modelPelanggan = pelanggan;
+        this.jual.setIdpelanggan(pelanggan.getIdpelanggan());
+    }
+
+    //ganti nama
+    public ModelPelanggan getPelanggan(){
+        if(this.modelPelanggan == null){
+            ModelPelanggan pelanggan = new ModelPelanggan("Umum","","");
+            return pelanggan;
+        }
+        return this.modelPelanggan;
     }
 
     public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli,double hargaBaru){
