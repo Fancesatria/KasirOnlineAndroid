@@ -11,9 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.AuthApp">
-
+        android:theme="@style/Theme.AuthApp"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.laporan.LaporanPendapatan"
+            android:exported="false" />
         <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false" />
@@ -57,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity android:name=".ui.pengaturan.satuan.MasterSatuan" />
         <activity android:name=".ui.pengaturan.pelanggan.MasterPelanggan" />
         <activity android:name=".ui.pengaturan.pelanggan.TambahPelanggan" />
