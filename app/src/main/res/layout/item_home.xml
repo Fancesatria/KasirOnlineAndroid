@@ -68,9 +68,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginBottom="12dp"
                         android:background="#A5A4A4"
+                        android:paddingHorizontal="4dp"
                         android:text="TextView"
                         android:textAlignment="center"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -88,6 +90,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="10dp"
+                        android:maxLines="1"
                         android:padding="2dp"
                         android:text="Contoh Text 1"
                         android:textAlignment="center"

@@ -1,7 +1,6 @@
 package com.example.authapp.ui.home;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +33,6 @@ import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.DialogKeteranganOrderBinding;
 import com.example.authapp.databinding.FragmentHomeBinding;
-import com.example.authapp.ui.home.bottom_nav.PelangganOrder;
 import com.example.authapp.ui.pengaturan.produk.MasterProduk;
 
 import java.util.ArrayList;
@@ -73,7 +71,6 @@ public class HomeFragment extends Fragment {
         binding.item.setAdapter(produkAdapter);
 
         refreshData(true);
-        PanggilPelanggan();
 
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -191,15 +188,5 @@ public class HomeFragment extends Fragment {
     public void setTotal(){
         binding.tvJumlah.setText(String.valueOf(service.getJumlah()));
         binding.tvTotal.setText(String.valueOf(service.getTotal()));
-    }
-
-    public void PanggilPelanggan(){
-        binding.cvPelanggan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), PelangganOrder.class));
-
-            }
-        });
     }
 }

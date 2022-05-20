@@ -29,6 +29,9 @@ public interface BarangDao {
     @Delete
     void delete(ModelBarang barang);
 
+    @Query("SELECT * FROM tblbarang WHERE idbarang=:idbarang")
+    ModelBarang get(String idbarang);
+
     @Query("DELETE FROM tblbarang")
     void deleteAll();
 }

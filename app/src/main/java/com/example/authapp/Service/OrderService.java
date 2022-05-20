@@ -1,9 +1,5 @@
 package com.example.authapp.Service;
 
-import android.graphics.ColorSpace;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
@@ -47,9 +43,24 @@ public class OrderService {
         return instance;
     }
 
+
+    public int getIndexBarang(ModelBarang barang){
+        int index =0;
+        for (ModelBarang produk:
+             modelBarangs) {
+            if(produk.getIdbarang().equals(barang.getIdbarang())){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+
+
     //buat nambah produk/pembelian
     public void add(ModelBarang modelBarang){
-        if (modelBarangs.indexOf(modelBarang) == -1){
+        if (getIndexBarang(modelBarang) == -1){
             //yg dibawah in buat mengetahui item ap sj yg akan dipanggil item
             modelBarangs.add(modelBarang);
             ModelDetailJual detailJual = new ModelDetailJual(idjual, modelBarang.getIdbarang(), 1, modelBarang.getHarga());
@@ -57,10 +68,10 @@ public class OrderService {
             total += modelBarang.getHarga()*1;
 
         } else {
-            ModelDetailJual detailJual = detail.get(modelBarangs.indexOf(modelBarang));
+            ModelDetailJual detailJual = detail.get(getIndexBarang(modelBarang));
             detailJual.addJumlah();
-            detail.set(modelBarangs.indexOf(modelBarang), detailJual);
-            total += modelBarang.getHarga();
+            detail.set(getIndexBarang(modelBarang), detailJual);
+            total += detailJual.getHargajual();
             //total = modelBarang.getHarga() + total
             //total = total + modelBarang.getHarga() * jumlah jual
         }
@@ -69,27 +80,31 @@ public class OrderService {
 
     //kurangi produk
     public void relieve(ModelBarang modelBarang){
-        ModelDetailJual detailJual = detail.get(modelBarangs.indexOf(modelBarang));
-        detailJual.relieveJumlah();
-        detail.set(modelBarangs.indexOf(modelBarang), detailJual);
-        total -= modelBarang.getHarga();
+        if(getIndexBarang(modelBarang)>=0){
+            ModelDetailJual detailJual = detail.get(getIndexBarang(modelBarang));
+            detailJual.relieveJumlah();
+            detail.set(getIndexBarang(modelBarang), detailJual);
+            total -= detailJual.getHargajual();
+        }
     }
 
-    public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli){
-        int posisi = modelBarangs.indexOf(modelBarang);
-        if( jumlahBeli == 0){
-            modelBarangs.remove(posisi);
-            detail.remove(posisi);
-        }else{
+    public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli,double hargaBaru){
+        int posisi = getIndexBarang(modelBarang);
+        if(posisi>=0) {
+            if (jumlahBeli == 0) {
+                modelBarangs.remove(posisi);
+                detail.remove(posisi);
+            } else {
 
-            ModelDetailJual detailJual = detail.get(posisi);
-            total -= modelBarang.getHarga()*jumlahLama;
-            Log.d("jumlahjual", String.valueOf(total));
-            detailJual.setJumlahjual(jumlahBeli);
-            detail.set(modelBarangs.indexOf(modelBarang), detailJual);
-            total += modelBarang.getHarga()*jumlahBeli;
+                ModelDetailJual detailJual = detail.get(posisi);
+
+                total -= modelBarang.getHarga() * jumlahLama;
+                detailJual.setHargajual(hargaBaru);
+                detailJual.setJumlahjual(jumlahBeli);
+                detail.set(getIndexBarang(modelBarang), detailJual);
+                total += detailJual.getHargajual() * jumlahBeli;
+            }
         }
-        Log.d("jumlahjual", String.valueOf(total));
     }
 
     //get list barang buat ngecek jumlah atau counter
@@ -100,10 +115,10 @@ public class OrderService {
 
     //buat detai jual
     public ModelDetailJual getDetailJual(ModelBarang modelBarang){
-        if (modelBarangs.indexOf(modelBarang) == -1) {
+        if (getIndexBarang(modelBarang) == -1) {
             return null;
         }
-        return detail.get(modelBarangs.indexOf(modelBarang));
+        return detail.get(getIndexBarang(modelBarang));
     }
 
     public void clearCart(){
