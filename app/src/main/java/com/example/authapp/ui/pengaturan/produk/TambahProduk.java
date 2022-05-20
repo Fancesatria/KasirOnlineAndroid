@@ -75,6 +75,8 @@ public class TambahProduk extends AppCompatActivity {
                 }
                 adapterKategori = new ArrayAdapter(TambahProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
                 bind.spinnerKategori.setAdapter(adapterKategori);
+                //memaggil function kategori/satuan biar bisa berjalan saat online
+                refreshKategori();
             }
         });
 
@@ -92,7 +94,6 @@ public class TambahProduk extends AppCompatActivity {
                 bind.spinnerSatuan.setAdapter(adapterSatuan);
 
                 //memaggil function kategori/satuan biar bisa berjalan saat online
-                refreshKategori();
                 refreshSatuan();
             }
         });
@@ -169,7 +170,7 @@ public class TambahProduk extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SatuanGetResp> call, Throwable t) {
-
+                Toast.makeText(TambahProduk.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -193,10 +194,11 @@ public class TambahProduk extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<KategoriGetResp> call, Throwable t) {
-
+                Toast.makeText(TambahProduk.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     //buat ngambil
     public ModelKategori kategoriSelected(){

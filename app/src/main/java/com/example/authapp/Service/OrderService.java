@@ -104,6 +104,11 @@ public class OrderService {
         return this.modelPelanggan;
     }
 
+    //get detail buat cart
+    public List<ModelDetailJual> getDetail(){
+        return this.detail;
+    }
+
     public void setJumlahBeli(ModelBarang modelBarang,int jumlahLama, int jumlahBeli,double hargaBaru){
         int posisi = getIndexBarang(modelBarang);
         if(posisi>=0) {
