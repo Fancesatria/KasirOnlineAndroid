@@ -33,9 +33,18 @@ public class SpHelper {
         editor.commit();
     }
 
-//    public String getEmail(){
-//        return getValue("email");
-//    }
+    public String getEmail(){
+        return getValue("email");
+    }
+
+    public void setUsername(String username){
+        editor.putString("username", username);
+        editor.commit();
+    }
+
+    public String getUsername(){
+        return getValue("username");
+    }
 
     public void setBoolean(String key, boolean value){
         editor.putBoolean(key,value);

@@ -54,7 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     String message = "Login berhasil";
                     sp.setToken(response.body().getToken()); //mencari session dg data token yg sama
-                    //sp.setEmail(response.body().);
+                    sp.setEmail(response.body().getData().getEmail());
+                    sp.setUsername(response.body().getData().getUsername());
+
                     sp.setValue(Config.lastPageSign, response.body().getPage()); //ini buat mencari pae
                     SuccessDialog.message(LoginActivity.this, message, bind.getRoot());
                     if (response.body().getPage().equals(Config.PageSigned.DASHBOARD)) {

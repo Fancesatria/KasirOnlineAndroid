@@ -63,6 +63,7 @@
         <activity android:name=".ui.pengaturan.produk.MasterProduk" />
         <activity android:name=".ui.pengaturan.produk.TambahProduk" />
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
+        <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
     </application>
 
 </manifest>

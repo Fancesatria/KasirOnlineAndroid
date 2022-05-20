@@ -39,10 +39,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MasterPelanggan extends AppCompatActivity {
-    ActivityMasterPelangganBinding bind;
-    List<ModelPelanggan> data = new ArrayList<>();
-    PelangganAdapter adapter;
-    PelangganRepository pr;
+    private ActivityMasterPelangganBinding bind;
+    private List<ModelPelanggan> data = new ArrayList<>();
+    private PelangganAdapter adapter;
+    private PelangganRepository pr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
