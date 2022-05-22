@@ -1,5 +1,6 @@
 package com.example.authapp.ui.home.bottom_nav;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import com.example.authapp.Adapter.CartAdapter;
 import com.example.authapp.Database.Repository.DetailJualRepository;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
+import com.example.authapp.R;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.ActivityCartBinding;
 import com.example.authapp.util.Modul;
@@ -41,7 +43,7 @@ public class ShoppingCart extends AppCompatActivity {
         bind.item.setAdapter(cartAdapter);
 
         refreshData();
-
+        BayarButton();
 
     }
 
@@ -51,6 +53,8 @@ public class ShoppingCart extends AppCompatActivity {
         if (orderService.getBarang().size() == 0 || orderService.getDetail().size() == 0){
             bind.txtKeranjang.setVisibility(View.VISIBLE);
             bind.item.setVisibility(View.GONE);
+            bind.btnBayar.setBackgroundColor(getColor(R.color.darkgrey));
+            bind.btnBayar.setEnabled(false);
 
         } else {
             bind.tvTotal.setText(Modul.removeE(orderService.getTotal()));//menampilkan total harga
@@ -60,5 +64,15 @@ public class ShoppingCart extends AppCompatActivity {
             modelBarangList.addAll(orderService.getBarang());
             cartAdapter.notifyDataSetChanged();
         }
+    }
+
+    public void BayarButton(){
+        bind.btnBayar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ShoppingCart.this, Payment.class));
+                finish();
+            }
+        });
     }
 }

@@ -73,6 +73,7 @@
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
         <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
         <activity android:name=".ui.home.bottom_nav.ShoppingCart" />
+        <activity android:name=".ui.home.bottom_nav.Payment" />
     </application>
 
 </manifest>
