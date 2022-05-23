@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.home.bottom_nav.Payment">
+    tools:context=".ui.home.bottom_nav.shopping.Payment">
 
     <LinearLayout
         android:id="@+id/viewTotal"
@@ -45,7 +45,7 @@
             android:text="Rp."
             android:textSize="18sp"
             android:textAlignment="textEnd"
-            android:textColor="@color/teal_700" />
+            android:textColor="@color/darkergrey" />
 
         <TextView
             android:id="@+id/tvTotal"
@@ -57,7 +57,7 @@
             android:fontFamily="sans-serif-black"
             android:textAlignment="textStart"
             android:text="0"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/darkergrey"
             android:textSize="20sp" />
 
         <TextView
@@ -122,6 +122,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="7"
+                android:onClick="txtSeven"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -133,6 +134,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:text="8"
+                android:onClick="txtEight"
                 android:textColor="@color/darkergrey"
                 android:textSize="25sp" />
             <Button
@@ -142,6 +144,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="9"
+                android:onClick="txtNine"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -169,6 +172,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="4"
+                android:onClick="txtFour"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -180,6 +184,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="5"
+                android:onClick="txtFive"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -190,6 +195,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="6"
+                android:onClick="txtSix"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -200,6 +206,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:background="@null"
+                android:onClick="Del"
                 android:textSize="25sp"
                 android:text="del"
                 />
@@ -217,6 +224,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="1"
+                android:onClick="txtOne"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -228,6 +236,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="2"
+                android:onClick="txtTwo"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -238,14 +247,16 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="3"
+                android:onClick="txtThree"
                 android:background="@null"
                 android:textSize="25sp"
                 />
             <Button
-                android:id="@+id/blankView"
+                android:id="@+id/txtPoint"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="txtPoint"
                 android:textColor="@color/darkergrey"
                 android:background="@null"
                 android:textSize="25sp"
@@ -265,6 +276,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="0"
+                android:onClick="txtZero"
                 android:background="@null"
                 android:textSize="25sp"
                 />
@@ -276,18 +288,20 @@
                 android:layout_weight="1"
                 android:textColor="@color/darkergrey"
                 android:text="000"
+                android:onClick="txtTripleZero"
                 android:background="@null"
                 android:textSize="25sp"
                 />
             <Button
-                android:id="@+id/txtPoint"
+                android:id="@+id/shortcut"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/darkergrey"
-                android:text="."
-                android:background="@null"
-                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:text="Quick Pay"
+                android:onClick="txtPoint"
+                android:background="@color/teal_700"
+                android:textSize="18sp"
                 />
         </LinearLayout>
 
