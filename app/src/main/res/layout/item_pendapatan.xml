@@ -6,9 +6,13 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/ItemCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         app:cardElevation="9dp"
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="#FFFFFF">
