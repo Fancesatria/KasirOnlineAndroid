@@ -1,6 +1,7 @@
 package com.example.authapp.ui.pengaturan.produk;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import com.example.authapp.Adapter.KategoriAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Component.ErrorDialog;
 import com.example.authapp.Component.LoadingDialog;
@@ -24,6 +26,8 @@ import com.example.authapp.Model.ModelKategori;
 import com.example.authapp.Model.ModelSatuan;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangResponse;
+import com.example.authapp.Response.KategoriGetResp;
+import com.example.authapp.Response.SatuanGetResp;
 import com.example.authapp.databinding.EditProdukBinding;
 
 import java.util.ArrayList;
@@ -75,6 +79,9 @@ public class EditProduk extends AppCompatActivity {
                 }
                 adapterKategori = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
                 bind.spinnerKategori.setAdapter(adapterKategori);
+
+                //memaggil function kategori/satuan biar bisa berjalan saat online
+                refreshKategori();
             }
         });
 
@@ -91,6 +98,9 @@ public class EditProduk extends AppCompatActivity {
                 }
                 adapterSatuan = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
                 bind.spinnerSatuan.setAdapter(adapterSatuan);
+
+                //memaggil function kategori/satuan biar bisa berjalan saat online
+                refreshSatuan();
             }
         });
 
@@ -161,7 +171,6 @@ public class EditProduk extends AppCompatActivity {
 
         //mengambil value dr intent
         inNama.setText(getIntent().getStringExtra("barang"));
-        inKode.setEnabled(false);
         inKode.setText(getIntent().getStringExtra("idbarang"));
 //        inKategori.setSelected(getIntent().getStringArrayListExtra("kategori"));
 //        inSatuan;
@@ -194,6 +203,51 @@ public class EditProduk extends AppCompatActivity {
             @Override
             public void onFailure(Call<BarangResponse> call, Throwable t) {
                 LoadingDialog.close();
+                Toast.makeText(EditProduk.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void refreshKategori(){
+        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(EditProduk.this).getKat();
+        kategoriGetRespCall.enqueue(new Callback<KategoriGetResp>() {
+            @Override
+            public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
+                if (dataKategori.size() != response.body().getData().size()){
+                    dataKategori.clear();
+                    dataKategori.addAll(response.body().getData());
+                    for (ModelKategori modelKategori : response.body().getData()){
+                        kategori.add(modelKategori.getNama_kategori());
+                    }
+                    adapterKategori = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
+                }   bind.spinnerKategori.setAdapter(adapterKategori);
+            }
+
+            @Override
+            public void onFailure(Call<KategoriGetResp> call, Throwable t) {
+                Toast.makeText(EditProduk.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void refreshSatuan(){
+        Call<SatuanGetResp> satuanGetRespCall = Api.Satuan(EditProduk.this).getSat();
+        satuanGetRespCall.enqueue(new Callback<SatuanGetResp>() {
+            @Override
+            public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
+                if (dataSatuan.size() != response.body().getData().size()){
+                    dataSatuan.clear();
+                    dataSatuan.addAll(response.body().getData());
+                    for (ModelSatuan modelSatuan : response.body().getData()){
+                        satuan.add(modelSatuan.getNama_satuan());
+                    }
+                    adapterSatuan = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
+                    bind.spinnerSatuan.setAdapter(adapterSatuan);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SatuanGetResp> call, Throwable t) {
                 Toast.makeText(EditProduk.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

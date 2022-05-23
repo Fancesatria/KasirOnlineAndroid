@@ -1,6 +1,7 @@
 package com.example.authapp.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,9 +47,20 @@ public class PelangganOrderAdapter extends RecyclerView.Adapter<PelangganOrderAd
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //holder.cv.setOutlineAmbientShadowColor(context.getColor(R.color.darkergrey));
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle("Konfirmasi").setMessage("Apakah anda yakin untuk menambahkan "+mp.getNama_pelanggan()+" sebagai pelanggan?").setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        OrderService.getInstance().setPelanggan(mp); //menyimpan nama pelanggan
+                        ((PelangganOrder)context).finish();
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                OrderService.getInstance().setPelanggan(mp); //menyimpan nama pelanggan
-                ((PelangganOrder)context).finish();
+                    }
+                }).show();
             }
         });
     }

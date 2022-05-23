@@ -58,6 +58,7 @@
                 android:id="@+id/item"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
                 tools:layout_editor_absoluteY="654dp" >
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -67,22 +68,22 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:weightSum="1"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/teal_700">
+                android:background="@color/teal_800">
 
                 <TextView
                     android:id="@+id/tvJumlah"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:fontFamily="sans-serif-black"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="sans-serif-black"
                     android:text="0"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/textviewtotal"
@@ -93,17 +94,19 @@
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-black"
                     android:text="Total  Rp."
+                    android:textSize="20sp"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/tvTotal"
                     android:layout_marginTop="18dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="18dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif-black"
                     android:text="0"
+                    android:textSize="20sp"
                     android:textColor="@color/white" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -176,6 +179,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cvCart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">

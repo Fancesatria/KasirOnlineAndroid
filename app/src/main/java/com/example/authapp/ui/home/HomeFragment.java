@@ -42,6 +42,7 @@ import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.DialogKeteranganOrderBinding;
 import com.example.authapp.databinding.FragmentHomeBinding;
 import com.example.authapp.ui.home.bottom_nav.PelangganOrder;
+import com.example.authapp.ui.home.bottom_nav.ShoppingCart;
 import com.example.authapp.ui.pengaturan.produk.MasterProduk;
 import com.example.authapp.util.Modul;
 
@@ -123,6 +124,13 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), PelangganOrder.class));
 
+            }
+        });
+
+        binding.cvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ShoppingCart.class));
             }
         });
 
@@ -238,7 +246,7 @@ public class HomeFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<BarangGetResp> call, Throwable t) {
-                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
