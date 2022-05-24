@@ -1,9 +1,10 @@
-package com.example.authapp.ui.home.bottom_nav.shopping;
+ package com.example.authapp.ui.home.bottom_nav.shopping;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,11 +13,15 @@ import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.ActivityBayarBinding;
 import com.example.authapp.util.Modul;
 
-public class Payment extends AppCompatActivity {
-    ActivityBayarBinding bind;
-    TextView inBayar;
+import java.text.NumberFormat;
+import java.util.Locale;
 
-    String Bayar = "";
+ public class Payment extends AppCompatActivity {
+    private ActivityBayarBinding bind;
+    private TextView inBayar;
+    private OrderService service = OrderService.getInstance();
+
+    private String Bayar = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +43,26 @@ public class Payment extends AppCompatActivity {
     public void setBayar(String givenValue){
         Bayar = Bayar + givenValue;
 
-        inBayar.setText(Modul.toString(Modul.strToDouble(Bayar)));
+        NumberFormat kurensi = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
+        inBayar.setText(kurensi.format(Modul.strToDouble(Bayar)));
 
         if (inBayar.getText() == "0"){
-            bind.tvRp.setTextColor(getColor(R.color.darkgrey));
             bind.inBayar.setTextColor(getColor(R.color.darkgrey));
         } else {
-            bind.tvRp.setTextColor(getColor(R.color.teal_700));
             bind.inBayar.setTextColor(getColor(R.color.teal_700));
+        }
+
+        Double d = Modul.strToDouble(Bayar);
+        if (d >= service.getTotal()) {
+            bind.tvNext.setEnabled(true);
+            bind.tvNext.setTextColor(getColor(R.color.teal_700));
+        } else {
+            bind.tvNext.setEnabled(false);
+            bind.tvNext.setTextColor(getColor(R.color.darkgrey));
         }
     }
 
     public void refreshData(){
-        OrderService service = OrderService.getInstance();
-
         bind.tvTotal.setText(Modul.removeE(service.getTotal()));
     }
 
@@ -77,7 +88,7 @@ public class Payment extends AppCompatActivity {
         bind.tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(Payment.this, ShoppingCart.class));
             }
         });
 
@@ -92,7 +103,28 @@ public class Payment extends AppCompatActivity {
         bind.shortcut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bind.manualPay1.setVisibility(View.GONE);
+                bind.manualPay2.setVisibility(View.GONE);
+                bind.manualPay3.setVisibility(View.GONE);
+                bind.manualPay4.setVisibility(View.GONE);
 
+                bind.quickPayRow1.setVisibility(View.VISIBLE);
+                bind.quickPayRow2.setVisibility(View.VISIBLE);
+                bind.quickPayRow3.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bind.txtManual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bind.manualPay1.setVisibility(View.VISIBLE);
+                bind.manualPay2.setVisibility(View.VISIBLE);
+                bind.manualPay3.setVisibility(View.VISIBLE);
+                bind.manualPay4.setVisibility(View.VISIBLE);
+
+                bind.quickPayRow1.setVisibility(View.GONE);
+                bind.quickPayRow2.setVisibility(View.GONE);
+                bind.quickPayRow3.setVisibility(View.GONE);
             }
         });
     }
@@ -144,4 +176,25 @@ public class Payment extends AppCompatActivity {
     public void txtPoint(View view){
         setBayar(".");
     }
+
+    public void uangPas(View view){
+        Bayar = "0";
+        setBayar(Modul.toString(service.getTotal()));
+    }
+
+    public void txtTwenty(View view){
+        Bayar = "0";
+        setBayar("20000");
+    }
+
+    public void txtFifty(View view){
+        Bayar = "0";
+        setBayar("50000");
+    }
+
+    public void txtHundret(View view){
+        Bayar = "0";
+        setBayar("100000");
+    }
+
 }
