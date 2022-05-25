@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.PrintStruk"
+    android:background="@color/darkgrey">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Struk"
+        app:titleTextColor="@color/white"
+        app:titleMarginStart="40dp"
+        app:logo="@drawable/ic_icon_back"/>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_textview2"
+        android:padding="15dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:id="@+id/txtTitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HALO Store"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/txtTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Surabaya"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="—————————————————————————————"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Keterangan Tanggal"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Keterangan Waktu"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/txtNoOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Nomor Order"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txtCustomerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Customer"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:paddingRight="5dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="—————————————————————————————"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemBarangJmlHarga"
+            android:layout_width="300dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp"/>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="—————————————————————————————"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txtTotalOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="Total"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:id="@+id/txtTunai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="Tunai"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:paddingLeft="5dp"/>
+            <TextView
+                android:id="@+id/txtKembalian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="Kembalian"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="—————————————————————————————"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txtTambahan1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text Tambahan 1"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center_horizontal" />
+            <TextView
+                android:id="@+id/txtTambahan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Text Tambahan 2"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbarPrintStruk"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="?attr/colorPrimary"-->
+<!--        android:minHeight="?attr/actionBarSize"-->
+<!--        android:theme="?attr/actionBarTheme"-->
+<!--        app:title="Struk"-->
+<!--        app:titleTextColor="@color/white"-->
+<!--        app:titleMarginStart="40dp"-->
+<!--        app:logo="@drawable/ic_icon_back"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+
+
+
+
+</LinearLayout>
