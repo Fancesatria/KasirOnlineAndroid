@@ -1,12 +1,10 @@
-package com.example.authapp.ui.home.bottom_nav;
+package com.example.authapp.ui.home.bottom_nav.shopping;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.CartAdapter;

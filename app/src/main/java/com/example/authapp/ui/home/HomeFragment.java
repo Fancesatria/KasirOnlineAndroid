@@ -9,41 +9,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.HomeAdapter;
-import com.example.authapp.Adapter.ProdukAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Component.ErrorDialog;
-import com.example.authapp.Component.LoadingDialog;
-import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.BarangRepository;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
-import com.example.authapp.Model.ModelJual;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangGetResp;
-import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.DialogKeteranganOrderBinding;
 import com.example.authapp.databinding.FragmentHomeBinding;
 import com.example.authapp.ui.home.bottom_nav.PelangganOrder;
-import com.example.authapp.ui.home.bottom_nav.ShoppingCart;
-import com.example.authapp.ui.pengaturan.produk.MasterProduk;
+import com.example.authapp.ui.home.bottom_nav.shopping.ShoppingCart;
 import com.example.authapp.util.Modul;
 
 import java.util.ArrayList;
@@ -85,6 +76,8 @@ public class HomeFragment extends Fragment {
 
         refreshData(true);
         setTotal();
+
+
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -234,6 +227,11 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onResponse(Call<BarangGetResp> call, Response<BarangGetResp> response) {
                     if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())){
+
+                        if (response.body().getData().size() == 0) {
+                            binding.txtKosong.setVisibility(View.VISIBLE);
+                            binding.item.setVisibility(View.GONE);
+                        }
                         //memasukkan ke repo / db
                         barangRepository.insertAll(response.body().getData(), true);
 
