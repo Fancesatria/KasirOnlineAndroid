@@ -88,7 +88,8 @@ import java.util.Locale;
         bind.tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Payment.this, ShoppingCart.class));
+                startActivity(new Intent(Payment.this, TransactionSuccess.class));
+                finish();
             }
         });
 
