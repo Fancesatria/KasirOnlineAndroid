@@ -1,13 +1,14 @@
 package com.example.authapp.ui.home.bottom_nav.shopping;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.authapp.R;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.ActivityTransactionSuccessNotifBinding;
-import com.example.authapp.util.Modul;
 
 import java.text.NumberFormat;
 import java.util.Locale;
