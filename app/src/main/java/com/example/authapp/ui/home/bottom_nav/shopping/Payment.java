@@ -62,6 +62,7 @@ import java.util.Locale;
             bind.tvNext.setEnabled(false);
             bind.tvNext.setTextColor(getColor(R.color.darkgrey));
         }
+
     }
 
     public void refreshData(){
@@ -94,8 +95,10 @@ import java.util.Locale;
                 alert.setTitle("Konfirmasi").setMessage("Apakah anda yakin untuk menyelesaikan transaksi ?").setPositiveButton("Iya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Payment.this, TransactionSuccess.class));
-                        finish();
+                        service.Bayar(Modul.strToDouble(Bayar));
+                        service.save(getApplication());
+
+
                     }
                 }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override

@@ -8,7 +8,9 @@ import androidx.lifecycle.LiveData;
 import com.example.authapp.Database.Dao.DetailJualDao;
 import com.example.authapp.Database.KasirDatabase;
 import com.example.authapp.Model.ModelDetailJual;
+import com.example.authapp.Model.ModelJual;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailJualRepository {
@@ -28,6 +30,9 @@ public class DetailJualRepository {
 
     public void insertAll(List<ModelDetailJual> data, boolean truncate){
         new InsertDetailJualAll(detailJualDao,truncate).execute(data);
+    }
+    public void insertAll(List<ModelDetailJual> data, Long modelJual){
+        new InsertDetailJualAll(detailJualDao,false,modelJual).execute(data);
     }
 
     public void insert(ModelDetailJual detailJual){
@@ -72,6 +77,14 @@ public class DetailJualRepository {
         private DetailJualDao detailJualDao;
         private boolean truncate;
 
+        private Long modelJual=null;
+
+        public InsertDetailJualAll(DetailJualDao detailJualDao, boolean truncate, Long modelJual) {
+            this.detailJualDao = detailJualDao;
+            this.truncate = truncate;
+            this.modelJual = modelJual;
+        }
+
         public InsertDetailJualAll(DetailJualDao detailJualDao, boolean truncate) {
             this.detailJualDao = detailJualDao;
             this.truncate = truncate;
@@ -82,7 +95,16 @@ public class DetailJualRepository {
             if(truncate){
                 detailJualDao.deleteAll();
             }
-            detailJualDao.insertAll(lists[0]);
+            List<ModelDetailJual> data = new ArrayList<>();
+            for (
+                    ModelDetailJual detail : lists[0]
+            ){
+                if (modelJual != null){
+                    detail.setIdjual(modelJual.intValue());
+                }
+                data.add(detail);
+            }
+            detailJualDao.insertAll(data);
             return null;
         }
     }

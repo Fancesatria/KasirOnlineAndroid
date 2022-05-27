@@ -37,8 +37,13 @@ public class JualRepository {
         new InsertJualAll(jualDao,truncate).execute(data);
     }
 
-    public void insert(ModelJual jual){
-        new InsertJual(jualDao).execute(jual);
+    public static interface onInsertJual{
+        void onComplete(Long modelJual);
+
+    }
+
+    public void insert(ModelJual jual, onInsertJual onInsertJual){
+        new InsertJual(jualDao, onInsertJual).execute(jual);
     }
 
     public void delete(ModelJual jual){
@@ -60,18 +65,26 @@ public class JualRepository {
         }
     }
 
-    private static class InsertJual extends AsyncTask<ModelJual,Void,Void> {
+    private static class InsertJual extends AsyncTask<ModelJual,Void,Long> {
         private JualDao jualDao;
+        private onInsertJual onInsertJual;
 
-        public InsertJual(JualDao jualDao) {
+        public InsertJual(JualDao jualDao, JualRepository.onInsertJual onInsertJual) {
             this.jualDao = jualDao;
+            this.onInsertJual = onInsertJual;
         }
 
         @Override
-        protected Void doInBackground(ModelJual... lists) {
+        protected Long doInBackground(ModelJual... lists) {
 
-            jualDao.insert(lists[0]);
-            return null;
+            return jualDao.insert(lists[0]);
+
+        }
+
+        @Override
+        protected void onPostExecute(Long modelJual) {
+            super.onPostExecute(modelJual);
+            onInsertJual.onComplete(modelJual);
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.authapp.Service.BarangService;
 import com.example.authapp.Service.KategoriService;
+import com.example.authapp.Service.OrderServiceInterface;
 import com.example.authapp.Service.PegawaiService;
 import com.example.authapp.Service.PelangganService;
 import com.example.authapp.Service.SatuanService;
@@ -127,5 +128,12 @@ public class Api {
         BarangService barangService = getRetrofit(context).create(BarangService.class);
 
         return barangService;
+    }
+
+    //ORDER
+    public static OrderServiceInterface Order(Context context){
+        OrderServiceInterface orderServiceInterface = getRetrofit(context).create(OrderServiceInterface.class);
+
+        return orderServiceInterface;
     }
 }
