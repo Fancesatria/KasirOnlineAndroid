@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:padding="7dp"
-                android:text="Rp. 200.000"
+                android:text="Rp. 0"
                 android:textAlignment="center"
                 android:textColor="#3F4F4F"
                 android:textSize="18sp"
