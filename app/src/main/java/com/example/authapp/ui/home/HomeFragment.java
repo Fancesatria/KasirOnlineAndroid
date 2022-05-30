@@ -34,6 +34,7 @@ import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.DialogKeteranganOrderBinding;
 import com.example.authapp.databinding.FragmentHomeBinding;
 import com.example.authapp.ui.home.bottom_nav.PelangganOrder;
+import com.example.authapp.ui.home.bottom_nav.shopping.Payment;
 import com.example.authapp.ui.home.bottom_nav.shopping.ShoppingCart;
 import com.example.authapp.util.Modul;
 
@@ -124,6 +125,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), ShoppingCart.class));
+            }
+        });
+
+        binding.viewTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Payment.class));
             }
         });
 
