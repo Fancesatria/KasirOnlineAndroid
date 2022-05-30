@@ -1,54 +1,28 @@
 package com.example.authapp.Model;
 
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+import java.util.List;
 
-import com.example.authapp.Service.OrderService;
+public class ModelOrder {
+    private String fakturjual;
+    private double bayar;
+    private double total;
+    private double kembali;
+    private double potongan;
+    private int idpelanggan;
+    private int idpegawai;
+    private String tanggal_jual;
+    private List<ModelDetailJual> modelDetailJualList;
 
-@Entity(tableName = "tbljual")
-public class ModelJual  {
-    @PrimaryKey(autoGenerate = true)
-    protected int idjual;
-
-    protected String fakturjual;
-
-    protected double bayar;
-
-    protected double total;
-
-    protected double kembali;
-
-    protected double potongan;
-
-    protected int idpelanggan;
-
-    protected int idpegawai;
-
-    protected String tanggal_jual;
-
-    @Ignore
-    private int idtoko;
-
-    public ModelJual(String fakturjual, double bayar, double total, double kembali, double potongan, int idpelanggan, int idpegawai, String tanggal_jual) {
-        this.fakturjual = fakturjual;
-        this.bayar = bayar;
-        this.total = total;
-        this.kembali = kembali;
-        this.potongan = potongan;
-        this.idpelanggan = idpelanggan;
-        this.idpegawai = idpegawai;
-        this.tanggal_jual = tanggal_jual;
-
-
-    }
-
-    public int getIdjual() {
-        return idjual;
-    }
-
-    public void setIdjual(int idjual) {
-        this.idjual = idjual;
+    public ModelOrder(ModelJual model, List<ModelDetailJual> modelDetailJualList) {
+        this.fakturjual = model.fakturjual;
+        this.bayar = model.bayar;
+        this.total = model.total;
+        this.kembali = model.kembali;
+        this.potongan = model.potongan;
+        this.idpelanggan = model.idpelanggan;
+        this.idpegawai = model.idpegawai;
+        this.tanggal_jual = model.tanggal_jual;
+        this.modelDetailJualList = modelDetailJualList;
     }
 
     public String getFakturjual() {
@@ -65,7 +39,6 @@ public class ModelJual  {
 
     public void setBayar(double bayar) {
         this.bayar = bayar;
-        this.kembali = bayar - this.total;
     }
 
     public double getTotal() {
@@ -116,11 +89,11 @@ public class ModelJual  {
         this.tanggal_jual = tanggal_jual;
     }
 
-    public int getIdtoko() {
-        return idtoko;
+    public List<ModelDetailJual> getModelDetailJualList() {
+        return modelDetailJualList;
     }
 
-    public void setIdtoko(int idtoko) {
-        this.idtoko = idtoko;
+    public void setModelDetailJualList(List<ModelDetailJual> modelDetailJualList) {
+        this.modelDetailJualList = modelDetailJualList;
     }
 }

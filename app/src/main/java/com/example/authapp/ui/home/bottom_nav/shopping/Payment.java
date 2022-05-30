@@ -1,11 +1,13 @@
  package com.example.authapp.ui.home.bottom_nav.shopping;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.authapp.R;
@@ -60,6 +62,7 @@ import java.util.Locale;
             bind.tvNext.setEnabled(false);
             bind.tvNext.setTextColor(getColor(R.color.darkgrey));
         }
+
     }
 
     public void refreshData(){
@@ -88,8 +91,21 @@ import java.util.Locale;
         bind.tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Payment.this, TransactionSuccess.class));
-                finish();
+                AlertDialog.Builder alert = new AlertDialog.Builder(Payment.this);
+                alert.setTitle("Konfirmasi").setMessage("Apakah anda yakin untuk menyelesaikan transaksi ?").setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        service.Bayar(Modul.strToDouble(Bayar));
+                        service.save(getApplication());
+
+
+                    }
+                }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
             }
         });
 

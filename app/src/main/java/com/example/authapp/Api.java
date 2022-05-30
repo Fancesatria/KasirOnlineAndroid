@@ -136,4 +136,11 @@ public class Api {
 
         return laporanService;
     }
+
+    //ORDER
+    public static OrderServiceInterface Order(Context context){
+        OrderServiceInterface orderServiceInterface = getRetrofit(context).create(OrderServiceInterface.class);
+
+        return orderServiceInterface;
+    }
 }

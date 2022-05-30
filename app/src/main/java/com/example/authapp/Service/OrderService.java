@@ -1,12 +1,28 @@
 package com.example.authapp.Service;
 
+import android.app.Application;
+import android.graphics.ColorSpace;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.example.authapp.Api;
+import com.example.authapp.Database.Repository.DetailJualRepository;
+import com.example.authapp.Database.Repository.JualRepository;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.Model.ModelOrder;
 import com.example.authapp.Model.ModelPelanggan;
+import com.example.authapp.Response.OrderResponse;
+import com.example.authapp.SharedPref.SpHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderService {
     private ModelJual jual;
@@ -25,6 +41,49 @@ public class OrderService {
         modelBarangs = new ArrayList<>();
         idjual = 0;
         total = 0;
+    }
+
+    public void Bayar(double bayar){
+        jual.setTotal(total);
+        jual.setBayar(bayar);
+    }
+
+    public void save(Application application){
+        JualRepository jualRepository = new JualRepository(application);
+        DetailJualRepository detailJualRepository = new DetailJualRepository(application);
+
+        ModelOrder modelOrder = new ModelOrder(jual,detail);
+        Call<OrderResponse> orderResponseCall = Api.Order(application.getApplicationContext()).postOrder(modelOrder);
+        orderResponseCall.enqueue(new Callback<OrderResponse>() {
+            @Override
+            public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(application, "menyimpan", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        Toast.makeText(application, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                jualRepository.insert(jual, new JualRepository.onInsertJual() {
+                    @Override
+                    public void onComplete(Long modelJual) {
+                        detailJualRepository.insertAll(detail,modelJual);
+
+                    }
+                });
+
+                clearCart();
+            }
+
+            @Override
+            public void onFailure(Call<OrderResponse> call, Throwable t) {
+                Toast.makeText(application, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     //OrderService service = OrderService.getInstance(); //ini buat sekai pengecekan / konstruksi biar gk makan memori dn gk bakal di destroy
