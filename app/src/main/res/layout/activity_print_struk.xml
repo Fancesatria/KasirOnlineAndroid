@@ -78,13 +78,13 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
                 <TextView
                     android:id="@+id/txtDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
@@ -94,7 +94,7 @@
                     android:paddingLeft="5dp"/>
                 <TextView
                     android:id="@+id/txtTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
@@ -105,7 +105,7 @@
                     android:paddingLeft="5dp"/>
                 <TextView
                     android:id="@+id/txtNoOrder"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
@@ -117,15 +117,15 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1">
                 <TextView
-                    android:id="@+id/txtCustomerName"
+                    android:id="@+id/txtCashierName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nama Customer"
+                    android:text="Nama Kasir"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:textAlignment="textEnd"
@@ -167,41 +167,88 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/txtTotalOrder"
-                android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:text="Total"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="textStart"
-                android:paddingLeft="5dp"/>
-            <TextView
-                android:id="@+id/txtTunai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:text="Tunai"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="textStart"
-                android:paddingLeft="5dp"/>
-            <TextView
-                android:id="@+id/txtKembalian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:text="Kembalian"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="textStart"
-                android:paddingLeft="5dp"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/txtTotalOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Total"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/txtTunai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Tunai"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/txtKembalian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Kembalian"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:id="@+id/jmlTotalOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Total"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/jmlTunai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Tunai"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/jmlKembalian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Kembalian"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    android:paddingLeft="5dp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
