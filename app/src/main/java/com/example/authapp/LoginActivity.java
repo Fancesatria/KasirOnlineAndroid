@@ -15,8 +15,6 @@ import com.example.authapp.Model.ModelLogin;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.SharedPref.SpHelper;
 import com.example.authapp.databinding.ActivityMainBinding;
-import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,6 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.homePage:
                 startActivity(new Intent(this,HomePage.class));
+                break;
         }
     }
 
@@ -119,13 +118,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
 
-    public void register(View v) {
-        startActivity(new Intent(this, UserRegister.class));
-    }
+    public void register(View v) { startActivity(new Intent(this, UserRegister.class)); }
 
-    public void forgotPassword(View v) {
-        startActivity(new Intent(this, ForgotPassword.class));
-    }
+    public void forgotPassword(View v) { startActivity(new Intent(this, ForgotPassword.class)); }
 
     public void tester(View v) {
         startActivity(new Intent(this, InformasiBisnis.class));

@@ -6,19 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
 import com.example.authapp.Response.InfoBisnisResponse;
-import com.example.authapp.Response.RegisterResponse;
 import com.example.authapp.databinding.ActivityInformasiBisnisBinding;
-import com.example.authapp.databinding.ActivityMainBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,16 +33,17 @@ public class InformasiBisnis extends AppCompatActivity {
         bind = ActivityInformasiBisnisBinding.inflate(getLayoutInflater());
         setContentView(bind.getRoot());
 
-        //EditText NamaPemilik = bind.namaPemilik;
         EditText NamaPemilik = bind.namaPemilik;
         EditText NamaUsaha = bind.namaUsaha;
         EditText Lokasi = bind.lokasiUsaha;
-        Spinner mySpinner = bind.jenisUsaha;
+        //Spinner mySpinner = bind.jenisUsaha;
+        AutoCompleteTextView JenisUsaha = bind.JenisUsaha;
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(InformasiBisnis.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.names));
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.jenisUsaha));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mySpinner.setAdapter(myAdapter);
+        //mySpinner.setAdapter(myAdapter);
+        JenisUsaha.setAdapter(myAdapter);
 
         bind.nextToTambahProduk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +52,8 @@ public class InformasiBisnis extends AppCompatActivity {
                 modelToko.setNama_pemilik(NamaPemilik.getText().toString());
                 modelToko.setNama_toko(NamaUsaha.getText().toString());
                 modelToko.setAlamat_toko(Lokasi.getText().toString());
-                modelToko.setJenis_toko(mySpinner.getSelectedItem().toString());
+                //modelToko.setJenis_toko(mySpinner.getSelectedItem().toString());
+                modelToko.setJenis_toko(JenisUsaha.toString());
                 MasukProfil(modelToko);
                 //Toast.makeText(InformasiBisnis.this, Lokasi.getText().toString(), Toast.LENGTH_SHORT).show();
             }

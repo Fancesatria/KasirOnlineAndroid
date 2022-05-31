@@ -18,11 +18,6 @@
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.20244565217391305" />
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_home.xml" value="0.26403985507246375" />
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_kategori.xml" value="0.264" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_bayar.xml" value="0.18" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_cart.xml" value="0.17864583333333334" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_pegawai.xml" value="0.17864583333333334" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_bayar_cepat.xml" value="0.17864583333333334" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable-anydpi/ic_opsi.xml" value="0.184" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1275" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1055" />
@@ -65,40 +60,45 @@
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_product.xml" value="0.1425" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_satuan.xml" value="0.156" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.138" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_plus_24.xml" value="0.1005" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_search.xml" value="0.1975" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_settings.xml" value="0.1975" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_share.xml" value="0.1975" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_success.xml" value="0.123" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_value_up.xml" value="0.259" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_bayar.xml" value="0.2" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_forgot_password.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_cart.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_forgot_password.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_home_page.xml" value="0.15208333333333332" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_informasi_bisnis.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_informasi_bisnis.xml" value="0.264" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_laporan_pendapatan.xml" value="0.264" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_main.xml" value="0.136" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_daftar_kategori.xml" value="0.176" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_daftar_kategori.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_pegawai.xml" value="0.152" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_pelanggan.xml" value="0.152" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_produk.xml" value="0.152" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_produk.xml" value="0.136" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_master_satuan.xml" value="0.2" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_otpverification.xml" value="0.1287037037037037" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_print_struk.xml" value="0.264" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_tambahkan_produk.xml" value="0.2" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_telp_verification.xml" value="0.15925925925925927" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_otpverification.xml" value="0.2" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_print_struk.xml" value="0.2" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_scan_barcode.xml" value="0.12314814814814815" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_tambahkan_produk.xml" value="0.1" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_telp_verification.xml" value="0.152" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_transaction_success_notif.xml" value="0.264" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_user_register.xml" value="0.15925925925925927" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_user_register.xml" value="0.176" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/app_bar_home_page.xml" value="0.16" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/border_textview.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/concept.xml" value="0.152" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/content_home_page.xml" value="0.2" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/dialog_detail_kategori.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/dialog_detail_kategori.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/dialog_detail_satuan.xml" value="0.22037037037037038" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/dropdown_item.xml" value="0.264" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_pegawai.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_pelanggan.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_produk.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_dashboard.xml" value="0.1828125" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_detail_kategori.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_detial_kategori.xml" value="0.10092592592592593" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.4" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.176" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_home2.xml" value="0.1828125" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_item_kategori.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_kasir.xml" value="0.15925925925925927" />
@@ -119,10 +119,11 @@
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/item_pendapatan.xml" value="0.264" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/item_produk.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/item_satuan.xml" value="0.176" />
-        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/item_struk.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/item_struk.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/login_pegawai.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/nav_header_home_page.xml" value="0.15208333333333332" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/splash_activity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/layout/template_tester.xml" value="0.176" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/menu/activity_main_drawer.xml" value="0.264" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/KasirOnlineAndroid/app/src/main/res/menu/home_page.xml" value="0.1484375" />
@@ -161,5 +162,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
