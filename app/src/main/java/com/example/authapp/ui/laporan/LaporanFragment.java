@@ -1,5 +1,6 @@
 package com.example.authapp.ui.laporan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ public class LaporanFragment extends Fragment {
         binding = FragmentLaporanBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        init();
+
 //        final TextView textView = binding.textLaporan;
 //        laporanViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
@@ -33,5 +36,21 @@ public class LaporanFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void init(){
+        binding.layoutLaporanPendapatan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), LaporanPendapatan.class));
+            }
+        });
+
+        binding.layoutLaporanPenjualan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), LaporanPenjualan.class));
+            }
+        });
     }
 }

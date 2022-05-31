@@ -18,7 +18,7 @@ public interface JualDao {
     void insertAll(List<ModelJual> juals);
 
     @Insert(onConflict  = OnConflictStrategy.REPLACE)
-    void insert(ModelJual jual);
+    Long  insert(ModelJual jual);
 
     @Query("select * from tbljual where fakturjual like :keyword")
     LiveData<List<ModelJual>> getJual(String keyword);
