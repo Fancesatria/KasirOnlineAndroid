@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.R;
 import com.example.authapp.Service.OrderService;
 import com.example.authapp.databinding.ActivityBayarBinding;
@@ -91,14 +92,17 @@ import java.util.Locale;
         bind.tvNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder alert = new AlertDialog.Builder(Payment.this);
                 alert.setTitle("Konfirmasi").setMessage("Apakah anda yakin untuk menyelesaikan transaksi ?").setPositiveButton("Iya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        LoadingDialog.load(Payment.this);
                         service.Bayar(Modul.strToDouble(Bayar));
                         service.save(getApplication());
 
-
+                        startActivity(new Intent(Payment.this, TransactionSuccess.class));
+                        finish();
                     }
                 }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override

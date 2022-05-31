@@ -1,11 +1,15 @@
 package com.example.authapp.Service;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.ColorSpace;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.authapp.Api;
+import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.Database.Repository.DetailJualRepository;
 import com.example.authapp.Database.Repository.JualRepository;
 import com.example.authapp.Model.ModelBarang;
@@ -15,6 +19,8 @@ import com.example.authapp.Model.ModelOrder;
 import com.example.authapp.Model.ModelPelanggan;
 import com.example.authapp.Response.OrderResponse;
 import com.example.authapp.SharedPref.SpHelper;
+import com.example.authapp.ui.home.bottom_nav.shopping.TransactionSuccess;
+import com.example.authapp.util.Modul;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,10 +39,11 @@ public class OrderService {
     private ModelPelanggan modelPelanggan;
 
 
+
     private static OrderService instance;
 
     public OrderService() {
-        jual = new ModelJual("", 0, 0, 0, 0, 0, 0, "2022-05-17");
+        jual = new ModelJual("", 0, 0, 0, 0, 0, 24, "2022-05-17");
         detail = new ArrayList<>();
         modelBarangs = new ArrayList<>();
         idjual = 0;
@@ -49,38 +56,47 @@ public class OrderService {
     }
 
     public void save(Application application){
+        jual.setTanggal_jual(Modul.getDate("yyyy-MM-dd HH:mm"));
         JualRepository jualRepository = new JualRepository(application);
         DetailJualRepository detailJualRepository = new DetailJualRepository(application);
 
         ModelOrder modelOrder = new ModelOrder(jual,detail);
+
         Call<OrderResponse> orderResponseCall = Api.Order(application.getApplicationContext()).postOrder(modelOrder);
         orderResponseCall.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(application, "menyimpan", Toast.LENGTH_SHORT).show();
+                    jualRepository.insert(response.body().getData().getJual(), new JualRepository.onInsertJual() {
+                        @Override
+                        public void onComplete(Long modelJual) {
+                            detailJualRepository.insertAll(response.body().getData().getDetail(), modelJual);
+
+                            Intent intent = new Intent(application, TransactionSuccess.class);
+                            intent.putExtra("kembali", Modul.doubleToStr(jual.getKembali()));
+                            intent.putExtra("total", Modul.doubleToStr(jual.getTotal()));
+                            intent.putExtra("idjual", modelJual.intValue());
+                            application.startActivity(intent);
+                            //Toast.makeText(application, "menyimpan", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
                 } else {
-                    try {
-                        Toast.makeText(application, response.errorBody().string(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                 }
 
-                jualRepository.insert(jual, new JualRepository.onInsertJual() {
-                    @Override
-                    public void onComplete(Long modelJual) {
-                        detailJualRepository.insertAll(detail,modelJual);
 
-                    }
-                });
+
 
                 clearCart();
+                LoadingDialog.close();
             }
 
             @Override
             public void onFailure(Call<OrderResponse> call, Throwable t) {
                 Toast.makeText(application, t.getMessage(), Toast.LENGTH_SHORT).show();
+                LoadingDialog.close();
             }
         });
 

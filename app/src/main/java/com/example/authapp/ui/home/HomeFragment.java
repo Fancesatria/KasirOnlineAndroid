@@ -160,6 +160,10 @@ public class HomeFragment extends Fragment {
     public void onResume() {//ketika buka halaman lain maka function ini berjalan/merefresh data yg sblmnya
         super.onResume();
         binding.titlePelanggan.setText(service.getPelanggan().getNama_pelanggan());
+        if (produkAdapter != null){
+            produkAdapter.notifyDataSetChanged();
+            setTotal();
+        }
     }
 
     @Override

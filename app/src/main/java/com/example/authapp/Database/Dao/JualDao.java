@@ -23,6 +23,9 @@ public interface JualDao {
     @Query("select * from tbljual where fakturjual like :keyword")
     LiveData<List<ModelJual>> getJual(String keyword);
 
+    @Query("select * from tbljual where idjual=:idjual")
+    LiveData<ModelJual> getOrder(int idjual);
+
     @Delete
     void delete(ModelJual jual);
 

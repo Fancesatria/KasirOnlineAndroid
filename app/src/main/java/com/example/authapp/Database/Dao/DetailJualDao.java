@@ -23,6 +23,9 @@ public interface DetailJualDao {
     @Query("select * from tbldetailjual")
     LiveData<List<ModelDetailJual>> getAllJual();
 
+    @Query("select * from tbldetailjual where idjual=:idjual")
+    LiveData<List<ModelDetailJual>> getDetailOrder(int idjual);
+
     @Update
     void update(ModelDetailJual detailJual);
 
