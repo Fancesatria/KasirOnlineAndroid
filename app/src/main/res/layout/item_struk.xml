@@ -41,24 +41,10 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"
+                    android:text="2 x Rp.9.000"
                     android:textSize="13sp"/>
 
-                <TextView
-                    android:id="@+id/ketSimbol"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" x "
-                    android:textSize="13sp"/>
 
-                <TextView
-                    android:id="@+id/hargaPerSatuan"
-                    android:layout_weight="3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9.000"
-                    android:textSize="13sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="150dp"
@@ -88,11 +74,6 @@
         </LinearLayout>
     </LinearLayout>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rp."/>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
