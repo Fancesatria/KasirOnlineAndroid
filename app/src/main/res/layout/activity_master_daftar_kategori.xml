@@ -10,37 +10,65 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/border_textview">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_weight="1"
             app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/black">
+            app:boxStrokeColor="#2F4F4F">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/eKategori"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Masukkan Kategori" />
+                android:layout_height="60dp"
+                android:hint="Tambahkan Kategori Baru" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="40dp"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/JenisUsaha"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:hint="Jenis Usaha"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <ImageButton
             android:id="@+id/btnSimpan"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:text="+"
-            android:textColor="@color/white"
-            app:rippleColor="@color/teal_200" />
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@android:drawable/ic_input_add"
+            android:background="@color/darkgrey"/>
+<!--        <Button-->
+<!--            android:id="@+id/btnSimpan"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:text="+"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:rippleColor="@color/teal_200" />-->
     </LinearLayout>
 
 
@@ -54,7 +82,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item"

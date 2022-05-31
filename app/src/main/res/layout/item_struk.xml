@@ -5,28 +5,88 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/namaOrder"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Soto"/>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_gravity="center">
 
         <TextView
-            android:id="@+id/txtHitung"
-            android:layout_width="wrap_content"
+            android:id="@+id/itemNamaBarang"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="x"/>
+            android:text="Soto"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textAlignment="textStart"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9.000"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:weightSum="20"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/jmlBarang"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/ketSimbol"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" x "
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/hargaPerSatuan"
+                    android:layout_weight="3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9.000"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/ketMataUang"
+                    android:layout_weight="5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp. "
+                    android:textSize="13sp"
+                    android:textAlignment="textEnd"/>
+
+                <TextView
+                    android:id="@+id/totalHargaBarang"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18.000"
+                    android:textSize="13sp"
+                    android:textAlignment="textEnd"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
     <TextView
@@ -34,10 +94,5 @@
         android:layout_height="wrap_content"
         android:text="Rp."/>
 
-    <TextView
-        android:id="@+id/txtTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="18.000"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

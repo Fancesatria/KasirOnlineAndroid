@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Auth App</string>
 
-    <string-array name="names">
+    <string-array name="jenisUsaha">
         <item>Toko</item>
         <item>Restoran</item>
     </string-array>
