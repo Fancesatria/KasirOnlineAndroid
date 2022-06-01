@@ -7,13 +7,10 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
 import com.example.authapp.Api;
-import com.example.authapp.Model.ModelKategori;
-import com.example.authapp.Model.ModelPendapatan;
-import com.example.authapp.R;
+import com.example.authapp.Model.ModelJual;
 import com.example.authapp.Response.PendapatanGetResp;
 import com.example.authapp.databinding.ActivityLaporanPendapatanBinding;
 
@@ -32,7 +29,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private LapPendapatanAdapter adapter;
-    private List<ModelPendapatan> data= new ArrayList<>();
+    private List<ModelJual> data = new ArrayList<>();
 
 
     @Override
@@ -70,14 +67,14 @@ public class LaporanPendapatan extends AppCompatActivity {
     }
 
     public void refreshData(){
-        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan();
+        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan("2022-04-28 08:52:00", "2022-05-31 14:43:00", "Ivanna");
         pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
             @Override
             public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
                 if (response.isSuccessful()){
 
                     data.clear();
-//                    data.addAll(response.body().getData());
+                    data.addAll(response.body().getData());
                     adapter.notifyDataSetChanged();
                 }
             }

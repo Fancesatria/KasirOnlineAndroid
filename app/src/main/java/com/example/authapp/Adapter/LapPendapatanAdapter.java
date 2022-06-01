@@ -9,16 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.authapp.Model.ModelPendapatan;
+import com.example.authapp.Model.ModelJual;
 import com.example.authapp.R;
 
 import java.util.List;
 
 public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdapter.ViewHolder> {
     Context context;
-    private List<ModelPendapatan> data;
+    private List<ModelJual> data;
 
-    public LapPendapatanAdapter(Context context, List<ModelPendapatan> data) {
+    public LapPendapatanAdapter(Context context, List<ModelJual> data) {
         this.context = context;
         this.data = data;
     }
@@ -32,8 +32,8 @@ public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ModelPendapatan modelPendapatan = data.get(position);
-        holder.tanggal.setText(modelPendapatan.getData().getTanggal_jual());
+        ModelJual modelJual = data.get(position);
+        holder.tanggal.setText("2022222222222222");
     }
 
     @Override

@@ -43,6 +43,10 @@ public class PrintStruk extends AppCompatActivity {
         jualRepository = new JualRepository(getApplication());
         detailJualRepository = new DetailJualRepository(getApplication());
 
+        bind.itemBarangJmlHarga.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList, modelBarangList);
+        bind.itemBarangJmlHarga.setAdapter(adapter);
+
 
 //        jualRepository.getOrder(getIntent().getIntExtra("idjual", 0)).observe(PrintStruk.this, new Observer<ModelJual>() {
 //            @Override
@@ -54,18 +58,26 @@ public class PrintStruk extends AppCompatActivity {
         detailJualRepository.getDetailOrder(getIntent().getIntExtra("idjual", 0)).observe(this, new Observer<List<ModelDetailJual>>() {
             @Override
             public void onChanged(List<ModelDetailJual> modelDetailJuals) {
+                modelDetailJuals.clear();
                 modelDetailJualList.addAll(modelDetailJuals);
+                adapter.notifyDataSetChanged();
             }
         });
 
-        bind.itemBarangJmlHarga.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList, modelBarangList);
-        bind.itemBarangJmlHarga.setAdapter(adapter);
 
         toolbar = bind.toolbar;
         setSupportActionBar(toolbar);
 
 
+    }
+
+    public void refreshData(){
+        detailJualRepository.getAllDetailJual().observe(this, new Observer<List<ModelDetailJual>>() {
+            @Override
+            public void onChanged(List<ModelDetailJual> modelDetailJualList) {
+
+            }
+        });
     }
 
     @Override

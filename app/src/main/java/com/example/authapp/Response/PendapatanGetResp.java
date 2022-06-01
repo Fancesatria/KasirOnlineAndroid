@@ -2,6 +2,7 @@ package com.example.authapp.Response;
 
 import com.example.authapp.Model.ModelJual;
 
+import java.util.Collection;
 import java.util.List;
 
 public class PendapatanGetResp {
