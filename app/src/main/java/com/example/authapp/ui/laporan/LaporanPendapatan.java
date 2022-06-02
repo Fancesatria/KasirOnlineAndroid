@@ -67,7 +67,9 @@ public class LaporanPendapatan extends AppCompatActivity {
     }
 
     public void refreshData(){
-        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan("2022-04-28 08:52:00", "2022-05-31 14:43:00", "Ivanna");
+        String mulai = bind.dateFrom.getText().toString();
+        String sampai = bind.dateTo.getText().toString();
+        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan("2022-04-28", "2022-05-31", "Ivanna");
         pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
             @Override
             public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {

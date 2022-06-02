@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.authapp.Model.ModelJual;
 import com.example.authapp.R;
+import com.example.authapp.util.Modul;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdapter.ViewHolder> {
@@ -33,7 +36,14 @@ public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ModelJual modelJual = data.get(position);
-        holder.tanggal.setText("2022222222222222");
+
+        String inputPattern = "yyyy-MM-dd HH:mm";
+        String OutputPattern = "dd-MMM-yyyy HH:mm";
+
+        SimpleDateFormat date = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
+        String tgl = modelJual.getTanggal_jual();
+        holder.tanggal.setText(date.format(Date.parse(tgl)));
+        holder.pendapatan.setText("Rp. ");
     }
 
     @Override

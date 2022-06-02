@@ -27,6 +27,7 @@ public class ModelJual  {
 
     protected String tanggal_jual;
 
+
     @Ignore
     private int idtoko;
 
@@ -39,7 +40,6 @@ public class ModelJual  {
         this.idpelanggan = idpelanggan;
         this.idpegawai = idpegawai;
         this.tanggal_jual = tanggal_jual;
-
 
     }
 
