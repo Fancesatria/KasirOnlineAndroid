@@ -20,9 +20,9 @@ import java.util.List;
 
 public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdapter.ViewHolder> {
     Context context;
-    private List<ModelJual> data;
+    private List<ViewModelJual> data;
 
-    public LapPendapatanAdapter(Context context, List<ModelJual> data) {
+    public LapPendapatanAdapter(Context context, List<ViewModelJual> data) {
         this.context = context;
         this.data = data;
     }
@@ -36,15 +36,16 @@ public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ModelJual modelJual = data.get(position);
-        ViewModelJual viewModelJual = new ViewModelJual();
+        ViewModelJual viewModelJual = data.get(position);
         String inputPattern = "yyyy-MM-dd HH:mm";
         String OutputPattern = "dd-MMM-yyyy HH:mm";
 
         SimpleDateFormat date = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
-        String tgl = modelJual.getTanggal_jual();
-        holder.tanggal.setText(date.format(Date.parse(tgl)));
-        holder.pendapatan.setText("Rp. "+viewModelJual.getTotal());
+        holder.tanggal.setText(viewModelJual.getTanggal_jual());
+        holder.pendapatan.setText("Rp. "+Modul.removeE(viewModelJual.getTotal()));
+        holder.pelanggan.setText(viewModelJual.getNama_pelanggan());
+        holder.pegawai.setText(viewModelJual.getNama_pegawai());
+        holder.fakturJual.setText(viewModelJual.getFakturjual());
     }
 
     @Override
@@ -53,13 +54,15 @@ public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tanggal, jumlah, pendapatan, keuntungan;
+        TextView tanggal, jumlah, pendapatan, pelanggan, pegawai, fakturJual;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tanggal = itemView.findViewById(R.id.txtDate);
             jumlah = itemView.findViewById(R.id.txtJmlTransaksi);
-            pendapatan = itemView.findViewById(R.id.txtJmlPendapatan);
-            keuntungan = itemView.findViewById(R.id.txtJmlKeuntungan);
+            pendapatan = itemView.findViewById(R.id.isiPendapatan);
+            pelanggan = itemView.findViewById(R.id.isipelanggan);
+            pegawai = itemView.findViewById(R.id.isiPegawai);
+            fakturJual = itemView.findViewById(R.id.isiFakturJual);
         }
     }
 }

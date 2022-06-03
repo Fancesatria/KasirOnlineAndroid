@@ -10,6 +10,17 @@ public class ViewModelJual {
     private String nama_pegawai;
     private String tanggal_jual;
 
+    public ViewModelJual(String fakturjual, double bayar, double total, double kembali, double potongan, String nama_pelanggan, String nama_pegawai, String tanggal_jual) {
+        this.fakturjual = fakturjual;
+        this.bayar = bayar;
+        this.total = total;
+        this.kembali = kembali;
+        this.potongan = potongan;
+        this.nama_pelanggan = nama_pelanggan;
+        this.nama_pegawai = nama_pegawai;
+        this.tanggal_jual = tanggal_jual;
+    }
+
     public String getFakturjual() {
         return fakturjual;
     }
