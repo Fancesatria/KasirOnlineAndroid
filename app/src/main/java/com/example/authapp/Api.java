@@ -131,7 +131,7 @@ public class Api {
         return barangService;
     }
 
-    //PENDAPATAN
+    //LAPORAN PENDAPATAN
     public static LaporanService Pendapatan(Context context) {
         LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
 
@@ -143,5 +143,40 @@ public class Api {
         OrderServiceInterface orderServiceInterface = getRetrofit(context).create(OrderServiceInterface.class);
 
         return orderServiceInterface;
+    }
+
+    //LAPORAN PENJUALAN
+    public static LaporanService Penjualan(Context context) {
+        LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
+
+        return laporanService;
+    }
+
+    //REKAP KATEGORI
+    public static LaporanService RekapKategori(Context context) {
+        LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
+
+        return laporanService;
+    }
+
+    //REKAP BARANG
+    public static LaporanService RekapBarang(Context context) {
+        LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
+
+        return laporanService;
+    }
+
+    //REKAP PELANGGAN
+    public static LaporanService RekapPelanggan(Context context) {
+        LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
+
+        return laporanService;
+    }
+
+    //REKAP PEGAWAI
+    public static LaporanService RekapPegawai(Context context) {
+        LaporanService laporanService = getRetrofit(context).create(LaporanService.class);
+
+        return laporanService;
     }
 }

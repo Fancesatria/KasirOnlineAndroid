@@ -1,4 +1,4 @@
-package com.example.authapp.ModelView;
+package com.example.authapp.ViewModel;
 
 import androidx.room.DatabaseView;
 

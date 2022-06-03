@@ -1,5 +1,25 @@
 package com.example.authapp.ViewModel;
 
+import androidx.room.DatabaseView;
+
+@DatabaseView(value =
+       "SELECT tbljual.idjual,\n" +
+                "    tbljual.fakturjual,\n" +
+                "    tbljual.bayar,\n" +
+                "    tbljual.total,\n" +
+                "    tbljual.kembali,\n" +
+                "    tbljual.potongan,\n" +
+                "    tblpelanggan.idpelanggan,\n" +
+                "    tbljual.tanggal_jual,\n" +
+                "    tblpelanggan.nama_pelanggan,\n" +
+                "    tblpelanggan.alamat_pelanggan,\n" +
+                "    tblpelanggan.no_telepon\n" +
+                "    \n" +
+                "   FROM (tbljual\n" +
+                "     JOIN tblpelanggan ON (tbljual.idpelanggan = tblpelanggan.idpelanggan)\n" +
+                "     );\n" +
+                "     ",viewName = "viewJual"
+)
 public class ViewModelJual {
     private String fakturjual;
     private double bayar;

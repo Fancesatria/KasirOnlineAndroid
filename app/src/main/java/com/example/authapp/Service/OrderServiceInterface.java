@@ -1,8 +1,9 @@
 package com.example.authapp.Service;
 
 import com.example.authapp.Model.ModelOrder;
-import com.example.authapp.ModelView.ModelViewStruk;
+import com.example.authapp.Response.DetailOrderResponse;
 import com.example.authapp.Response.OrderResponse;
+import com.example.authapp.ViewModel.ModelViewStruk;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface OrderServiceInterface {
 
 
     @GET("order/detail/{id}")
-    Call<List<ModelViewStruk>> getOrderDetail(@Path("id") String id);
+    Call<DetailOrderResponse> getOrderDetail(@Path("id") String id);
 }

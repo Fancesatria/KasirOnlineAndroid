@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
-import com.example.authapp.ModelView.ModelViewStruk;
 import com.example.authapp.R;
+import com.example.authapp.ViewModel.ModelViewStruk;
 import com.example.authapp.util.Modul;
 
 import java.util.List;

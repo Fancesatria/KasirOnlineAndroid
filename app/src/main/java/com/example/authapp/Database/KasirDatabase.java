@@ -19,7 +19,8 @@ import com.example.authapp.Model.ModelKategori;
 import com.example.authapp.Model.ModelPegawai;
 import com.example.authapp.Model.ModelPelanggan;
 import com.example.authapp.Model.ModelSatuan;
-import com.example.authapp.ModelView.ModelViewStruk;
+import com.example.authapp.ViewModel.ModelViewStruk;
+import com.example.authapp.ViewModel.ViewModelJual;
 
 @Database(entities ={
         ModelKategori.class,
@@ -29,7 +30,7 @@ import com.example.authapp.ModelView.ModelViewStruk;
         ModelPelanggan.class,
         ModelJual.class,
         ModelDetailJual.class
-}, views = {ModelViewStruk.class},version = 5)
+}, views = {ModelViewStruk.class, ViewModelJual.class},version = 7)
 public abstract class KasirDatabase extends RoomDatabase {
     private static final String name_database = "KasirDB";
 

@@ -81,7 +81,6 @@
         <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
         <activity android:name=".ui.home.bottom_nav.shopping.ShoppingCart" />
         <activity android:name=".ui.home.bottom_nav.shopping.Payment" />
-        <activity android:name=".ui.home.bottom_nav.shopping.QuickPay" />
         <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess" />
         <activity android:name=".ui.laporan.LaporanPenjualan" />
     </application>

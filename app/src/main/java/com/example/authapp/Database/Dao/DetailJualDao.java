@@ -9,7 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.authapp.Model.ModelDetailJual;
-import com.example.authapp.ModelView.ModelViewStruk;
+import com.example.authapp.ViewModel.ModelViewStruk;
 
 import java.util.List;
 

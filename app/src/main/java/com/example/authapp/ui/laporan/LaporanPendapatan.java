@@ -83,7 +83,7 @@ public class LaporanPendapatan extends AppCompatActivity {
                         data.addAll(response.body().getData());
                         adapter.notifyDataSetChanged();
 
-                        Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
                     }
                 }
 

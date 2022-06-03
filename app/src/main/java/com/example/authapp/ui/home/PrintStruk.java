@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
+//changes
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,8 +20,9 @@ import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
-import com.example.authapp.ModelView.ModelViewStruk;
 import com.example.authapp.R;
+import com.example.authapp.Response.DetailOrderResponse;
+import com.example.authapp.ViewModel.ModelViewStruk;
 import com.example.authapp.databinding.ActivityPrintStrukBinding;
 import com.example.authapp.ui.home.bottom_nav.shopping.TransactionSuccess;
 import com.example.authapp.util.Modul;
@@ -65,25 +66,25 @@ public class PrintStruk extends AppCompatActivity {
         detailJualRepository.getDetailStruk(getIntent().getIntExtra("idjual",0)).observe(this, new Observer<List<ModelViewStruk>>() {
             @Override
             public void onChanged(List<ModelViewStruk> modelViewStruks) {
-               setData(modelViewStruks);
-
+                setData(modelViewStruks);
             }
         });
 
 
-        Call<List<ModelViewStruk>> call = Api.Order(this).getOrderDetail(getIntent().getStringExtra("idjual"));
-        call.enqueue(new Callback<List<ModelViewStruk>>() {
+
+        Call<DetailOrderResponse> call = Api.Order(this).getOrderDetail(getIntent().getStringExtra("idjual"));
+        call.enqueue(new Callback<DetailOrderResponse>() {
             @Override
-            public void onResponse(Call<List<ModelViewStruk>> call, Response<List<ModelViewStruk>> response) {
+            public void onResponse(Call<DetailOrderResponse> call, Response<DetailOrderResponse> response) {
                 if (response.isSuccessful()) {
                     if(modelDetailJualList.size() == 0){
-                        setData(response.body());
+                        setData(response.body().getData());
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<ModelViewStruk>> call, Throwable t) {
+            public void onFailure(Call<DetailOrderResponse> call, Throwable t) {
 
             }
         });
