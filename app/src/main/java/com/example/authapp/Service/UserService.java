@@ -1,10 +1,9 @@
 package com.example.authapp.Service;
 
 import com.example.authapp.Model.ModelLogin;
-import com.example.authapp.Model.ModelOtp;
 import com.example.authapp.Model.ModelRegister;
 import com.example.authapp.Model.ModelToko;
-import com.example.authapp.ModelView.ModelViewBarang;
+import com.example.authapp.ViewModel.ViewModelBarang;
 import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.Response.LoginResponse;
 import com.example.authapp.Response.OtpResponse;
@@ -41,7 +40,7 @@ public interface UserService {
 
     //TAMBAHKAN PRODUK
     @POST("register/barang")
-    Call<RegisBarangResponse> regisBarang(@Body ModelViewBarang modelView);
+    Call<RegisBarangResponse> regisBarang(@Body ViewModelBarang modelView);
 
 
 

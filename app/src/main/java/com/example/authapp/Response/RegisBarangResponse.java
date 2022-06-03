@@ -1,10 +1,10 @@
 package com.example.authapp.Response;
 
-import com.example.authapp.ModelView.ModelViewBarang;
+import com.example.authapp.ViewModel.ViewModelBarang;
 
 public class RegisBarangResponse {
     private Boolean status;
-    private ModelViewBarang data; //ini krn objectnya itu berii sm ky modelview barang
+    private ViewModelBarang data; //ini krn objectnya itu berii sm ky modelview barang
 
     public Boolean getStatus() {
         return status;
@@ -14,11 +14,11 @@ public class RegisBarangResponse {
         this.status = status;
     }
 
-    public ModelViewBarang getData() {
+    public ViewModelBarang getData() {
         return data;
     }
 
-    public void setData(ModelViewBarang data) {
+    public void setData(ViewModelBarang data) {
         this.data = data;
     }
 }

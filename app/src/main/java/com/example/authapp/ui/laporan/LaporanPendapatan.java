@@ -49,7 +49,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     }
 
     public void init(){
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", new Locale("in", "ID"));
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("in", "ID"));
 
         bind.dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     public void refreshData(){
         String mulai = bind.dateFrom.getText().toString();
         String sampai = bind.dateTo.getText().toString();
-        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan("2022-04-28", "2022-05-31", "Ivanna");
+        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan(mulai, sampai, "");
         pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
             @Override
             public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
