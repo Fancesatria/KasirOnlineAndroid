@@ -10,6 +10,7 @@ import com.example.authapp.Database.Dao.DetailJualDao;
 import com.example.authapp.Database.KasirDatabase;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.ModelView.ModelViewStruk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,11 @@ public class DetailJualRepository {
 
     public LiveData<List<ModelDetailJual>> getDetailOrder(int idjual){
         return detailJualDao.getDetailOrder(idjual);
+    }
+
+
+    public LiveData<List<ModelViewStruk>> getDetailStruk(int idjual){
+        return detailJualDao.getDetailStruk(idjual);
     }
 
     public void insertAll(List<ModelDetailJual> data, boolean truncate){

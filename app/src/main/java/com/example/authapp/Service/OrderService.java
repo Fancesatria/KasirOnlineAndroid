@@ -73,6 +73,7 @@ public class OrderService {
                             detailJualRepository.insertAll(response.body().getData().getDetail(), modelJual);
 
                             Intent intent = new Intent(application, TransactionSuccess.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("kembali", Modul.doubleToStr(jual.getKembali()));
                             intent.putExtra("total", Modul.doubleToStr(jual.getTotal()));
                             intent.putExtra("idjual", modelJual.intValue());
