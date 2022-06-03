@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
+import com.example.authapp.ModelView.ModelViewStruk;
 import com.example.authapp.R;
 import com.example.authapp.util.Modul;
 
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class StrukAdapter extends RecyclerView.Adapter<StrukAdapter.ViewHolder> {
     Context context;
-    private List<ModelDetailJual> modelDetailJualList;
+    private List<ModelViewStruk> modelDetailJualList;
     private List<ModelBarang> modelBarangList;
 
-    public StrukAdapter(Context context, List<ModelDetailJual> modelDetailJualList, List<ModelBarang> modelBarangList) {
+    public StrukAdapter(Context context, List<ModelViewStruk> modelDetailJualList, List<ModelBarang> modelBarangList) {
         this.context = context;
         this.modelDetailJualList = modelDetailJualList;
         this.modelBarangList = modelBarangList;
@@ -37,7 +38,7 @@ public class StrukAdapter extends RecyclerView.Adapter<StrukAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ModelDetailJual detailJual = modelDetailJualList.get(position);
+        ModelViewStruk detailJual = modelDetailJualList.get(position);
 //        ModelBarang modelBarang = modelBarangList.get(position);
 //        holder.tNama.setText(modelBarang.getBarang());
         holder.tHitung.setText(Modul.toString(detailJual.getJumlahjual())+" x "+"Rp. "+Modul.removeE(detailJual.getHargajual()));
