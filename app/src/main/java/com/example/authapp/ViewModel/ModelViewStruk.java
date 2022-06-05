@@ -2,7 +2,7 @@ package com.example.authapp.ViewModel;
 
 import androidx.room.DatabaseView;
 
-@DatabaseView(value = "SELECT tbldetailjual.iddetailjual,\n" +
+@DatabaseView(viewName = "view_detailjual", value = "SELECT tbldetailjual.iddetailjual,\n" +
         "    tbljual.idjual,\n" +
         "    tblbarang.idbarang,\n" +
         "    tbldetailjual.jumlahjual,\n" +
@@ -31,7 +31,7 @@ import androidx.room.DatabaseView;
         "   left join tblpelanggan on tblpelanggan.idpelanggan = tbljual.idpelanggan\n" +
         "   inner join tblbarang on tblbarang.idbarang = tbldetailjual.idbarang\n" +
         "   inner join tblkategori on tblkategori.idkategori = tblbarang.idkategori\n" +
-        "   inner join tblsatuan on tblsatuan.idsatuan = tblbarang.idsatuan",viewName = "view_detailjual")
+        "   inner join tblsatuan on tblsatuan.idsatuan = tblbarang.idsatuan")
 public class ModelViewStruk {
     public void setIddetailjual(int iddetailjual) {
         this.iddetailjual = iddetailjual;

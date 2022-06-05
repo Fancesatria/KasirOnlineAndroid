@@ -17,6 +17,7 @@ import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.R;
 import com.example.authapp.ui.pengaturan.produk.EditProduk;
 import com.example.authapp.ui.pengaturan.produk.MasterProduk;
+import com.example.authapp.util.Modul;
 
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class ProdukAdapter extends RecyclerView.Adapter<ProdukAdapter.ViewHolder
         ModelBarang mb = data.get(position);
         holder.tBarang.setText(mb.getBarang());
         holder.tKode.setText(mb.getIdbarang());
-        holder.tHj.setText(String.valueOf(mb.getHarga()));
-        holder.tHb.setText(String.valueOf(mb.getHargabeli()));
+        holder.tHj.setText("Rp. "+ Modul.removeE(mb.getHarga()));
+        holder.tHb.setText("Rp. " + Modul.removeE(mb.getHargabeli()));
         holder.tHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

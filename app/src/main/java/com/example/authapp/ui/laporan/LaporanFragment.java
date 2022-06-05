@@ -39,18 +39,47 @@ public class LaporanFragment extends Fragment {
     }
 
     public void init(){
-        binding.layoutLaporanPendapatan.setOnClickListener(new View.OnClickListener() {
+        binding.laporanPendapatan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LaporanPendapatan.class));
             }
         });
 
-        binding.layoutLaporanPenjualan.setOnClickListener(new View.OnClickListener() {
+        binding.laporanPenjualan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LaporanPenjualan.class));
             }
         });
+
+        binding.laporanPenjualanBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RekapBarang.class));
+            }
+        });
+
+        binding.laporanPenjualanKategori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RekapKategori.class));
+            }
+        });
+
+        binding.laporanPenjualanPegawai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RekapPegawai.class));
+            }
+        });
+
+        binding.laporanPenjualanPelanggan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), RekapPelanggan.class));
+            }
+        });
+
     }
 }
