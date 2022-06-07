@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.example.authapp.Adapter.LapPendapatanAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.R;
 import com.example.authapp.Response.PendapatanGetResp;
+import com.example.authapp.ViewModel.ModelViewStruk;
 import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.databinding.ActivityLaporanPendapatanBinding;
 
@@ -36,7 +38,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private LapPendapatanAdapter adapter;
-    private List<ModelPendapatan> data = new ArrayList<>();
+    private List<ModelViewStruk> data = new ArrayList<>();
     Toolbar toolbar;
 
     @Override

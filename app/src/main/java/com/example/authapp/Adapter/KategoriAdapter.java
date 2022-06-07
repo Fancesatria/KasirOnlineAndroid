@@ -44,7 +44,7 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
         //if(kategori.getNama_kategori().equals(Config.PageSigned.DASHBOARD)) ini buat nyoba manggil config
         holder.bind.txtKategori.setText(kategori.getNama_kategori());
         //ini buat detail
-        holder.bind.TxtHapus.setOnClickListener(new View.OnClickListener() {
+        holder.bind.txtHapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //memanggil function dr file master kategori
