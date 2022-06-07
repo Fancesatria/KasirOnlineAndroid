@@ -18,7 +18,7 @@
             app:layout_constraintEnd_toStartOf="@+id/QRCode"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Cari Disini" />
+            app:queryHint="Cari Disini..." />
 
         <ImageButton
             android:id="@+id/QRCode"
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
-                tools:layout_editor_absoluteY="654dp" >
+                android:layout_marginBottom="0dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

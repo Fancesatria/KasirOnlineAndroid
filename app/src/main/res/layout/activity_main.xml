@@ -104,7 +104,7 @@
                         android:layout_marginLeft="40dp"
                         android:layout_weight="1"
                         android:paddingLeft="3dp"
-                        android:text="Forgot Password"
+                        android:text="Forgot Password?"
                         android:textAlignment="textStart"
                         android:textSize="17sp"
                         android:textStyle="bold" />

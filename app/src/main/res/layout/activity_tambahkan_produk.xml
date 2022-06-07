@@ -111,7 +111,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="40dp"
                     android:ems="10"
-                    android:hint="Harga"
+                    android:hint="Harga Awal"
                     android:inputType="text"
                     android:minHeight="48dp"
                     android:textSize="18sp" />
