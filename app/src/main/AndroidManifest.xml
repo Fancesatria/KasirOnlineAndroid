@@ -87,6 +87,7 @@
         <activity android:name=".ui.laporan.RekapKategori" />
         <activity android:name=".ui.laporan.RekapPegawai" />
         <activity android:name=".ui.laporan.RekapPelanggan" />
+        <activity android:name=".ui.pengaturan.toko.IdentitasToko" />
     </application>
 
 </manifest>
