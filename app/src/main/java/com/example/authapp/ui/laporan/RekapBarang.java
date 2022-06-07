@@ -57,7 +57,7 @@ public class RekapBarang extends AppCompatActivity {
 
     public void refreshData(boolean fetch){
         String cari = bind.searchView.getQuery().toString();
-        if (fetch){
+        if (true){
             Call<RekapBarangResp> rekapBarangRespCall = Api.RekapBarang(RekapBarang.this).getRekapBarang(cari);
             rekapBarangRespCall.enqueue(new Callback<RekapBarangResp>() {
                 @Override

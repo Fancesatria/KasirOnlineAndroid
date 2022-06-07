@@ -1,6 +1,7 @@
 package com.example.authapp.ui.laporan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.DatePickerDialog;
@@ -15,6 +16,7 @@ import com.example.authapp.Model.ModelJual;
 import com.example.authapp.Response.PendapatanGetResp;
 import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.databinding.ActivityLaporanPendapatanBinding;
+import com.example.authapp.util.Modul;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +43,8 @@ public class LaporanPendapatan extends AppCompatActivity {
         setContentView(bind.getRoot());
 
         init();
-
+        bind.dateFrom.setText(Modul.getDate("yyyy-MM-dd"));
+        bind.dateTo.setText(Modul.getDate("yyyy-MM-dd"));
         //inisiasi recyclerview
         bind.itemPendapatan.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LapPendapatanAdapter(LaporanPendapatan.this, data);
@@ -66,14 +69,42 @@ public class LaporanPendapatan extends AppCompatActivity {
                 showDateTo();
             }
         });
+
+        bind.icSeacrh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bind.layouticsearch.setVisibility(View.GONE);
+                bind.layoutpendapatan.setVisibility(View.GONE);
+                bind.layouttotal.setVisibility(View.GONE);
+
+                bind.layoutsearch.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                refreshData(false);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
+            }
+        });
     }
 
     public void refreshData(boolean fetch){
+        String cari = bind.searchView.getQuery().toString();
         String mulai = bind.dateFrom.getText().toString();
         String sampai = bind.dateTo.getText().toString();
 
-        if (fetch){
-            Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan(mulai, sampai, "");
+        if (true){
+            Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan(mulai, sampai, cari);
             pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
                 @Override
                 public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {

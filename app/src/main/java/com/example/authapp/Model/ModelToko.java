@@ -1,5 +1,6 @@
 package com.example.authapp.Model;
 
+
 public class ModelToko {
     private String idtoko;
     private String nama_toko;

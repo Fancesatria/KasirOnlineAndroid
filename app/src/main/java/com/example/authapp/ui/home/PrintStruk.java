@@ -58,19 +58,12 @@ public class PrintStruk extends AppCompatActivity {
         jualRepository = new JualRepository(getApplication());
         detailJualRepository = new DetailJualRepository(getApplication());
 
-        bind.itemBarangJmlHarga.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList, modelBarangList);
-        bind.itemBarangJmlHarga.setAdapter(adapter);
-
-
         detailJualRepository.getDetailStruk(getIntent().getIntExtra("idjual",0)).observe(this, new Observer<List<ModelViewStruk>>() {
             @Override
             public void onChanged(List<ModelViewStruk> modelViewStruks) {
                 setData(modelViewStruks);
             }
         });
-
-
 
         Call<DetailOrderResponse> call = Api.Order(this).getOrderDetail(getIntent().getStringExtra("idjual"));
         call.enqueue(new Callback<DetailOrderResponse>() {
@@ -99,11 +92,15 @@ public class PrintStruk extends AppCompatActivity {
         modelDetailJualList.addAll(data);
         if(modelDetailJualList.size() > 0){
             ModelViewStruk struk = modelDetailJualList.get(0);
-            bind.txtNoOrder.setText(struk.getFakturjual());
-            bind.jmlTotalOrder.setText(Modul.removeE(struk.getTotal()));
-            bind.jmlTunai.setText(Modul.removeE(struk.getBayar()));
-            bind.jmlKembalian.setText(Modul.removeE(struk.getKembali()));
+            bind.txtNoOrder.setText("No. Order : "+struk.getFakturjual());
+            bind.jmlTotalOrder.setText("Rp. "+Modul.removeE(struk.getTotal()));
+            bind.jmlTunai.setText("Rp. "+Modul.removeE(struk.getBayar()));
+            bind.jmlKembalian.setText("Rp. "+Modul.removeE(struk.getKembali()));
             bind.txtDate.setText(struk.getTanggal_jual());
+
+            bind.item.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList);
+            bind.item.setAdapter(adapter);
 
         }
 

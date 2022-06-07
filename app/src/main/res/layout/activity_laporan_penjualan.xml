@@ -22,27 +22,47 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/layouticsearch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/iconIndicator"
+                android:id="@+id/icSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
-                android:background="@color/primary1"
+                android:background="@drawable/gradient1"
                 android:paddingLeft="1dp"
                 android:paddingTop="15dp"
                 android:paddingRight="1dp"
                 android:paddingBottom="15dp"
-                android:src="@drawable/ic_value_up"
+                android:src="@drawable/ic_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutsearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                app:layout_constraintEnd_toStartOf="@+id/QRCode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryHint="Cari Transaksi" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutpenjualan"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -64,6 +84,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layouttotalpenjualan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

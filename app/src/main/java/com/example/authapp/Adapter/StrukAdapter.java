@@ -20,14 +20,11 @@ import java.util.List;
 public class StrukAdapter extends RecyclerView.Adapter<StrukAdapter.ViewHolder> {
     Context context;
     private List<ModelViewStruk> modelDetailJualList;
-    private List<ModelBarang> modelBarangList;
 
-    public StrukAdapter(Context context, List<ModelViewStruk> modelDetailJualList, List<ModelBarang> modelBarangList) {
+    public StrukAdapter(Context context, List<ModelViewStruk> modelDetailJualList) {
         this.context = context;
         this.modelDetailJualList = modelDetailJualList;
-        this.modelBarangList = modelBarangList;
     }
-
 
     @NonNull
     @Override
@@ -39,8 +36,7 @@ public class StrukAdapter extends RecyclerView.Adapter<StrukAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ModelViewStruk detailJual = modelDetailJualList.get(position);
-//        ModelBarang modelBarang = modelBarangList.get(position);
-//        holder.tNama.setText(modelBarang.getBarang());
+        holder.tNama.setText(detailJual.getBarang());
         holder.tHitung.setText(Modul.toString(detailJual.getJumlahjual())+" x "+"Rp. "+Modul.removeE(detailJual.getHargajual()));
         holder.tJumlah.setText(Modul.removeE(detailJual.getHargajual()*detailJual.getJumlahjual()));
     }

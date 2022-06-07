@@ -1,5 +1,19 @@
 package com.example.authapp.ViewModel;
 
+import androidx.room.DatabaseView;
+
+//@DatabaseView(viewName = "view_kategori", value = " SELECT tblkategori.idkategori,\n" +
+//        "    tblkategori.nama_kategori,\n" +
+//        "    tbltoko.idtoko,\n" +
+//        "    tbltoko.nama_toko,\n" +
+//        "    tbltoko.alamat_toko,\n" +
+//        "    tbltoko.nomer_toko,\n" +
+//        "    tbltoko.nama_pemilik,\n" +
+//        "    tbltoko.email_toko,\n" +
+//        "    tbltoko.password_toko,\n" +
+//        "    tbltoko.jenis_toko\n" +
+//        "   FROM tblkategori\n" +
+//        "    inner join tbltoko on tblkategori.idtoko = tbltoko.idtoko")
 public class ViewModelRekapKategori {
     private int idkategori;
     private String tanggal_jual;

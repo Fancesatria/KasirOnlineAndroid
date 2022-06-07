@@ -42,7 +42,7 @@ public class RekapPegawai extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
-                return false;
+                return true;
             }
 
             @Override

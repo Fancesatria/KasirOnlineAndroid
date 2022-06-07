@@ -150,14 +150,14 @@
             android:layout_gravity="center_horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemBarangJmlHarga"
+            android:id="@+id/item"
             android:layout_width="300dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"/>
 
         <TextView
             android:layout_width="300dp"

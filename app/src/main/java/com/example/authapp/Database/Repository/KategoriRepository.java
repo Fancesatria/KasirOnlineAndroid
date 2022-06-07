@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import com.example.authapp.Database.Dao.KategoriDao;
 import com.example.authapp.Database.KasirDatabase;
 import com.example.authapp.Model.ModelKategori;
+import com.example.authapp.ViewModel.ModelViewStruk;
+import com.example.authapp.ViewModel.ViewModelRekapKategori;
 
 import java.util.List;
 
@@ -107,5 +109,7 @@ public class KategoriRepository {
         }
     }
 
-
+//    public LiveData<List<ViewModelRekapKategori>> getRekapKategori(int idkategori){
+//        return kategoriDao.getRekapKategori(idkategori);
+//    }
 }

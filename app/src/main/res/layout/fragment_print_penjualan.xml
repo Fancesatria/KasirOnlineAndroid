@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.laporan.LaporanPendapatan">
-
+    tools:context=".ui.penjualan.PenjualanFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -17,39 +16,15 @@
         android:layout_marginRight="25dp"
         android:background="@drawable/border_textview"
         android:orientation="horizontal"
-        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <LinearLayout
-            android:id="@+id/layouticsearch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/ic_seacrh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dp"
-                android:background="@drawable/gradient1"
-                android:paddingLeft="1dp"
-                android:paddingTop="15dp"
-                android:paddingRight="1dp"
-                android:paddingBottom="15dp"
-                android:src="@drawable/ic_search"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutsearch"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="gone">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
@@ -60,51 +35,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:queryHint="Cari Transaksi" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutpendapatan"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/textPendapatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="7dp"
-                android:text="Total Pendapatan"
-                android:textAlignment="center"
-                android:textColor="#3F4F4F"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layouttotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/txtTotalPendapatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="7dp"
-                android:text="Rp. 0"
-                android:textAlignment="center"
-                android:textColor="#3F4F4F"
-                android:textSize="18sp"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
 
     </LinearLayout>
@@ -139,7 +69,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Dari"
                     android:text="DD/MM/YY"
-                    android:inputType="date"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -162,7 +91,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Sampai"
                     android:text="DD/MM/YY"
-                    android:inputType="date"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -180,17 +108,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemPendapatan"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="170dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemPenjualan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

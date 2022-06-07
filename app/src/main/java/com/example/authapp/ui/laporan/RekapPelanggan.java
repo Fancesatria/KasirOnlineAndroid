@@ -41,7 +41,7 @@ public class RekapPelanggan extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
-                return false;
+                return true;
             }
 
             @Override
@@ -57,7 +57,7 @@ public class RekapPelanggan extends AppCompatActivity {
     public void refreshData(boolean fetch){
         String cari = bind.searchView.getQuery().toString();
 
-        if (fetch){
+        if (true){
             Call<RekapPelangganResp> rekapPelangganRespCall = Api.RekapPelanggan(RekapPelanggan.this).getRekapPelanggan(cari);
             rekapPelangganRespCall.enqueue(new Callback<RekapPelangganResp>() {
                 @Override
