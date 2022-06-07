@@ -113,11 +113,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            tNama = (TextView) itemView.findViewById(R.id.textCardOne);
-            tHarga = (TextView) itemView.findViewById(R.id.txtHarga);
-            tGambar = (TextView) itemView.findViewById(R.id.imageCardOne);
+            tNama = itemView.findViewById(R.id.textCardOne);
+            tHarga = itemView.findViewById(R.id.txtHarga);
+            tGambar = itemView.findViewById(R.id.imageCardOne);
             linear = itemView.findViewById(R.id.linear);
-            cv = (CardView) itemView.findViewById(R.id.cv);
+            cv = itemView.findViewById(R.id.cv);
         }
     }
 }

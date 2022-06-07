@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.ViewModel.ViewModelJual;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface JualDao {
     @Query("select * from tbljual where fakturjual like :keyword")
     LiveData<List<ModelJual>> getJual(String keyword);
 
+    @Query("select * from tbljual where idjual=:idjual")
+    LiveData<ModelJual> getOrder(int idjual);
+
     @Delete
     void delete(ModelJual jual);
 
@@ -31,4 +35,7 @@ public interface JualDao {
 
     @Query("DELETE FROM tbljual")
     void deleteAll();
+
+    @Query("select * from viewJual")
+    LiveData<List<ViewModelJual>> getPendapatan();
 }

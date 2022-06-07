@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
 import com.example.authapp.Api;
-import com.example.authapp.Model.ModelKategori;
-import com.example.authapp.Model.ModelPendapatan;
-import com.example.authapp.R;
+import com.example.authapp.Model.ModelJual;
 import com.example.authapp.Response.PendapatanGetResp;
+import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.databinding.ActivityLaporanPendapatanBinding;
 
 import java.text.SimpleDateFormat;
@@ -37,9 +36,8 @@ public class LaporanPendapatan extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private LapPendapatanAdapter adapter;
-    private List<ModelPendapatan> data= new ArrayList<>();
+    private List<ModelPendapatan> data = new ArrayList<>();
     Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +47,12 @@ public class LaporanPendapatan extends AppCompatActivity {
 
         init();
 
-        //inisiasi recyclerview
+        // inisiasi recyclerview
         bind.itemPendapatan.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LapPendapatanAdapter(LaporanPendapatan.this, data);
         bind.itemPendapatan.setAdapter(adapter);
 
-        refreshData();
+        refreshData(true);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,7 +60,7 @@ public class LaporanPendapatan extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.laporan_toolbar,menu);
+        getMenuInflater().inflate(R.menu.laporan_toolbar, menu);
         return true;
     }
 
@@ -72,11 +70,12 @@ public class LaporanPendapatan extends AppCompatActivity {
 
         if (id == R.id.print) {
             Toast.makeText(getApplicationContext(), "Print", Toast.LENGTH_SHORT).show();
-        } return true;
+        }
+        return true;
     }
 
-    public void init(){
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", new Locale("in", "ID"));
+    public void init() {
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         bind.dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,43 +92,53 @@ public class LaporanPendapatan extends AppCompatActivity {
         });
     }
 
-    public void refreshData(){
-        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan();
-        pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
-            @Override
-            public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
-                if (response.isSuccessful()){
+    public void refreshData(boolean fetch) {
+        String mulai = bind.dateFrom.getText().toString();
+        String sampai = bind.dateTo.getText().toString();
 
-                    data.clear();
-//                    data.addAll(response.body().getData());
-                    adapter.notifyDataSetChanged();
+        if (fetch) {
+            Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(LaporanPendapatan.this).getPendapatan(mulai,
+                    sampai, "");
+            pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
+                @Override
+                public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
+                    if (response.isSuccessful()) {
+
+                        data.clear();
+                        data.addAll(response.body().getData());
+                        adapter.notifyDataSetChanged();
+
+                        // Toast.makeText(LaporanPendapatan.this,
+                        // String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
-
-            }
-        });
+                @Override
+                public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
+                    Toast.makeText(LaporanPendapatan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
-    public void showDateFrom(){
+    public void showDateFrom() {
         Calendar kalender = Calendar.getInstance();
 
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance(); 
+                Calendar newDate = Calendar.getInstance();
                 newDate.set(year, month, dayOfMonth);
 
                 bind.dateFrom.setText(dateFormatter.format(newDate.getTime()));
+                refreshData(true);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
         datePickerDialog.show();
     }
 
-    public void showDateTo(){
+    public void showDateTo() {
         Calendar kalender = Calendar.getInstance();
 
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -139,10 +148,12 @@ public class LaporanPendapatan extends AppCompatActivity {
                 newDate.set(year, month, dayOfMonth);
 
                 bind.dateTo.setText(dateFormatter.format(newDate.getTime()));
+                refreshData(true);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
         datePickerDialog.show();
+
     }
 
 }

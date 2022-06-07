@@ -160,6 +160,10 @@ public class HomeFragment extends Fragment {
     public void onResume() {//ketika buka halaman lain maka function ini berjalan/merefresh data yg sblmnya
         super.onResume();
         binding.titlePelanggan.setText(service.getPelanggan().getNama_pelanggan());
+        if (produkAdapter != null){
+            produkAdapter.notifyDataSetChanged();
+            setTotal();
+        }
     }
 
     @Override
@@ -234,19 +238,21 @@ public class HomeFragment extends Fragment {
             barangGetRespCall.enqueue(new Callback<BarangGetResp>() {
                 @Override
                 public void onResponse(Call<BarangGetResp> call, Response<BarangGetResp> response) {
-                    if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())){
+                    if (response.isSuccessful()){
+                        if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())){
 
-                        if (response.body().getData().size() == 0) {
-                            binding.txtKosong.setVisibility(View.VISIBLE);
-                            binding.item.setVisibility(View.GONE);
+                            if (response.body().getData().size() == 0) {
+                                binding.txtKosong.setVisibility(View.VISIBLE);
+                                binding.item.setVisibility(View.GONE);
+                            }
+                            //memasukkan ke repo / db
+                            barangRepository.insertAll(response.body().getData(), true);
+
+                            //merefresh adapter
+                            data.clear();
+                            data.addAll(response.body().getData());
+                            produkAdapter.notifyDataSetChanged();
                         }
-                        //memasukkan ke repo / db
-                        barangRepository.insertAll(response.body().getData(), true);
-
-                        //merefresh adapter
-                        data.clear();
-                        data.addAll(response.body().getData());
-                        produkAdapter.notifyDataSetChanged();
                     }
                 }
 

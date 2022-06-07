@@ -91,10 +91,12 @@
         <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
         <activity android:name=".ui.home.bottom_nav.shopping.ShoppingCart" />
         <activity android:name=".ui.home.bottom_nav.shopping.Payment" />
-        <activity android:name=".ui.home.bottom_nav.shopping.QuickPay" />
         <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess" />
-        <activity android:name=".ui.home.bottom_nav.shopping.Struk" />
         <activity android:name=".ui.laporan.LaporanPenjualan" />
+        <activity android:name=".ui.laporan.RekapBarang" />
+        <activity android:name=".ui.laporan.RekapKategori" />
+        <activity android:name=".ui.laporan.RekapPegawai" />
+        <activity android:name=".ui.laporan.RekapPelanggan" />
     </application>
 
 </manifest>

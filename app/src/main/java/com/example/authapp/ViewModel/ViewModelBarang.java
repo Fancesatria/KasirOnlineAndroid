@@ -1,6 +1,6 @@
-package com.example.authapp.ModelView;
+package com.example.authapp.ViewModel;
 
-public class ModelViewBarang {
+public class ViewModelBarang {
     private String idbarang;
     private String nama_kategori;
     private String nama_satuan;

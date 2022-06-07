@@ -22,6 +22,10 @@ public class JualRepository {
         allJual = jualDao.getJual("");
     }
 
+    public LiveData<ModelJual> getOrder(int idjual){
+        return jualDao.getOrder(idjual);
+    }
+
 
 
     public LiveData<List<ModelJual>> getAllJual(String keyword){

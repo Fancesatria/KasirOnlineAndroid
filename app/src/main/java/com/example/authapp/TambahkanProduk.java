@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.authapp.ModelView.ModelViewBarang;
+import com.example.authapp.ViewModel.ViewModelBarang;
 import com.example.authapp.Response.RegisBarangResponse;
 import com.example.authapp.databinding.ActivityTambahkanProdukBinding;
 
@@ -37,7 +37,7 @@ public class TambahkanProduk extends AppCompatActivity {
         bind.nextToMainPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ModelViewBarang modelVB = new ModelViewBarang();
+                ViewModelBarang modelVB = new ViewModelBarang();
                 modelVB.setIdbarang(idBarang.getText().toString());
                 modelVB.setBarang(NamaBarang.getText().toString());
                 modelVB.setNama_kategori(Kategori.getText().toString());
@@ -50,8 +50,8 @@ public class TambahkanProduk extends AppCompatActivity {
         });
     }
 
-    public void RegisBarang(ModelViewBarang modelViewBarang) {
-        Call<RegisBarangResponse> RegisBarangResponseCall = Api.getService(TambahkanProduk.this).regisBarang(modelViewBarang);
+    public void RegisBarang(ViewModelBarang viewModelBarang) {
+        Call<RegisBarangResponse> RegisBarangResponseCall = Api.getService(TambahkanProduk.this).regisBarang(viewModelBarang);
         RegisBarangResponseCall.enqueue(new Callback<RegisBarangResponse>() {
             @Override
             public void onResponse(Call<RegisBarangResponse> call, Response<RegisBarangResponse> response) {

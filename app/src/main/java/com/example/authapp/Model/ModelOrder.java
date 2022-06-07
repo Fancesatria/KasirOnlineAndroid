@@ -3,6 +3,7 @@ package com.example.authapp.Model;
 import java.util.List;
 
 public class ModelOrder {
+    private int idjual;
     private String fakturjual;
     private double bayar;
     private double total;
@@ -11,7 +12,7 @@ public class ModelOrder {
     private int idpelanggan;
     private int idpegawai;
     private String tanggal_jual;
-    private List<ModelDetailJual> modelDetailJualList;
+    private List<ModelDetailJual> detail;
 
     public ModelOrder(ModelJual model, List<ModelDetailJual> modelDetailJualList) {
         this.fakturjual = model.fakturjual;
@@ -22,8 +23,15 @@ public class ModelOrder {
         this.idpelanggan = model.idpelanggan;
         this.idpegawai = model.idpegawai;
         this.tanggal_jual = model.tanggal_jual;
-        this.modelDetailJualList = modelDetailJualList;
+        this.detail = modelDetailJualList;
     }
+    public ModelJual getJual(){
+        ModelJual model = new ModelJual(fakturjual, bayar, total, kembali, potongan, idpelanggan, idpegawai, tanggal_jual);
+        model.setIdjual(idjual);
+        return  model;
+    }
+
+
 
     public String getFakturjual() {
         return fakturjual;
@@ -89,11 +97,11 @@ public class ModelOrder {
         this.tanggal_jual = tanggal_jual;
     }
 
-    public List<ModelDetailJual> getModelDetailJualList() {
-        return modelDetailJualList;
+    public List<ModelDetailJual> getDetail() {
+        return detail;
     }
 
-    public void setModelDetailJualList(List<ModelDetailJual> modelDetailJualList) {
-        this.modelDetailJualList = modelDetailJualList;
+    public void setDetail(List<ModelDetailJual> detail) {
+        this.detail = detail;
     }
 }

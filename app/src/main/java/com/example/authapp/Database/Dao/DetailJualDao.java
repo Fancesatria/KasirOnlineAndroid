@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.authapp.Model.ModelDetailJual;
+import com.example.authapp.ViewModel.ModelViewStruk;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface DetailJualDao {
     @Query("select * from tbldetailjual")
     LiveData<List<ModelDetailJual>> getAllJual();
 
+    @Query("select * from tbldetailjual where idjual=:idjual")
+    LiveData<List<ModelDetailJual>> getDetailOrder(int idjual);
+
     @Update
     void update(ModelDetailJual detailJual);
 
@@ -31,4 +35,8 @@ public interface DetailJualDao {
 
     @Query("DELETE FROM tbldetailjual")
     void deleteAll();
+
+
+    @Query("select * from view_detailjual where idjual=:idjual")
+    LiveData<List<ModelViewStruk>> getDetailStruk(int idjual);
 }

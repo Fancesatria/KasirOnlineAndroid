@@ -2,6 +2,7 @@ package com.example.authapp.Database.Repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -9,6 +10,7 @@ import com.example.authapp.Database.Dao.DetailJualDao;
 import com.example.authapp.Database.KasirDatabase;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.ViewModel.ModelViewStruk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,15 @@ public class DetailJualRepository {
 
     public LiveData<List<ModelDetailJual>> getAllDetailJual() {
         return allDetailJual;
+    }
+
+    public LiveData<List<ModelDetailJual>> getDetailOrder(int idjual){
+        return detailJualDao.getDetailOrder(idjual);
+    }
+
+
+    public LiveData<List<ModelViewStruk>> getDetailStruk(int idjual){
+        return detailJualDao.getDetailStruk(idjual);
     }
 
     public void insertAll(List<ModelDetailJual> data, boolean truncate){
@@ -95,12 +106,17 @@ public class DetailJualRepository {
             if(truncate){
                 detailJualDao.deleteAll();
             }
+            Log.d("ada2", "doInBackground: "+String.valueOf(lists[0].size()));
             List<ModelDetailJual> data = new ArrayList<>();
             for (
                     ModelDetailJual detail : lists[0]
             ){
+                Log.d("Ada", "doInBackground: ada");
                 if (modelJual != null){
                     detail.setIdjual(modelJual.intValue());
+                    Log.d("HEHE", "doInBackground: "+modelJual.toString());
+                } else {
+                    Log.d("HEHENULL", "doInBackground:null ");
                 }
                 data.add(detail);
             }

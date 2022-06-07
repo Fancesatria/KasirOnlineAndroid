@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.laporan.LaporanPendapatan">
 
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -54,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
-                android:background="#254A0E"
+                android:background="@color/primary1"
                 android:paddingLeft="1dp"
                 android:paddingTop="15dp"
                 android:paddingRight="1dp"
