@@ -76,7 +76,7 @@ public class OrderService {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("kembali", Modul.doubleToStr(jual.getKembali()));
                             intent.putExtra("total", Modul.doubleToStr(jual.getTotal()));
-                            intent.putExtra("idjual", Modul.intToStr(modelJual.intValue()));
+                            intent.putExtra("idjual", jual.getFakturjual());
                             application.startActivity(intent);
                             //Toast.makeText(application, "menyimpan", Toast.LENGTH_SHORT).show();
                         }
