@@ -1,106 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.pengaturan.pegawai.TambahPegawai">
 
-    <TextView
-        android:id="@+id/banner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:fontFamily="sans-serif-black"
-        android:textAlignment="center"
-        android:text="Tambah Pegawai"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    untuk : tambah data pegawai -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
-    <EditText
-        android:id="@+id/addNamaPagawai"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Nama Pegawai"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/addAlamatPagawai"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Alamat"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNamaPagawai"
-        />
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/addNomorPagawai"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Nomor Telepon"
-        android:inputType="number"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addAlamatPagawai"
-        />
+                <TextView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Tambah Pegawai"
+                    android:textAlignment="textStart"
+                    android:textSize="30sp"/>
 
-    <EditText
-        android:id="@+id/addPinPegawai"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Pin"
-        android:inputType="number"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNomorPagawai"
-        />
+                <EditText
+                    android:id="@+id/addNamaPagawai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="Nama Pegawai"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#2F4F4F"
-        android:text="Submit"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:cornerRadius="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addPinPegawai" />
+                <EditText
+                    android:id="@+id/addAlamatPagawai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="Alamat"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/addNomorPagawai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="Nomor Telepon"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/addPinPegawai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="PIN"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="35dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+                <Button
+                    android:id="@+id/btnAddPegawai"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="#2F4F4F"
+                    android:text="Add"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+
+            <!--                <ProgressBar-->
+            <!--                    android:id="@+id/progressBar"-->
+            <!--                    style="?android:attr/progressBarStyleLarge"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_centerInParent="true"-->
+            <!--                    android:visibility="gone"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                    app:layout_constraintRight_toRightOf="parent"-->
+            <!--                    />-->
+        </LinearLayout>
 
 
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/plusBtnPegawai"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="bottom|center"-->
-    <!--        android:layout_marginBottom="50dp"-->
-    <!--        app:srcCompat="@android:drawable/ic_plus"-->
-    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-    <!--        app:layout_constraintRight_toRightOf="parent"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        />-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

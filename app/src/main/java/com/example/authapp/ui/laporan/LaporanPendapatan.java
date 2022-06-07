@@ -1,13 +1,18 @@
 package com.example.authapp.ui.laporan;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
 import com.example.authapp.Api;
@@ -33,6 +38,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     private SimpleDateFormat dateFormatter;
     private LapPendapatanAdapter adapter;
     private List<ModelPendapatan> data= new ArrayList<>();
+    Toolbar toolbar;
 
 
     @Override
@@ -49,6 +55,24 @@ public class LaporanPendapatan extends AppCompatActivity {
         bind.itemPendapatan.setAdapter(adapter);
 
         refreshData();
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.laporan_toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.print) {
+            Toast.makeText(getApplicationContext(), "Print", Toast.LENGTH_SHORT).show();
+        } return true;
     }
 
     public void init(){
@@ -95,7 +119,7 @@ public class LaporanPendapatan extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
+                Calendar newDate = Calendar.getInstance(); 
                 newDate.set(year, month, dayOfMonth);
 
                 bind.dateFrom.setText(dateFormatter.format(newDate.getTime()));

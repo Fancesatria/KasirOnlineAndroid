@@ -1,5 +1,6 @@
 package com.example.authapp.ui.pengaturan.kategori;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -45,33 +46,39 @@ public class MasterDaftarKategori extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         bind = ActivityMasterDaftarKategoriBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Daftar Kategori");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 //       Repo sqlite
         //manggil database (sqlite)
         kategoriRepository = new KategoriRepository(getApplication());
 
 //      Definisi Reclerview
-        bind.item.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
-        bind.item.setAdapter(adapter);
+//        bind.item.setLayoutManager(new LinearLayoutManager(this));
+//        adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
+//        bind.item.setAdapter(adapter);
 
 
-        inKategori = bind.eKategori;
-        refreshData();
-        bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nama_kategori = inKategori.getText().toString();
-                if(nama_kategori.isEmpty()){
-                    inKategori.setError("Harap isi dengan benar");
-                }else{
-                    inKategori.setError(null);
-                    ModelKategori data = new ModelKategori(nama_kategori);
-                    PostKat(data);
-                }
-
-            }
-        });
+//        inKategori = bind.eKategori;
+//        refreshData();
+//        bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String nama_kategori = inKategori.getText().toString();
+//                if(nama_kategori.isEmpty()){
+//                    inKategori.setError("Harap isi dengan benar");
+//                }else{
+//                    inKategori.setError(null);
+//                    ModelKategori data = new ModelKategori(nama_kategori);
+//                    PostKat(data);
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -137,14 +144,14 @@ public class MasterDaftarKategori extends AppCompatActivity {
 
     public void PostKat(ModelKategori modelKategori){
         inKategori.setEnabled(false);
-        bind.btnSimpan.setEnabled(false);
+//        bind.btnSimpan.setEnabled(false);
         LoadingDialog.load(this);
         Call<KategoriResponse> kategoriResponseCall = Api.Kategori(MasterDaftarKategori.this).postKat(modelKategori);
         kategoriResponseCall.enqueue(new Callback<KategoriResponse>() {
             @Override
             public void onResponse(Call<KategoriResponse> call, Response<KategoriResponse> response) {
                 LoadingDialog.close();
-                EditText inKategori = bind.eKategori;
+//                EditText inKategori = bind.eKategori;
                 if (response.isSuccessful() && response.body().isStatus()) {
                     SuccessDialog.message(MasterDaftarKategori.this,getString(R.string.success_added),bind.getRoot());
                     inKategori.getText().clear();
@@ -157,14 +164,14 @@ public class MasterDaftarKategori extends AppCompatActivity {
 
                 }
                 inKategori.setEnabled(true);
-                bind.btnSimpan.setEnabled(true);
+//                bind.btnSimpan.setEnabled(true);
             }
             @Override
             public void onFailure(Call<KategoriResponse> call, Throwable t) {
                 LoadingDialog.close();
                 ErrorDialog.message(MasterDaftarKategori.this,getString(R.string.error_fetch), bind.getRoot());
                 inKategori.setEnabled(true);
-                bind.btnSimpan.setEnabled(true);
+//                bind.btnSimpan.setEnabled(true);
             }
         });
     }

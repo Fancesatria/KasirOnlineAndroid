@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
+    <!--    untuk : update/edit satuan -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
