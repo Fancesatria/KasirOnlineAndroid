@@ -92,13 +92,13 @@ public class PrintStruk extends AppCompatActivity {
         bind = ActivityPrintStrukBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(bind.getRoot());
-        setSupportActionBar(bind.toolbar);
+//        setSupportActionBar(bind.toolbar);
         setTitle("Print Struk");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         jualRepository = new JualRepository(getApplication());
         detailJualRepository = new DetailJualRepository(getApplication());
-        requestPermission();
+
         bind.struk.setVisibility(View.GONE);
 
 
@@ -111,7 +111,7 @@ public class PrintStruk extends AppCompatActivity {
 
 
         bind.itemBarangJmlHarga.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList, modelBarangList);
+        adapter = new StrukAdapter(PrintStruk.this, modelDetailJualList);
         bind.itemBarangJmlHarga.setAdapter(adapter);
 
 
@@ -122,6 +122,15 @@ public class PrintStruk extends AppCompatActivity {
             }
         });
 
+
+        bind.btnPrint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(printerBTContext!=null){
+                    printerBTContext.print();
+                }
+            }
+        });
 
 
         Call<DetailOrderResponse> call = Api.Order(this).getOrderDetail(getIntent().getStringExtra("idjual"));
@@ -152,11 +161,7 @@ public class PrintStruk extends AppCompatActivity {
         } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, PERMISSION_BLUETOOTH_SCAN);
         } else {
-            if (!printerBTContext.isEnabled()) {
-                startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), PERMISSION_BLUETOOTH_ENABLED);
-            }else{
-
-            }
+            startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), PERMISSION_BLUETOOTH_ENABLED);
         }
         setModePrinter();
     }
@@ -204,8 +209,15 @@ public class PrintStruk extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
+        int x= (int) view.getLeft();
+        int y = (int) view.getTop();
+        int h = view.getBottom();
+        int w = view.getRight();
         view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+//
         view.draw(canvas);
+        view.layout(x, y, w, h);
+
         return bitmap;
     }
 
@@ -279,7 +291,7 @@ public class PrintStruk extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
                 fOut.flush();
                 fOut.close();
-                Uri contentUri = FileProvider.getUriForFile(this, "com.komputerkit.aplikasitabunganplus.fileprovider", file);
+                Uri contentUri = FileProvider.getUriForFile(this, "com.example.authapp.fileprovider", file);
                 if (contentUri != null) {
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
@@ -303,11 +315,12 @@ public class PrintStruk extends AppCompatActivity {
         if(modelDetailJualList.size() > 0){
             bind.struk.setVisibility(View.VISIBLE);
             ModelViewStruk struk = modelDetailJualList.get(0);
-            bind.txtNoOrder.setText(struk.getFakturjual());
+            bind.txtNoOrder.setText("Faktur : "+struk.getFakturjual());
             bind.jmlTotalOrder.setText(Modul.removeE(struk.getTotal()));
             bind.jmlTunai.setText(Modul.removeE(struk.getBayar()));
             bind.jmlKembalian.setText(Modul.removeE(struk.getKembali()));
-            bind.txtDate.setText(struk.getTanggal_jual());
+            bind.txtDate.setText("Tanggal : "+struk.getTanggal_jual().substring(0,10));
+            bind.txtPelanggan.setText("Pelanggan : "+struk.getNama_pelanggan());
             if(resultPrint!=null) {
 //            atur struk
                 resultPrint = new PrintTextBuilder();
@@ -333,7 +346,9 @@ public class PrintStruk extends AppCompatActivity {
                 resultPrint.addText("Halo", AlignColumn.CENTER);
                 resultPrint.addText("Halo", AlignColumn.CENTER);
                 setPrinter();
+                requestPermission();
             }
+
         }
 
     }
@@ -341,7 +356,10 @@ public class PrintStruk extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        printerUSBContext.removeReceiver();
+        if(printerUSBContext!=null){
+            printerUSBContext.removeReceiver();
+        }
+
     }
 
 

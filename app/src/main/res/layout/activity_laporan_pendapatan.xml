@@ -34,9 +34,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="12dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/border_textview"
         android:orientation="horizontal"
@@ -156,6 +155,7 @@
             android:paddingHorizontal="0dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/eDateForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -164,9 +164,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Dari"
-                    android:text="DD/MM/YY"
                     android:inputType="date"
-                    android:textSize="14sp"/>
+                    android:text="DD/MM/YY"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -206,17 +206,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemPendapatan"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="225dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemPendapatan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnExcel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Button
+        android:id="@+id/btnExcel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Export Excel"
+        android:textColor="#FFFFFF"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
