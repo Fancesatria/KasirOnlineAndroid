@@ -47,7 +47,7 @@ public class TambahPegawai extends AppCompatActivity {
         //memanggil db
         pr = new PegawaiRepository(getApplication());
 
-        bind.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        bind.btnAddPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nama = inNama.getText().toString();
@@ -73,7 +73,6 @@ public class TambahPegawai extends AppCompatActivity {
         inAlamat.setEnabled(false);
         inTelp.setEnabled(false);
         inPin.setEnabled(false);
-        bind.btnSubmit.setEnabled(false);
         LoadingDialog.load(TambahPegawai.this);
         Call<PegawaiResponse> pegawaiResponseCall = Api.Pegawai(TambahPegawai.this).postPeg(modelPegawai);
         pegawaiResponseCall.enqueue(new Callback<PegawaiResponse>() {

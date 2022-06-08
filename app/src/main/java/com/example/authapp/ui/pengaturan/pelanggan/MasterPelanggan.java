@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -67,7 +68,7 @@ public class MasterPelanggan extends AppCompatActivity {
 
         refreshData(true);
 
-        bind.plusBtnProduk.setOnClickListener(new View.OnClickListener() {
+        bind.plusBtnPelanggan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MasterPelanggan.this, TambahPelanggan.class));
@@ -76,21 +77,19 @@ public class MasterPelanggan extends AppCompatActivity {
         });
 
         //buat search
-        bind.searchPelanggan.addTextChangedListener(new TextWatcher() {
+        bind.searchPelanggan.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
@@ -98,7 +97,7 @@ public class MasterPelanggan extends AppCompatActivity {
     //ini dkasi boolean biar gk merequest terusn klo request terus2 an bakal repot
     public void refreshData(boolean fetch){
         //inisiasi search dari layoutnya
-        String cari = bind.searchPelanggan.getText().toString();
+        String cari = bind.searchPelanggan.getQuery().toString();
         //get sqlite
         pr.getAllPelanggan(cari).observe(this, new Observer<List<ModelPelanggan>>() {
             @Override

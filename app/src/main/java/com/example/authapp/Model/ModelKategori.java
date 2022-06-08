@@ -27,6 +27,10 @@ public class ModelKategori {
         this.nama_kategori = nama_kategori;
     }
 
+    public ModelKategori() {
+
+    }
+
     public int getIdkategori() {
         return idkategori;
     }

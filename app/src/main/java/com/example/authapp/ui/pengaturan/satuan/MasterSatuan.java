@@ -25,6 +25,7 @@ import com.example.authapp.Response.SatuanGetResp;
 import com.example.authapp.Response.SatuanResponse;
 import com.example.authapp.Service.SatuanService;
 import com.example.authapp.databinding.ActivityMasterSatuanBinding;
+import com.example.authapp.databinding.DialogAddSatuanBinding;
 import com.example.authapp.databinding.DialogDetailSatuanBinding;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
 
@@ -40,7 +41,6 @@ public class MasterSatuan extends AppCompatActivity {
     List<ModelSatuan> data = new ArrayList<>();
     SatuanAdapter adapter;
     SatuanRepository satuanRepository;
-    private EditText inSatuan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,6 @@ public class MasterSatuan extends AppCompatActivity {
 
         setContentView(bind.getRoot());
 
-        inSatuan = bind.eSatuan;
-
         //memanggil database
         satuanRepository = new SatuanRepository(getApplication());
 
@@ -66,18 +64,26 @@ public class MasterSatuan extends AppCompatActivity {
 
         refreshData();
 
-        bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nama_satuan = inSatuan.getText().toString();
-                if(nama_satuan.isEmpty()){
-                    inSatuan.setError("Harap isi dengan benar");
+//        bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String nama_satuan = inSatuan.getText().toString();
+//                if(nama_satuan.isEmpty()){
+//                    inSatuan.setError("Harap isi dengan benar");
+//
+//                } else {
+//                    inSatuan.setError(null);
+//                    ModelSatuan data = new ModelSatuan(nama_satuan);
+//                    PostSat(data);
+//                }
+//            }
+//        });
 
-                } else {
-                    inSatuan.setError(null);
-                    ModelSatuan data = new ModelSatuan(nama_satuan);
-                    PostSat(data);
-                }
+        bind.plusBtnSatuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ModelSatuan modelSatuan = new ModelSatuan();
+                dialogAddSatuan(modelSatuan);
             }
         });
     }
@@ -86,7 +92,7 @@ public class MasterSatuan extends AppCompatActivity {
         DialogDetailSatuanBinding binder = DialogDetailSatuanBinding.inflate(LayoutInflater.from(this));
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setView(binder.getRoot());
-        alertBuilder.setTitle("Edit Satuan");
+        alertBuilder.setTitle("EDIT SATUAN");
         AlertDialog dialog = alertBuilder.create();
         binder.txtSatuan.setText(modelSatuan.getNama_satuan());
         binder.btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +106,31 @@ public class MasterSatuan extends AppCompatActivity {
                     binder.txtSatuan.setError(null);
                     modelSatuan.setNama_satuan(nama_satuan);
                     UpdateSat(modelSatuan.getIdsatuan(), modelSatuan);
+                    dialog.cancel();
+                }
+            }
+        });
+        dialog.show();
+    }
+
+    public void dialogAddSatuan(ModelSatuan modelSatuan){
+        DialogAddSatuanBinding binder = DialogAddSatuanBinding.inflate(LayoutInflater.from(this));
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setView(binder.getRoot());
+        alertBuilder.setTitle("ADD SATUAN");
+        AlertDialog dialog = alertBuilder.create();
+        binder.txtAddSatuan.setText(modelSatuan.getNama_satuan());
+        binder.btnAddSatuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nama_satuan = binder.txtAddSatuan.getText().toString();
+                if (nama_satuan.isEmpty()){
+                    binder.txtAddSatuan.setError("Harap isi dengan benar");
+
+                } else {
+                    binder.txtAddSatuan.setError(null);
+                    modelSatuan.setNama_satuan(nama_satuan);
+                    PostSat(modelSatuan);
                     dialog.cancel();
                 }
             }
@@ -143,18 +174,14 @@ public class MasterSatuan extends AppCompatActivity {
 
 
     public void PostSat(ModelSatuan modelSatuan){
-        inSatuan.setEnabled(false);
-        bind.btnSimpan.setEnabled(false);
         LoadingDialog.load(this);
         Call<SatuanResponse> satuanResponseCall = Api.Satuan(MasterSatuan.this).postSat(modelSatuan);
         satuanResponseCall.enqueue(new Callback<SatuanResponse>() {
             @Override
             public void onResponse(Call<SatuanResponse> call, Response<SatuanResponse> response) {
                 LoadingDialog.close();
-                inSatuan = bind.eSatuan;
                 if (response.isSuccessful() && response.body().isStatus()) {
                     SuccessDialog.message(MasterSatuan.this, getString(R.string.success_added), bind.getRoot());
-                    inSatuan.getText().clear();
 
                     satuanRepository.insert(modelSatuan);
                     data.add(response.body().getData());
@@ -162,16 +189,12 @@ public class MasterSatuan extends AppCompatActivity {
                 } else {
                     ErrorDialog.message(MasterSatuan.this, getString(R.string.add_kategori_error), bind.getRoot());
                 }
-                inSatuan.setEnabled(true);
-                bind.btnSimpan.setEnabled(true);
             }
 
             @Override
             public void onFailure(Call<SatuanResponse> call, Throwable t) {
                 LoadingDialog.close();
                 Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                inSatuan.setEnabled(true);
-                bind.btnSimpan.setEnabled(true);
             }
         });
     }

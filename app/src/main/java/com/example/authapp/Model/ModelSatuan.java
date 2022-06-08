@@ -9,6 +9,10 @@ public class ModelSatuan {
     @PrimaryKey(autoGenerate = true)
     private int idsatuan;
 
+    public ModelSatuan() {
+
+    }
+
     public String getNama_satuan() {
         return nama_satuan;
     }
