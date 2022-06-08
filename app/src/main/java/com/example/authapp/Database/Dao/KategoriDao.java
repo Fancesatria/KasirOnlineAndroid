@@ -10,6 +10,8 @@ import androidx.room.Update;
 import androidx.lifecycle.LiveData;
 
 import com.example.authapp.Model.ModelKategori;
+import com.example.authapp.ViewModel.ModelViewStruk;
+import com.example.authapp.ViewModel.ViewModelRekapKategori;
 
 import java.util.List;
 
@@ -33,6 +35,9 @@ public interface KategoriDao {
 
     @Query("DELETE FROM tblkategori")
     void deleteAll();
+
+//    @Query("select * from view_kategori where idkategori=:idkategori")
+//    LiveData<List<ViewModelRekapKategori>> getRekapKategori(int idkategori);
 
 
 }

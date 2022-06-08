@@ -5,10 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.RekapKategoriAdapter;
 import com.example.authapp.Api;
+import com.example.authapp.Database.Repository.KategoriRepository;
 import com.example.authapp.Response.RekapKategoriResp;
 import com.example.authapp.ViewModel.ViewModelRekapKategori;
 import com.example.authapp.databinding.ActivityRekapKategoriBinding;
@@ -24,11 +26,15 @@ public class RekapKategori extends AppCompatActivity {
     ActivityRekapKategoriBinding bind;
     private List<ViewModelRekapKategori> data = new ArrayList<>();
     private RekapKategoriAdapter adapter;
+    private KategoriRepository kategoriRepository;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = ActivityRekapKategoriBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(bind.getRoot());
+
+        //manggil database (sqlite)
+        kategoriRepository = new KategoriRepository(getApplication());
 
         bind.item.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RekapKategoriAdapter(RekapKategori.this, data);
@@ -40,7 +46,7 @@ public class RekapKategori extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
-                return false;
+                return true;
             }
 
             @Override
@@ -55,7 +61,17 @@ public class RekapKategori extends AppCompatActivity {
 
     public void refreshData(boolean fetch){
         String cari = bind.searchView.getQuery().toString();
-        if (fetch){
+
+//        kategoriRepository.getRekapKategori(137).observe(this, new Observer<List<ViewModelRekapKategori>>() {
+//            @Override
+//            public void onChanged(List<ViewModelRekapKategori> viewModelRekapKategoris) {
+//                data.clear();
+//                data.addAll(viewModelRekapKategoris);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+
+        if (true){
             Call<RekapKategoriResp> rekapKategoriRespCall = Api.RekapKategori(RekapKategori.this).getRekapKategori(cari);
             rekapKategoriRespCall.enqueue(new Callback<RekapKategoriResp>() {
                 @Override

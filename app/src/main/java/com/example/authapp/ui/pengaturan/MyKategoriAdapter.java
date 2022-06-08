@@ -14,11 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.authapp.R;
+import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 
 public class MyKategoriAdapter extends RecyclerView.Adapter<MyKategoriAdapter.ViewHolder> {
     MyKategori[] myKategori;
     Context context;
-    public MyKategoriAdapter(MyKategori[] myKategori,MasterDaftarKategori activity){
+    public MyKategoriAdapter(MyKategori[] myKategori, MasterDaftarKategori activity){
         this.myKategori = myKategori;
         this.context=activity;
     }

@@ -35,7 +35,6 @@ public class RekapKategoriAdapter extends RecyclerView.Adapter<RekapKategoriAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewModelRekapKategori viewModelRekapKategori = data.get(position);
         holder.kategori.setText(viewModelRekapKategori.getNama_kategori());
-        holder.tanggal.setText(viewModelRekapKategori.getTanggal_jual());
         holder.totalJual.setText(viewModelRekapKategori.getTotal_jual());
         holder.pendapatan.setText("Rp. "+ viewModelRekapKategori.getTotal_pendapatan());
     }
@@ -51,7 +50,6 @@ public class RekapKategoriAdapter extends RecyclerView.Adapter<RekapKategoriAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             kategori = itemView.findViewById(R.id.isiKategori);
-            tanggal = itemView.findViewById(R.id.isitanggal);
             totalJual = itemView.findViewById(R.id.isijumlahjual);
             pendapatan = itemView.findViewById(R.id.isipendapatan);
         }

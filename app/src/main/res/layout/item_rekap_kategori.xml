@@ -29,20 +29,32 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:background="@color/primary1">
+                android:background="@drawable/gradient1">
 
                 <TextView
-                    android:id="@+id/isitanggal"
+                    android:id="@+id/txtKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Kategori"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/isiKategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="18 Mei 2022"
+                    android:text="Makanan"
+                    android:textSize="20sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -67,39 +79,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtKategori"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="Kategori"
-                            android:textColor="@color/primary1"
-                            android:textStyle="bold"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/isiKategori"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="Makanan" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
                             android:id="@+id/txtJumlahjual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"

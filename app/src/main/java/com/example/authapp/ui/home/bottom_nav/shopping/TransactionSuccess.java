@@ -35,11 +35,12 @@ public class TransactionSuccess extends AppCompatActivity {
         NumberFormat kurensi = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
         bind.txtTotalTransaksi.setText("Rp "+ Modul.removeE(getIntent().getStringExtra("total")));
         bind.txtChange.setText("Rp "+Modul.removeE(getIntent().getStringExtra("kembali")));
-        int idjual = getIntent().getIntExtra("idjual", 0);
+
 
         bind.txtCetakStruk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String idjual = getIntent().getStringExtra("idjual");
                 Intent intent = new Intent(TransactionSuccess.this, PrintStruk.class);
                 intent.putExtra("idjual", idjual);
                 startActivity(intent);

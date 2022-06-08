@@ -35,7 +35,7 @@ public class RekapBarangAdapter extends RecyclerView.Adapter<RekapBarangAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewModelRekapBarang viewModelRekapBarang = data.get(position);
         holder.nama.setText(viewModelRekapBarang.getBarang());
-        holder.idbarang.setText(viewModelRekapBarang.getIdbarang());
+        holder.idbarang.setText("id : "+viewModelRekapBarang.getIdbarang());
         holder.satuan.setText(viewModelRekapBarang.getNama_satuan());
         holder.tanggal.setText(viewModelRekapBarang.getTanggal_jual());
         holder.totalJual.setText(viewModelRekapBarang.getTotal_jual());

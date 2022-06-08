@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -72,27 +73,26 @@ public class MasterProduk extends AppCompatActivity {
         });
 
         //buat search
-        bind.searchProduk.addTextChangedListener(new TextWatcher() {
+        bind.searchProduk.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
 
     public void refreshData(boolean fetch){
         //inisiasi search
-        String cari = bind.searchProduk.getText().toString();
+        String cari = bind.searchProduk.getQuery().toString();
 
         //ini dibuat getnya ada 2 yaitu rerofit dan sqlite, biar kalau salah satu ada error, appnya msh bisa erjalan
         //get sqlite

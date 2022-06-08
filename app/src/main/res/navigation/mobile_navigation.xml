@@ -15,7 +15,7 @@
         android:id="@+id/nav_penjualan"
         android:name="com.example.authapp.ui.penjualan.PenjualanFragment"
         android:label="@string/menu_penjualan"
-        tools:layout="@layout/fragment_penjualan" />
+        tools:layout="@layout/fragment_print_penjualan" />
 
     <fragment
         android:id="@+id/nav_laporan"

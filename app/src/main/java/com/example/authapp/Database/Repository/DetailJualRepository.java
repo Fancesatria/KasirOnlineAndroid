@@ -35,6 +35,7 @@ public class DetailJualRepository {
     }
 
 
+    //struk
     public LiveData<List<ModelViewStruk>> getDetailStruk(int idjual){
         return detailJualDao.getDetailStruk(idjual);
     }

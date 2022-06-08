@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -65,7 +66,7 @@ public class MasterPegawai extends AppCompatActivity {
 
         refreshData(true);
 
-        bind.plusBtnProduk.setOnClickListener(new View.OnClickListener() {
+        bind.plusBtnPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MasterPegawai.this, TambahPegawai.class));
@@ -74,20 +75,19 @@ public class MasterPegawai extends AppCompatActivity {
         });
 
         //buat search
-        bind.searchPegawai.addTextChangedListener(new TextWatcher() {
+        bind.searchPegawai.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
@@ -96,7 +96,7 @@ public class MasterPegawai extends AppCompatActivity {
 
     public void refreshData(boolean fetch){
         //inisiasi cari dr file layout
-        String cari = bind.searchPegawai.getText().toString();
+        String cari = bind.searchPegawai.getQuery().toString();
         //get SQLite
         pr.getAllPegawai(cari).observe(this, new Observer<List<ModelPegawai>>() {
             @Override

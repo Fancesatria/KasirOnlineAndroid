@@ -41,7 +41,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.laporan.LaporanPendapatan"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false"
@@ -53,7 +54,8 @@
             android:theme="@style/Theme.AuthApp.NoActionBar" />
         <activity
             android:name=".TambahkanProduk"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".ui.home.ScanBarcode"
             android:exported="false" />
@@ -62,13 +64,16 @@
             android:exported="false" />
         <activity
             android:name=".InformasiBisnis"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".OTPVerification"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".TelpVerification"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -84,10 +89,12 @@
             android:exported="false" />
         <activity
             android:name=".UserRegister"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar" />
         <activity android:name=".ui.pengaturan.satuan.MasterSatuan"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
@@ -116,6 +123,7 @@
         <activity android:name=".ui.laporan.RekapKategori" />
         <activity android:name=".ui.laporan.RekapPegawai" />
         <activity android:name=".ui.laporan.RekapPelanggan" />
+        <activity android:name=".ui.pengaturan.toko.IdentitasToko" />
     </application>
 
 </manifest>

@@ -13,5 +13,8 @@
     <color name="darkgrey">#CFCFCF</color>
     <color name="darkergrey">#595959</color>
     <color name="primary1">#254A0E</color>
-
+    <color name="primary2">#538F2E</color>
+    <color name="default1">#795644</color>
+    <color name="default2">#ccb494</color>
+    <color name="default3">#6b3e2e</color>
 </resources>

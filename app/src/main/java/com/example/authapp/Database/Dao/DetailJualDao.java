@@ -39,4 +39,7 @@ public interface DetailJualDao {
 
     @Query("select * from view_detailjual where idjual=:idjual")
     LiveData<List<ModelViewStruk>> getDetailStruk(int idjual);
+
+
+    //@Query("select sum(jumlahjual) total_jual,SUM(jumlahjual*hargajual)total_pendapatan, nama_kategori from view_detailjual group by idkategori, nama_kategori")
 }

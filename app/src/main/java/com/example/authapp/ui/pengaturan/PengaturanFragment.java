@@ -19,6 +19,7 @@ import com.example.authapp.ui.pengaturan.pegawai.MasterPegawai;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
 import com.example.authapp.ui.pengaturan.produk.MasterProduk;
 import com.example.authapp.ui.pengaturan.satuan.MasterSatuan;
+import com.example.authapp.ui.pengaturan.toko.IdentitasToko;
 
 public class PengaturanFragment extends Fragment {
 
@@ -66,6 +67,13 @@ public class PengaturanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MasterProduk.class));
+            }
+        });
+
+        bind.IdentitasToko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), IdentitasToko.class));
             }
         });
 
