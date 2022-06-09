@@ -137,6 +137,7 @@ public class LaporanPendapatan extends AppCompatActivity {
 
                 bind.dateFrom.setText(dateFormatter.format(newDate.getTime()));
                 refreshData(true);
+                bind.dateFrom.setFocusable(false);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
@@ -154,6 +155,7 @@ public class LaporanPendapatan extends AppCompatActivity {
 
                 bind.dateTo.setText(dateFormatter.format(newDate.getTime()));
                 refreshData(true);
+                bind.dateFrom.setFocusable(false);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
