@@ -17,6 +17,7 @@
 
     <item
         android:title="Print"
+        android:icon="@drawable/ic_white_print"
         android:id="@+id/print"/>
 
 </menu>

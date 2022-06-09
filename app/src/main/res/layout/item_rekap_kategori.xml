@@ -87,7 +87,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Jumlah Terjual"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
@@ -116,7 +116,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Total Pendapatan"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 

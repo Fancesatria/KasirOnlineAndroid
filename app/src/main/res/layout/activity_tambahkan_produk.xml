@@ -159,7 +159,7 @@
                     android:id="@+id/nextToMainPage"
                     android:layout_width="200dp"
                     android:layout_height="70dp"
-                    android:backgroundTint="#2F4F4F"
+                    android:backgroundTint="@color/default1"
                     android:text="Next"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"/>

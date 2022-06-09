@@ -78,6 +78,8 @@ public class HomeFragment extends Fragment {
         refreshData(true);
         setTotal();
 
+        binding.searchView.setFocusable(false);
+        binding.searchView.setClickable(true);
 
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -108,6 +108,7 @@
 
     </LinearLayout>
 
+<!--    tanggal-->
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -137,7 +138,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Dari"
-                    android:text="DD/MM/YY"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -159,7 +159,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sampai"
-                    android:text="DD/MM/YY"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -189,5 +188,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+    <Button
+        android:id="@+id/btnExcel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Export Excel"
+        android:textColor="#FFFFFF"
+        app:iconTint="#FFFFFF"
+        android:background="@color/default1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

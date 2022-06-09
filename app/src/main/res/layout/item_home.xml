@@ -94,7 +94,7 @@
                         android:padding="2dp"
                         android:text="Contoh Text 1"
                         android:textAlignment="center"
-                        android:textColor="#2F4F4F"
+                        android:textColor="@color/default3"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>

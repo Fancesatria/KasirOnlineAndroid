@@ -1,7 +1,9 @@
 package com.example.authapp.ui.laporan;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -16,14 +18,25 @@ import com.example.authapp.Adapter.LapPenjualanAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Response.PenjualanGetResp;
 import com.example.authapp.ViewModel.ViewModelDetailJual;
+import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.databinding.ActivityLaporanPenjualanBinding;
 import com.example.authapp.util.Modul;
+import com.example.authapp.util.ModulExcel;
+import com.google.zxing.WriterException;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,10 +67,29 @@ public class LaporanPenjualan extends AppCompatActivity {
 
         refreshData(true);
 
+        //minta izin buat export excell
+        ModulExcel.askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,0,LaporanPenjualan.this, LaporanPenjualan.this);
+
+        bind.btnExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    ModulExcel.askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 0, LaporanPenjualan.this, LaporanPenjualan.this);
+                    ExportExcel();
+                } catch (Exception e){
+                    Toast.makeText(LaporanPenjualan.this, "Terjadi kesalahan harap coba lagi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void init(){
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+        bind.dateFrom.setFocusable(false);
+        bind.dateFrom.setClickable(true);
+        bind.dateTo.setFocusable(false);
+        bind.dateTo.setClickable(true);
 
         bind.dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +145,10 @@ public class LaporanPenjualan extends AppCompatActivity {
                 public void onResponse(Call<PenjualanGetResp> call, Response<PenjualanGetResp> response) {
                     if (response.isSuccessful()){
                         data.clear();
-                        data.addAll(response.body().getData());
+                        if (response.isSuccessful()){
+                            data.addAll(response.body().getData());
+                        }
+                        setTotal();
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -124,6 +159,14 @@ public class LaporanPenjualan extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void setTotal(){
+        double total=0;
+        for(ViewModelDetailJual jual:data){
+            total+=jual.getLaba();
+        }
+        bind.txtTotalPenjualan.setText("Rp. "+Modul.removeE(total));
     }
 
     public void showDateFrom(){
@@ -158,5 +201,43 @@ public class LaporanPenjualan extends AppCompatActivity {
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
         datePickerDialog.show();
+    }
+
+    public void ExportExcel() throws IOException, WriteException {
+        String nama = "LaporanPenjualan";
+        String path = Environment.getExternalStorageDirectory().toString()+"/Download/";
+        File file = new File(path + nama + " " + Modul.getDate("dd-MM-yyyy_HHmmss")+".xls");
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workBook = Workbook.createWorkbook(file, wbSettings);
+        workBook.createSheet("Report", 0);
+        WritableSheet sheet = workBook.getSheet(0);
+
+        ModulExcel.createLabel(sheet);
+//        setHeader(sdb, sheet, 5);
+        ModulExcel.excelNextLine(sheet, 2);
+        String[] judul = {"No.", "Tanggal", "Faktur", "Pelanggan", "Barang", "Kuantitas", "Harga", "Keuntungan"};
+
+        ModulExcel.setJudul(sheet, judul);
+        int row = ModulExcel.row;
+        int no = 1;
+        for (ViewModelDetailJual detailJual : data){
+            int col = 0;
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(no));
+            ModulExcel.addLabel(sheet, col++, row, detailJual.getTanggal_jual());
+            ModulExcel.addLabel(sheet, col++, row, detailJual.getFakturjual());
+            ModulExcel.addLabel(sheet, col++, row, detailJual.getNama_pelanggan());
+            ModulExcel.addLabel(sheet, col++, row, detailJual.getBarang());
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(detailJual.getJumlahjual())+" "+detailJual.getNama_satuan());
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(detailJual.getHargajual()));
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(detailJual.getLaba()));
+            row++;
+            no++;
+        }
+        workBook.write();
+        workBook.close();
+        Toast.makeText(this, "berhasil disimpan di "+file.getPath(), Toast.LENGTH_SHORT).show();
     }
 }

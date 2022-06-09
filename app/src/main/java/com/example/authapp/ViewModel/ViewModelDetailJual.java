@@ -2,6 +2,12 @@ package com.example.authapp.ViewModel;
 
 import androidx.room.Ignore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class ViewModelDetailJual {
     private String fakturjual;
     private String nama_pegawai;
@@ -101,5 +107,12 @@ public class ViewModelDetailJual {
 
     public void setLaba(double laba) {
         this.laba = laba;
+    }
+
+    public Date tanggalku() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date tanggal = format.parse(getTanggal_jual());
+        return tanggal;
     }
 }

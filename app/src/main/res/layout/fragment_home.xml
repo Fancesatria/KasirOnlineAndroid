@@ -87,7 +87,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@color/teal_800">
+                android:background="@color/default1">
 
                 <TextView
                     android:id="@+id/tvJumlah"
@@ -185,7 +185,7 @@
                             android:paddingHorizontal="10dp"
                             android:text="Pelanggan"
                             android:textAlignment="center"
-                            android:textColor="#2F4F4F"
+                            android:textColor="@color/default1"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 
@@ -221,7 +221,7 @@
                             android:paddingHorizontal="10dp"
                             android:text="Keranjang"
                             android:textAlignment="center"
-                            android:textColor="#2F4F4F"
+                            android:textColor="@color/default1"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 
@@ -257,7 +257,7 @@
                             android:paddingHorizontal="10dp"
                             android:text="Hapus"
                             android:textAlignment="center"
-                            android:textColor="#2F4F4F"
+                            android:textColor="@color/default1"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 

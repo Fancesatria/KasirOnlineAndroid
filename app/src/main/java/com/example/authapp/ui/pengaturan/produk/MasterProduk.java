@@ -64,6 +64,9 @@ public class MasterProduk extends AppCompatActivity {
 
         refreshData(true);
 
+        bind.searchProduk.setFocusable(false);
+        bind.searchProduk.setClickable(true);
+
         bind.plusBtnProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

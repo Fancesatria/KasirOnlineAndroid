@@ -52,13 +52,13 @@ import java.util.Locale;
         if (inBayar.getText() == "0"){
             bind.inBayar.setTextColor(getColor(R.color.darkgrey));
         } else {
-            bind.inBayar.setTextColor(getColor(R.color.teal_700));
+            bind.inBayar.setTextColor(getColor(R.color.default1));
         }
 
         Double d = Modul.strToDouble(Bayar);
         if (d >= service.getTotal()) {
             bind.tvNext.setEnabled(true);
-            bind.tvNext.setTextColor(getColor(R.color.teal_700));
+            bind.tvNext.setTextColor(getColor(R.color.default1));
         } else {
             bind.tvNext.setEnabled(false);
             bind.tvNext.setTextColor(getColor(R.color.darkgrey));

@@ -76,6 +76,9 @@ public class MasterPelanggan extends AppCompatActivity {
             }
         });
 
+        bind.searchPelanggan.setFocusable(false);
+        bind.searchPelanggan.setClickable(true);
+
         //buat search
         bind.searchPelanggan.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

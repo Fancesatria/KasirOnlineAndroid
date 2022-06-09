@@ -13,6 +13,7 @@ import com.example.authapp.R;
 import com.example.authapp.ViewModel.ViewModelDetailJual;
 import com.example.authapp.util.Modul;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class LapPenjualanAdapter extends RecyclerView.Adapter<LapPenjualanAdapter.ViewHolder>{
@@ -34,7 +35,11 @@ public class LapPenjualanAdapter extends RecyclerView.Adapter<LapPenjualanAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewModelDetailJual viewModelDetailJual = data.get(position);
-        holder.tanggal.setText(viewModelDetailJual.getTanggal_jual());
+        try {
+            holder.tanggal.setText(String.valueOf(viewModelDetailJual.tanggalku()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.fakturjual.setText(viewModelDetailJual.getFakturjual());
         holder.pelanggan.setText(viewModelDetailJual.getNama_pelanggan());
         holder.pegawai.setText(viewModelDetailJual.getNama_pegawai());

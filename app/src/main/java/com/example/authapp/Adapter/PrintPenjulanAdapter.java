@@ -22,6 +22,7 @@ import com.example.authapp.ui.pengaturan.produk.EditProduk;
 import com.example.authapp.ui.penjualan.PenjualanFragment;
 import com.example.authapp.util.Modul;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -48,9 +49,14 @@ public class PrintPenjulanAdapter extends RecyclerView.Adapter<PrintPenjulanAdap
         String OutputPattern = "dd-MMM-yyyy HH:mm";
 
         SimpleDateFormat date = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
-        holder.tanggal.setText(viewModelJual.getTanggal_jual());
+        try {
+            holder.tanggal.setText(String.valueOf(viewModelJual.tanggalku()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.pendapatan.setText("Rp. "+ Modul.removeE(viewModelJual.getTotal()));
         holder.pegawai.setText(viewModelJual.getNama_pegawai());
+        holder.pelanggan.setText(viewModelJual.getNama_pelanggan());
         holder.fakturJual.setText(viewModelJual.getFakturjual());
         holder.print.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +86,7 @@ public class PrintPenjulanAdapter extends RecyclerView.Adapter<PrintPenjulanAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tanggal, jumlah, pendapatan,pegawai, fakturJual;
+        TextView tanggal, jumlah, pendapatan,pegawai, fakturJual, pelanggan;
         ImageView print;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +96,7 @@ public class PrintPenjulanAdapter extends RecyclerView.Adapter<PrintPenjulanAdap
             pegawai = itemView.findViewById(R.id.isiPegawai);
             fakturJual = itemView.findViewById(R.id.isiFakturJual);
             print = itemView.findViewById(R.id.ic_print);
+            pelanggan = itemView.findViewById(R.id.txtPelanggan);
         }
     }
 }

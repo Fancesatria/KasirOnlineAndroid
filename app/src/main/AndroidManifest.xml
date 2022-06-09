@@ -41,11 +41,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.home.TransactionSuccessNotif"
-            android:exported="false" />
-        <activity
-            android:name=".ui.laporan.LaporanPendapatan"
             android:exported="false"
             android:theme="@style/Theme.AuthApp.NoActionBar"/>
+        <activity
+            android:name=".ui.laporan.LaporanPendapatan"
+            android:exported="false"/>
         <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false"
@@ -104,23 +104,23 @@
         <activity android:name=".ui.pengaturan.pelanggan.MasterPelanggan"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
-        <activity android:name=".ui.pengaturan.pelanggan.TambahPelanggan" />
-        <activity android:name=".ui.pengaturan.pelanggan.EditPelanggan" />
+        <activity android:name=".ui.pengaturan.pelanggan.TambahPelanggan"/>
+        <activity android:name=".ui.pengaturan.pelanggan.EditPelanggan"/>
         <activity android:name=".ui.pengaturan.pegawai.MasterPegawai"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
-        <activity android:name=".ui.pengaturan.pegawai.EditPegawai" />
-        <activity android:name=".ui.pengaturan.pegawai.TambahPegawai" />
-        <activity android:name=".ui.pengaturan.pegawai.LoginPegawai" />
+        <activity android:name=".ui.pengaturan.pegawai.EditPegawai"/>
+        <activity android:name=".ui.pengaturan.pegawai.TambahPegawai"/>
+        <activity android:name=".ui.pengaturan.pegawai.LoginPegawai" android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity android:name=".ui.pengaturan.produk.MasterProduk"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
         <activity android:name=".ui.pengaturan.produk.TambahProduk" />
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
         <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
-        <activity android:name=".ui.home.bottom_nav.shopping.ShoppingCart" />
-        <activity android:name=".ui.home.bottom_nav.shopping.Payment" />
-        <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess" />
+        <activity android:name=".ui.home.bottom_nav.shopping.ShoppingCart"  />
+        <activity android:name=".ui.home.bottom_nav.shopping.Payment" android:theme="@style/Theme.AuthApp.NoActionBar" />
+        <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess" android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity android:name=".ui.laporan.LaporanPenjualan" />
         <activity android:name=".ui.laporan.RekapBarang" />
         <activity android:name=".ui.laporan.RekapKategori" />

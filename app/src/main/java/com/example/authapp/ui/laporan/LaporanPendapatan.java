@@ -1,24 +1,19 @@
 package com.example.authapp.ui.laporan;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.authapp.Adapter.LapPendapatanAdapter;
 import com.example.authapp.Api;
-import com.example.authapp.Model.ModelJual;
 import com.example.authapp.Response.PendapatanGetResp;
 import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.databinding.ActivityLaporanPendapatanBinding;
@@ -33,11 +28,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+//export excell
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
+
+//retrofit
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,7 +73,7 @@ public class LaporanPendapatan extends AppCompatActivity {
                     ModulExcel.askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,0,LaporanPendapatan.this,LaporanPendapatan.this);
                     ExportExcel();
                 }catch (Exception e){
-                    Toast.makeText(LaporanPendapatan.this, "Terjadi kesalahan harap ulangi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LaporanPendapatan.this, "Terjadi kesalahan harap coba lagi", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -136,7 +134,7 @@ public class LaporanPendapatan extends AppCompatActivity {
         for(ViewModelJual jual:data){
             total+=jual.getTotal();
         }
-        bind.txtTotalPendapatan.setText(Modul.removeE(total));
+        bind.txtTotalPendapatan.setText("Rp. "+Modul.removeE(total));
     }
 
     public void refreshData(boolean fetch){
@@ -178,7 +176,6 @@ public class LaporanPendapatan extends AppCompatActivity {
 
                 bind.dateFrom.setText(dateFormatter.format(newDate.getTime()));
                 refreshData(true);
-                bind.dateFrom.setFocusable(false);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
@@ -196,7 +193,6 @@ public class LaporanPendapatan extends AppCompatActivity {
 
                 bind.dateTo.setText(dateFormatter.format(newDate.getTime()));
                 refreshData(true);
-                bind.dateFrom.setFocusable(false);
             }
         }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
 
@@ -239,9 +235,9 @@ public class LaporanPendapatan extends AppCompatActivity {
             ModulExcel.addLabel(sheet, col++, row, jual.getTanggal_jual());
             ModulExcel.addLabel(sheet, col++, row, jual.getFakturjual());
             ModulExcel.addLabel(sheet, col++, row, jual.getNama_pelanggan());
-            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(jual.getTotal()));
-            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(jual.getBayar()));
-            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(jual.getKembali()));
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(jual.getTotal()));
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(jual.getBayar()));
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(jual.getKembali()));
             row++;
             no++;
         }

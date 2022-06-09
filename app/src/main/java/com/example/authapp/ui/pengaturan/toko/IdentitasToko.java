@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.authapp.Api;
+import com.example.authapp.Component.ErrorDialog;
 import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.InformasiBisnis;
@@ -20,6 +21,7 @@ import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.TambahkanProduk;
 import com.example.authapp.databinding.ActivityIdentitasBinding;
+import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 import com.example.authapp.ui.pengaturan.produk.EditProduk;
 
 import retrofit2.Call;
@@ -73,17 +75,15 @@ public class IdentitasToko extends AppCompatActivity {
             @Override
             public void onResponse(Call<InfoBisnisResponse> call, Response<InfoBisnisResponse> response) {
                 if (response.isSuccessful()){
-                    String message = "Data berhasil ditambahkan";
-                    Toast.makeText(IdentitasToko.this, message, Toast.LENGTH_SHORT).show();
+                    SuccessDialog.message(IdentitasToko.this,getString(R.string.success_added),bind.getRoot());
                 } else {
-                    String message = "Data gagal ditambahkan";
-                    Toast.makeText(IdentitasToko.this, message, Toast.LENGTH_SHORT).show();
+                    ErrorDialog.message(IdentitasToko.this,getString(R.string.add_kategori_error),bind.getRoot());
                 }
             }
 
             @Override
             public void onFailure(Call<InfoBisnisResponse> call, Throwable t) {
-
+                Toast.makeText(IdentitasToko.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

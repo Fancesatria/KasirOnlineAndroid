@@ -74,6 +74,9 @@ public class MasterPegawai extends AppCompatActivity {
             }
         });
 
+        bind.searchPegawai.setFocusable(false);
+        bind.searchPegawai.setClickable(true);
+
         //buat search
         bind.searchPegawai.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

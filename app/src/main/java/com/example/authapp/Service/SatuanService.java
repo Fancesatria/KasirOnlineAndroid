@@ -13,11 +13,15 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface SatuanService {
     //GET DATA
     @GET("satuan")
     Call<SatuanGetResp> getSat();
+
+    @GET("satuan")
+    Call<SatuanGetResp> getSatCari(@Query("cari") String cari);
 //
 //    //SELECT DATA
 //    @GET("satuan/{id}")

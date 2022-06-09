@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.authapp.Adapter.KategoriAdapter;
@@ -48,7 +49,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Daftar Kategori");
+        actionBar.setTitle("Kategori");
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -62,11 +63,32 @@ public class MasterDaftarKategori extends AppCompatActivity {
         adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
         bind.item.setAdapter(adapter);
 
+        refreshData(true);
+
         bind.plusBtnKategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ModelKategori modelKategori = new ModelKategori();
                 dialogAddKategori(modelKategori);
+            }
+        });
+
+        bind.searchKategori.setFocusable(false);
+        bind.searchKategori.setClickable(true);
+
+        bind.searchKategori.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                refreshData(false);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
 
@@ -90,9 +112,11 @@ public class MasterDaftarKategori extends AppCompatActivity {
 
     }
 
-    public void refreshData() {
+    public void refreshData(boolean fetch) {
+        String cari = bind.searchKategori.getQuery().toString();
+
         // Get sqlite
-        kategoriRepository.getAllKategori().observe(this, new Observer<List<ModelKategori>>() {
+        kategoriRepository.getAllKategori(cari).observe(this, new Observer<List<ModelKategori>>() {
             @Override
             public void onChanged(List<ModelKategori> kategoris) {
                 data.clear();
@@ -101,11 +125,12 @@ public class MasterDaftarKategori extends AppCompatActivity {
             }
         });
         // Get Retrofit
-        KategoriService ks = Api.Kategori(MasterDaftarKategori.this);
-        Call<KategoriGetResp> call = ks.getKat();
-        call.enqueue(new Callback<KategoriGetResp>() {
-            @Override
-            public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
+        if (fetch){
+            KategoriService ks = Api.Kategori(MasterDaftarKategori.this);
+            Call<KategoriGetResp> call = ks.getKatCari(cari);
+            call.enqueue(new Callback<KategoriGetResp>() {
+                @Override
+                public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
                     if(response.body().getStatus()) {
                         if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())) {
                             //  Masukan data pada sqlite jika data tidak ada
@@ -116,12 +141,13 @@ public class MasterDaftarKategori extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
                         }
                     }
-            }
+                }
 
-            @Override
-            public void onFailure(Call<KategoriGetResp> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<KategoriGetResp> call, Throwable t) {
+                }
+            });
+        }
     }
 
 
@@ -232,7 +258,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
                                     getString(R.string.error_kategori_message),
                                     bind.getRoot());
                         }
-                        refreshData();
+                        refreshData(true);
 
                     }
 
@@ -262,7 +288,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if(response.body().isStatus()){
                         kategoriRepository.update(kategori);
-                        refreshData();
+                        refreshData(true);
                         LoadingDialog.close();
                         SuccessDialog.message(
                                 MasterDaftarKategori.this,

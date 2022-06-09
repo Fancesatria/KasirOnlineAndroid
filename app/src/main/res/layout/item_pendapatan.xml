@@ -83,7 +83,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Faktur Jual"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
@@ -112,7 +112,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Pelanggan"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
@@ -148,7 +148,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Pegawai"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
@@ -177,7 +177,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:text="Pendapatan"
-                            android:textColor="@color/primary1"
+                            android:textColor="@color/default3"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 

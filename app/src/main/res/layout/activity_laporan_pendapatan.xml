@@ -21,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
+            android:background="@color/default1"
             android:theme="?attr/actionBarTheme"
             app:logo="@drawable/ic_icon_back"
             app:title="Laporan Pendapatan"
@@ -165,7 +164,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Dari"
                     android:inputType="date"
-                    android:text="DD/MM/YY"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -187,7 +185,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sampai"
-                    android:text="DD/MM/YY"
                     android:inputType="date"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -227,6 +224,7 @@
         android:text="Export Excel"
         android:textColor="#FFFFFF"
         app:iconTint="#FFFFFF"
+        android:background="@color/default1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

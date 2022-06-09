@@ -339,9 +339,9 @@ public class PrintStruk extends AppCompatActivity {
                     resultPrint.addTextPair(Modul.doubleToStr(detail.getJumlahjual()), Modul.doubleToStr(detail.getJumlahjual() * detail.getHargajual()), AlignColumn.RIGHT);
                 }
                 resultPrint.addDivider();
-                resultPrint.addTextPair("Total", Modul.doubleToStr(struk.getTotal()), AlignColumn.RIGHT);
-                resultPrint.addTextPair("Tunai", Modul.doubleToStr(struk.getBayar()), AlignColumn.RIGHT);
-                resultPrint.addTextPair("Kembali", Modul.doubleToStr(struk.getKembali()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Total", "Rp. "+Modul.doubleToStr(struk.getTotal()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Tunai", "Rp. "+Modul.doubleToStr(struk.getBayar()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Kembali", "Rp. "+Modul.doubleToStr(struk.getKembali()), AlignColumn.RIGHT);
                 resultPrint.addDivider();
                 resultPrint.addText("Halo", AlignColumn.CENTER);
                 resultPrint.addText("Halo", AlignColumn.CENTER);

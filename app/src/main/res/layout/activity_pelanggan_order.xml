@@ -40,7 +40,7 @@
             android:layout_marginEnd="8dp"
             android:text="+"
             android:textColor="@color/white"
-            app:rippleColor="@color/teal_200" />
+            app:rippleColor="@color/default1" />
 
     </LinearLayout>
 

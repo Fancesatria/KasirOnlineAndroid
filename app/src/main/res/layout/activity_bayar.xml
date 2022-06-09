@@ -30,7 +30,7 @@
             android:fontFamily="sans-serif-medium"
             android:text="Back"
             android:textAlignment="textStart"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/default1"
             android:textSize="18sp" />
 
         <TextView
@@ -112,7 +112,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:onClick="uangPas"
-            android:background="@color/teal_700"
+            android:background="@color/default1"
             android:text="Uang Pas"
             android:textColor="@color/white"
             app:cornerRadius="50dp" />
@@ -126,7 +126,7 @@
             android:textColor="@color/white"
             android:text="20.000"
             android:onClick="txtTwenty"
-            android:background="@color/teal_700"
+            android:background="@color/default1"
             app:cornerRadius="50dp" />
 
     </LinearLayout>
@@ -144,7 +144,7 @@
             android:layout_height="55dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:background="@color/teal_700"
+            android:background="@color/default1"
             android:text="50.000"
             android:onClick="txtFifty"
             android:textColor="@color/white"
@@ -159,7 +159,7 @@
             android:textColor="@color/white"
             android:text="100.000"
             android:onClick="txtHundret"
-            android:background="@color/teal_700"
+            android:background="@color/default1"
             app:cornerRadius="50dp" />
 
     </LinearLayout>
@@ -179,7 +179,7 @@
             android:layout_weight="1"
             android:textColor="@color/white"
             android:text="Ketik Manual"
-            android:background="@color/teal_700"
+            android:background="@color/default1"
             app:cornerRadius="50dp" />
 
 
@@ -230,7 +230,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/default1"
                 android:text="C"
                 android:background="@null"
                 android:textSize="25sp"
@@ -379,7 +379,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/white"
                 android:text="Quick Pay"
-                android:background="@color/teal_700"
+                android:background="@color/default1"
                 android:textSize="18sp"
                 />
         </LinearLayout>
