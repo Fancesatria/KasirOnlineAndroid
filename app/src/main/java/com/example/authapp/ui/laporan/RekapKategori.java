@@ -1,6 +1,8 @@
 package com.example.authapp.ui.laporan;
 
 import android.os.Bundle;
+import android.os.Environment;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,12 +14,23 @@ import com.example.authapp.Adapter.RekapKategoriAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Database.Repository.KategoriRepository;
 import com.example.authapp.Response.RekapKategoriResp;
+import com.example.authapp.ViewModel.ViewModelRekapBarang;
 import com.example.authapp.ViewModel.ViewModelRekapKategori;
 import com.example.authapp.databinding.ActivityRekapKategoriBinding;
+import com.example.authapp.util.Modul;
+import com.example.authapp.util.ModulExcel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,5 +102,45 @@ public class RekapKategori extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void ExportExcel() throws IOException, WriteException {
+
+        String nama = "LaporanRekapKategori";
+        String path = Environment.getExternalStorageDirectory().toString() + "/Download/";
+        File file = new File(path + nama + " " + Modul.getDate("dd-MM-yyyy_HHmmss") + ".xls");
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet("Report", 0);
+        WritableSheet sheet = workbook.getSheet(0);
+
+        ModulExcel.createLabel(sheet);
+//        setHeader(db,sheet,5);
+        ModulExcel.excelNextLine(sheet, 2);
+
+        String[] judul = {"No.",
+                "Kategori",
+                "Jumlah Penjualan",
+                "Total Pendapatan"
+        };
+        ModulExcel.setJudul(sheet, judul);
+        int row = ModulExcel.row;
+        int no = 1;
+        for (ViewModelRekapKategori detail : data) {
+            int col = 0;
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(no));
+            ModulExcel.addLabel(sheet, col++, row, detail.getNama_kategori());
+            ModulExcel.addLabel(sheet, col++, row, detail.getTotal_jual());
+            ModulExcel.addLabel(sheet, col++, row, "Rp. "+Modul.removeE(detail.getTotal_pendapatan()));
+            row++;
+            no++;
+        }
+        workbook.write();
+        workbook.close();
+        Toast.makeText(this, "Berhasil disimpan di "+file.getPath(), Toast.LENGTH_SHORT).show();
+
     }
 }
