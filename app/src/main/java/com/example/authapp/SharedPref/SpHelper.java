@@ -69,6 +69,12 @@ public class SpHelper {
         editor.commit();
     }
 
+    //logout toko di click nnti manggil sp.clearAll() trs diintent
+    public void clearAll(){
+        editor.clear();
+        editor.commit();
+    }
+
     public boolean getBoolean(String key){
         return sp.getBoolean(key,false);
     }
