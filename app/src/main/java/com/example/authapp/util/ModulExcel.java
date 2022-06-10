@@ -69,6 +69,12 @@ public class ModulExcel {
             throws WriteException, RowsExceededException {
         Label label;
         label = new Label(column, row, s, times);
+        if(!sheet.getColumnView(column).isAutosize()){
+            CellView cell = sheet.getColumnView(column);
+            cell.setAutosize(true);
+            sheet.setColumnView(2, cell);
+        }
+
         sheet.addCell(label);
     }
 

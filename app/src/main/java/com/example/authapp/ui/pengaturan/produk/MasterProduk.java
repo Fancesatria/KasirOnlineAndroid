@@ -3,6 +3,7 @@ package com.example.authapp.ui.pengaturan.produk;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,15 +24,26 @@ import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.BarangRepository;
 import com.example.authapp.Model.ModelBarang;
+import com.example.authapp.Model.ModelPegawai;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangGetResp;
 import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.databinding.ActivityMasterProdukBinding;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
+import com.example.authapp.util.Modul;
+import com.example.authapp.util.ModulExcel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -173,5 +185,44 @@ public class MasterProduk extends AppCompatActivity {
         });
         alert.show();
     }
+    private void ExportExcel() throws IOException, WriteException {
 
+        String nama = "LaporanBarang";
+        String path = Environment.getExternalStorageDirectory().toString() + "/Download/";
+        File file = new File(path + nama + " " + Modul.getDate("dd-MM-yyyy_HHmmss") + ".xls");
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet("Report", 0);
+        WritableSheet sheet = workbook.getSheet(0);
+
+        ModulExcel.createLabel(sheet);
+//        setHeader(db,sheet,5);
+        ModulExcel.excelNextLine(sheet, 2);
+
+        String[] judul = {"No.",
+                "Barang",
+                "Harga Beli",
+                "Harga Jual",
+
+        };
+        ModulExcel.setJudul(sheet, judul);
+        int row = ModulExcel.row;
+        int no = 1;
+        for (ModelBarang detail : data) {
+            int col = 0;
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(no));
+            ModulExcel.addLabel(sheet, col++, row, detail.getBarang());
+            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(detail.getHargabeli()));
+            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(detail.getHarga()));
+            row++;
+            no++;
+        }
+        workbook.write();
+        workbook.close();
+        Toast.makeText(this, "Berhasil disimpan di "+file.getPath(), Toast.LENGTH_SHORT).show();
+
+    }
 }
