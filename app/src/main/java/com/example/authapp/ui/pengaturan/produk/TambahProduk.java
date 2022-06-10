@@ -153,7 +153,7 @@ public class TambahProduk extends AppCompatActivity {
 
     //menjalankan saat online
     public void refreshSatuan(){
-        Call<SatuanGetResp> satuanResponseCall = Api.Satuan(TambahProduk.this).getSat();
+        Call<SatuanGetResp> satuanResponseCall = Api.Satuan(TambahProduk.this).getSat("");
         satuanResponseCall.enqueue(new Callback<SatuanGetResp>() {
             @Override
             public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
@@ -177,7 +177,7 @@ public class TambahProduk extends AppCompatActivity {
     }
 
     public void refreshKategori(){
-        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(TambahProduk.this).getKat();
+        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(TambahProduk.this).getKat("");
         kategoriGetRespCall.enqueue(new Callback<KategoriGetResp>() {
             @Override
             public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {

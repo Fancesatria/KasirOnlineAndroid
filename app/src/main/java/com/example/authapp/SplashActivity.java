@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.example.authapp.SharedPref.SpHelper;
+import com.example.authapp.ui.pengaturan.pegawai.LoginPegawai;
 
 
 public class SplashActivity extends AppCompatActivity{
@@ -34,7 +35,7 @@ public class SplashActivity extends AppCompatActivity{
             public void run() {
                 switch (cek) {
                     case Config.PageSigned.DASHBOARD:
-                        startActivity(new Intent(SplashActivity.this, HomePage.class));
+                        startActivity(new Intent(SplashActivity.this, LoginPegawai.class));
                         break;
                     case Config.PageSigned.OTP:
                         startActivity(new Intent(SplashActivity.this, TelpVerification.class));

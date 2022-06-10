@@ -11,6 +11,7 @@ import com.example.authapp.Service.OrderServiceInterface;
 import com.example.authapp.Service.PegawaiService;
 import com.example.authapp.Service.PelangganService;
 import com.example.authapp.Service.SatuanService;
+import com.example.authapp.Service.TokoInterface;
 import com.example.authapp.Service.UserService;
 import com.example.authapp.SharedPref.SpHelper;
 
@@ -141,6 +142,13 @@ public class Api {
     //ORDER
     public static OrderServiceInterface Order(Context context){
         OrderServiceInterface orderServiceInterface = getRetrofit(context).create(OrderServiceInterface.class);
+
+        return orderServiceInterface;
+    }
+
+    //IDENTITAS
+    public static TokoInterface Identitas(Context context){
+        TokoInterface orderServiceInterface = getRetrofit(context).create(TokoInterface.class);
 
         return orderServiceInterface;
     }

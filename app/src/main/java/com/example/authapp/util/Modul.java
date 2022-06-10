@@ -3,8 +3,12 @@ package com.example.authapp.util;
 import android.text.TextUtils;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Modul {
     public static String intToStr(int a){
@@ -108,5 +112,12 @@ public class Modul {
         }catch (Exception e){
             return  "" ;
         }
+    }
+
+    public static Date tanggalku(String tanggal) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", new Locale("id", "ID"));
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date tanggalBaru = format.parse(tanggal);
+        return tanggalBaru;
     }
 }

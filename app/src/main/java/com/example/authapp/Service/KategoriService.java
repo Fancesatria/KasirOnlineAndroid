@@ -18,10 +18,7 @@ import retrofit2.http.Query;
 public interface KategoriService {
     //GET DATA
     @GET("kategori")
-    Call<KategoriGetResp> getKatCari(@Query("cari") String cari);
-
-    @GET("kategori")
-    Call<KategoriGetResp> getKat();
+    Call<KategoriGetResp> getKat(@Query("cari") String cari);
 
     //POST DATA
     @POST("kategori")

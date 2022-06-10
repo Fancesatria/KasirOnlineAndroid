@@ -42,6 +42,15 @@ public class SpHelper {
         editor.commit();
     }
 
+    public void setIdPegawai(String id){
+        editor.putString("idpegawai", id);
+        editor.commit();
+    }
+
+    public String getIdPegawai(){
+        return getValue("idpegawai");
+    }
+
     public void setKembali(double kembali){
         editor.putInt("kembali", (int) kembali);
         editor.commit();

@@ -18,7 +18,8 @@
     <string name="menu_penjualan">Penjualan</string>
     <string name="menu_laporan">Laporan</string>
     <string name="menu_pengaturan">Pengaturan</string>
-    <string name="menu_logout">Logout</string>
+    <string name="menu_logout_toko">Logout Toko</string>
+    <string name="menu_logout_pegawai">Logout Pegawai</string>
     <string name="tab_text_1">-</string>
 
     <string name="title_home">Home</string>
@@ -42,4 +43,6 @@
     <string name="error_fetch">Terjadi kesalahan harap coba lagi</string>
     <string name="updated_success">Data Berhasil diubah</string>
     <string name="updated_error">Data gagal diubah</string>
+    <string name="login_success">Login berhasil</string>
+    <string name="login_error">Login gagal</string>
 </resources>

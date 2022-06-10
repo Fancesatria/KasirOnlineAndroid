@@ -71,7 +71,7 @@ import java.util.Locale;
     }
 
     public void Del(View view){
-        String recentValue = bind.inBayar.getText().toString();
+        String recentValue = Bayar;
         if (recentValue.length() >= 2 ){
             bind.inBayar.setText(recentValue.substring(0, recentValue.length() - 1));
         } else {

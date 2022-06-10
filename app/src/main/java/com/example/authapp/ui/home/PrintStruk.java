@@ -56,6 +56,7 @@ import com.novandikp.simplethermalprinter.USB.PrinterUSBContext;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -319,7 +320,12 @@ public class PrintStruk extends AppCompatActivity {
             bind.jmlTotalOrder.setText(Modul.removeE(struk.getTotal()));
             bind.jmlTunai.setText(Modul.removeE(struk.getBayar()));
             bind.jmlKembalian.setText(Modul.removeE(struk.getKembali()));
-            bind.txtDate.setText("Tanggal : "+struk.getTanggal_jual().substring(0,10));
+            //bind.txtDate.setText("Tanggal : "+struk.getTanggal_jual().substring(0,10));
+            try {
+                bind.txtDate.setText("Tanggal : "+Modul.tanggalku(String.valueOf(struk.getTanggal_jual())));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             bind.txtPelanggan.setText("Pelanggan : "+struk.getNama_pelanggan());
             if(resultPrint!=null) {
 //            atur struk

@@ -18,19 +18,25 @@ import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelToko;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangResponse;
+import com.example.authapp.Response.IdentitasGetResp;
+import com.example.authapp.Response.IdentitasResponse;
 import com.example.authapp.Response.InfoBisnisResponse;
 import com.example.authapp.TambahkanProduk;
 import com.example.authapp.databinding.ActivityIdentitasBinding;
 import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 import com.example.authapp.ui.pengaturan.produk.EditProduk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Body;
 
 public class IdentitasToko extends AppCompatActivity {
     ActivityIdentitasBinding bind;
-    private ModelToko modelToko;
+    private ModelToko data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,7 @@ public class IdentitasToko extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(bind.getRoot());
 
-        init();
+        refreshData();
 
         AutoCompleteTextView JenisUsaha = bind.JenisUsaha;
 
@@ -54,26 +60,57 @@ public class IdentitasToko extends AppCompatActivity {
                 modelToko.setNama_pemilik(bind.namaPemilik.getText().toString());
                 modelToko.setNama_toko(bind.namaUsaha.getText().toString());
                 modelToko.setAlamat_toko(bind.lokasiUsaha.getText().toString());
-                modelToko.setJenis_toko(JenisUsaha.toString());
-                MasukProfil(modelToko);
+                modelToko.setJenis_toko(JenisUsaha.getText().toString());
+                updateProfil(modelToko);
             }
         });
     }
 
-    public void init(){
-        ModelToko modelToko = new ModelToko();
-        bind.namaPemilik.setText(modelToko.getNama_pemilik());
-        bind.namaUsaha.setText(modelToko.getNama_toko());
-        bind.noTelp.setText(modelToko.getNomer_toko());
-        bind.JenisUsaha.setText(modelToko.getJenis_toko());
-        bind.lokasiUsaha.setText(modelToko.getAlamat_toko());
+//    public void MasukProfil(ModelToko modelToko){
+//        Call<InfoBisnisResponse> infoBisnisResponseCall = Api.getService(this).masukProfil(modelToko);
+//        infoBisnisResponseCall.enqueue(new Callback<InfoBisnisResponse>() {
+//            @Override
+//            public void onResponse(Call<InfoBisnisResponse> call, Response<InfoBisnisResponse> response) {
+//                if (response.isSuccessful()){
+//                    SuccessDialog.message(IdentitasToko.this,getString(R.string.success_added),bind.getRoot());
+//                } else {
+//                    ErrorDialog.message(IdentitasToko.this,getString(R.string.add_kategori_error),bind.getRoot());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<InfoBisnisResponse> call, Throwable t) {
+//                Toast.makeText(IdentitasToko.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
+    public void refreshData(){
+        Call<IdentitasGetResp> identitasGetRespCall = Api.Identitas(IdentitasToko.this).getIdentitas();
+        identitasGetRespCall.enqueue(new Callback<IdentitasGetResp>() {
+            @Override
+            public void onResponse(Call<IdentitasGetResp> call, Response<IdentitasGetResp> response) {
+                if (response.isSuccessful()){
+                    ModelToko modelToko = response.body().getData();
+                    bind.namaPemilik.setText(modelToko.getNama_pemilik());
+                    bind.namaUsaha.setText(modelToko.getNama_toko());
+                    bind.JenisUsaha.setText(modelToko.getJenis_toko());
+                    bind.lokasiUsaha.setText(modelToko.getAlamat_toko());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<IdentitasGetResp> call, Throwable t) {
+
+            }
+        });
     }
 
-    public void MasukProfil(ModelToko modelToko){
-        Call<InfoBisnisResponse> infoBisnisResponseCall = Api.getService(this).masukProfil(modelToko);
-        infoBisnisResponseCall.enqueue(new Callback<InfoBisnisResponse>() {
+    public void updateProfil(ModelToko modelToko){
+        Call<IdentitasResponse> identitasResponseCall = Api.Identitas(IdentitasToko.this).postIdentitas(modelToko);
+        identitasResponseCall.enqueue(new Callback<IdentitasResponse>() {
             @Override
-            public void onResponse(Call<InfoBisnisResponse> call, Response<InfoBisnisResponse> response) {
+            public void onResponse(Call<IdentitasResponse> call, Response<IdentitasResponse> response) {
                 if (response.isSuccessful()){
                     SuccessDialog.message(IdentitasToko.this,getString(R.string.success_added),bind.getRoot());
                 } else {
@@ -82,7 +119,7 @@ public class IdentitasToko extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<InfoBisnisResponse> call, Throwable t) {
+            public void onFailure(Call<IdentitasResponse> call, Throwable t) {
                 Toast.makeText(IdentitasToko.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

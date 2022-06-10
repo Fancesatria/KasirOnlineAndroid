@@ -59,7 +59,8 @@ public class OrderService {
         jual.setTanggal_jual(Modul.getDate("yyyy-MM-dd HH:mm"));
         JualRepository jualRepository = new JualRepository(application);
         DetailJualRepository detailJualRepository = new DetailJualRepository(application);
-
+        SpHelper sp = new SpHelper(application);
+        jual.setIdpegawai(Modul.strToInt(sp.getIdPegawai()));
         ModelOrder modelOrder = new ModelOrder(jual,detail);
 
         Call<OrderResponse> orderResponseCall = Api.Order(application.getApplicationContext()).postOrder(modelOrder);
@@ -86,9 +87,6 @@ public class OrderService {
                 } else {
 
                 }
-
-
-
 
                 clearCart();
                 LoadingDialog.close();
@@ -133,8 +131,6 @@ public class OrderService {
         }
         return -1;
     }
-
-
 
     //buat nambah produk/pembelian
     public void add(ModelBarang modelBarang){

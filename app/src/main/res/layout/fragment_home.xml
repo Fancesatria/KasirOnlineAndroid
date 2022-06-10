@@ -174,7 +174,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_master_category" />
+                            android:src="@drawable/ic_baseline_people_outline_24" />
 
                         <TextView
                             android:id="@+id/titlePelanggan"
@@ -210,7 +210,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_master_satuan" />
+                            android:src="@drawable/ic_baseline_shopping_cart_24" />
 
                         <TextView
                             android:id="@+id/titleDaftar"
@@ -246,7 +246,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_master_pegawai" />
+                            android:src="@drawable/ic_baseline_delete_24" />
 
                         <TextView
                             android:id="@+id/titleHapus"

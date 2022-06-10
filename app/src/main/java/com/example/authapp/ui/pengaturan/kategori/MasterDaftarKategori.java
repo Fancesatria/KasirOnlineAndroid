@@ -125,9 +125,9 @@ public class MasterDaftarKategori extends AppCompatActivity {
             }
         });
         // Get Retrofit
-        if (fetch){
+        if (true){
             KategoriService ks = Api.Kategori(MasterDaftarKategori.this);
-            Call<KategoriGetResp> call = ks.getKatCari(cari);
+            Call<KategoriGetResp> call = ks.getKat(cari);
             call.enqueue(new Callback<KategoriGetResp>() {
                 @Override
                 public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {

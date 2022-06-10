@@ -19,14 +19,47 @@
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_home.xml" value="0.26403985507246375" />
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_kategori.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable-v24/ic_dashboard_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable-v24/ic_home_black_24dp.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable-v24/ic_notifications_black_24dp.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/border_textview.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/border_textview2.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/gradient1.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_euro_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_local_mall_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_people_outline_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_point_of_sale_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_sports_volleyball_24.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_storefront_24.xml" value="0.16" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_filter.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_add.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_add2.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_back.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_download.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_print.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_icon_share.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_kasir_qrcode.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_category.xml" value="0.16" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_pegawai.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_pelanggan.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_product.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_satuan.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_plus_24.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_product_master.xml" value="0.16" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_search.xml" value="0.18" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_settings.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_success.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_value_up.xml" value="0.18" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_white_print.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/searchview_bg.xml" value="0.1585" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/side_nav_bar.xml" value="0.1585" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_bayar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_cart.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_forgot_password.xml" value="0.1675929884566054" />
@@ -69,7 +102,10 @@
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_pelanggan.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/edit_produk.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_home.xml" value="0.17864583333333334" />
-        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_laporan.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_laporan.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_logout.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_logout_pegawai.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_logout_toko.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_master_list.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_pengaturan.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_penjualan.xml" value="0.1675929884566054" />

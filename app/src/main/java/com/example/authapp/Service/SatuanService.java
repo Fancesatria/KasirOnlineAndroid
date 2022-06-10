@@ -18,10 +18,7 @@ import retrofit2.http.Query;
 public interface SatuanService {
     //GET DATA
     @GET("satuan")
-    Call<SatuanGetResp> getSat();
-
-    @GET("satuan")
-    Call<SatuanGetResp> getSatCari(@Query("cari") String cari);
+    Call<SatuanGetResp> getSat(@Query("cari") String cari);
 //
 //    //SELECT DATA
 //    @GET("satuan/{id}")

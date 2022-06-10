@@ -172,9 +172,9 @@ public class MasterSatuan extends AppCompatActivity {
         });
 
         //get retrofit
-        if (fetch){
+        if (true){
             SatuanService ss = Api.Satuan(MasterSatuan.this);
-            Call<SatuanGetResp> call = ss.getSatCari(cari);
+            Call<SatuanGetResp> call = ss.getSat(cari);
             call.enqueue(new Callback<SatuanGetResp>() {
                 @Override
                 public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
