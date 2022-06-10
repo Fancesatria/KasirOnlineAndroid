@@ -22,6 +22,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,9 +49,12 @@ import com.example.authapp.ViewModel.ModelViewStruk;
 import com.example.authapp.databinding.ActivityPrintStrukBinding;
 import com.example.authapp.ui.home.bottom_nav.shopping.TransactionSuccess;
 import com.example.authapp.util.Modul;
+import com.google.android.material.textfield.TextInputEditText;
 import com.novandikp.simplethermalprinter.AlignColumn;
 import com.novandikp.simplethermalprinter.Bluetooth.PrinterBTContext;
+import com.novandikp.simplethermalprinter.ColumnPrinter;
 import com.novandikp.simplethermalprinter.PrintTextBuilder;
+import com.novandikp.simplethermalprinter.Type.Printer58mm;
 import com.novandikp.simplethermalprinter.USB.PrinterUSBContext;
 
 import java.io.File;
@@ -96,6 +100,9 @@ public class PrintStruk extends AppCompatActivity {
         setTitle("Print Struk");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        printerUSBContext = PrinterUSBContext.getInstance(this);
+        printerBTContext = PrinterBTContext.getInstance(this);
+        requestPermission();
         jualRepository = new JualRepository(getApplication());
         detailJualRepository = new DetailJualRepository(getApplication());
 
@@ -126,9 +133,21 @@ public class PrintStruk extends AppCompatActivity {
         bind.btnPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(printerBTContext!=null){
-                    printerBTContext.print();
+                if (bind.spinnerMode.getSelectedItemPosition() == 0) {
+                    if(printerBTContext.isConnectedDevice()){
+                        printerBTContext.print();
+                    }else{
+                        Toast.makeText(PrintStruk.this, "Printer belum terhubung", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    if(printerUSBContext.isConnectedDevice()){
+                        printerUSBContext.print();
+                    }else{
+                        Toast.makeText(PrintStruk.this, "Printer belum terhubung", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
+
             }
         });
 
@@ -169,19 +188,24 @@ public class PrintStruk extends AppCompatActivity {
 
     public void setModePrinter(){
         bind.spinnerMode.setSelection(0);
-        getApplicationContext().registerReceiver(receiverConnected, new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED));
+//        getApplicationContext().registerReceiver(receiverConnected, new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED));
         bind.cari.setVisibility(View.VISIBLE);
+        bind.tvPrinter.setHint("Printer");
+        bind.tvPrinter.setText("Menyambung...");
+        new GetPrinterBTTask(printerBTContext).execute(bind.tvPrinter);
         bind.spinnerMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 LoadingDialog.load(PrintStruk.this);
                 if(i == 0){
-                    bind.tvPrinter.setText(printerBTContext.getDeviceName());
+                    bind.tvPrinter.setText("Menyambung...");
+                    new GetPrinterBTTask(printerBTContext).execute(bind.tvPrinter);
                     getApplicationContext().registerReceiver(receiverConnected, new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED));
                     bind.cari.setVisibility(View.VISIBLE);
                 }else{
+                    bind.tvPrinter.setText("Menyambung...");
                     getApplicationContext().unregisterReceiver(receiverConnected);
-                    bind.tvPrinter.setText(printerUSBContext.getDeviceName());
+                    new GetPrinterUSBTask(printerUSBContext).execute(bind.tvPrinter);
                     bind.cari.setVisibility(View.GONE);
 
                 }
@@ -197,8 +221,9 @@ public class PrintStruk extends AppCompatActivity {
 
 
     public void setPrinter(){
-        printerUSBContext = PrinterUSBContext.getInstance(this,resultPrint);
-        printerBTContext = PrinterBTContext.getInstance(this,resultPrint);
+
+        PrinterUSBContext.setTextBuilder(resultPrint);
+        printerBTContext.setPrinterText(resultPrint);
         
     }
 
@@ -321,7 +346,7 @@ public class PrintStruk extends AppCompatActivity {
             bind.jmlKembalian.setText(Modul.removeE(struk.getKembali()));
             bind.txtDate.setText("Tanggal : "+struk.getTanggal_jual().substring(0,10));
             bind.txtPelanggan.setText("Pelanggan : "+struk.getNama_pelanggan());
-            if(resultPrint!=null) {
+            if(resultPrint==null) {
 //            atur struk
                 resultPrint = new PrintTextBuilder();
                 // Alamat bisnis
@@ -329,19 +354,22 @@ public class PrintStruk extends AppCompatActivity {
                 resultPrint.addText("Halo", AlignColumn.CENTER);
                 resultPrint.addDivider();
 //            Identitas pembeli
-                resultPrint.addTextPair("Faktur : ", struk.getFakturjual());
-                resultPrint.addTextPair("Tanggal Jual : ", struk.getTanggal_jual());
-                resultPrint.addTextPair("Pelanggan : ", struk.getNama_pelanggan());
+                resultPrint.addTextPair("Faktur", struk.getFakturjual());
+                resultPrint.addTextPair("Tanggal Jual", struk.getTanggal_jual());
+                resultPrint.addTextPair("Pelanggan", struk.getNama_pelanggan());
                 resultPrint.addDivider();
 //            detail
                 for (ModelViewStruk detail : modelDetailJualList) {
                     resultPrint.addText(detail.getBarang());
-                    resultPrint.addTextPair(Modul.doubleToStr(detail.getJumlahjual()), Modul.doubleToStr(detail.getJumlahjual() * detail.getHargajual()), AlignColumn.RIGHT);
+                    ColumnPrinter jumlahColumn = new ColumnPrinter(Modul.doubleToStr(detail.getJumlahjual()));
+                    ColumnPrinter subColum = new ColumnPrinter(Modul.removeE(detail.getJumlahjual()*detail.getHargajual()), AlignColumn.RIGHT);
+
+                    resultPrint.addColumn(jumlahColumn,subColum);
                 }
                 resultPrint.addDivider();
-                resultPrint.addTextPair("Total", "Rp. "+Modul.doubleToStr(struk.getTotal()), AlignColumn.RIGHT);
-                resultPrint.addTextPair("Tunai", "Rp. "+Modul.doubleToStr(struk.getBayar()), AlignColumn.RIGHT);
-                resultPrint.addTextPair("Kembali", "Rp. "+Modul.doubleToStr(struk.getKembali()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Total", "Rp."+Modul.removeE(struk.getTotal()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Tunai", "Rp."+Modul.removeE(struk.getBayar()), AlignColumn.RIGHT);
+                resultPrint.addTextPair("Kembali", "Rp."+Modul.removeE(struk.getKembali()), AlignColumn.RIGHT);
                 resultPrint.addDivider();
                 resultPrint.addText("Halo", AlignColumn.CENTER);
                 resultPrint.addText("Halo", AlignColumn.CENTER);
@@ -394,7 +422,49 @@ public class PrintStruk extends AppCompatActivity {
         } else if (id == R.id.unduh) {
              save();
         } else if (id == R.id.print) {
-            Toast.makeText(getApplicationContext(), "Print", Toast.LENGTH_SHORT).show();
+
         } return true;
+    }
+
+
+    private class GetPrinterUSBTask extends AsyncTask<TextInputEditText,Void,String>{
+
+        PrinterUSBContext printerBTContext;
+        TextInputEditText txtPrinter;
+        public GetPrinterUSBTask(PrinterUSBContext printerBTContext) {
+            this.printerBTContext = printerBTContext;
+        }
+
+        @Override
+        protected String doInBackground(TextInputEditText... textInputEditTexts) {
+            txtPrinter = textInputEditTexts[0];
+            return printerBTContext.getDeviceName();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            txtPrinter.setText(s);
+        }
+    }
+    private class GetPrinterBTTask extends AsyncTask<TextInputEditText,Void,String>{
+
+        PrinterBTContext printerBTContext;
+        TextInputEditText txtPrinter;
+        public GetPrinterBTTask(PrinterBTContext printerBTContext) {
+            this.printerBTContext = printerBTContext;
+        }
+
+        @Override
+        protected String doInBackground(TextInputEditText... textInputEditTexts) {
+            txtPrinter = textInputEditTexts[0];
+            return printerBTContext.getDeviceName();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            txtPrinter.setText(s);
+        }
     }
 }
