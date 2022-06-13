@@ -90,17 +90,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtTitle1"
+                        android:id="@+id/txtNamaToko"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="HALO Store"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp"
+                        android:textStyle="bold"/>
 
                     <TextView
-                        android:id="@+id/txtTitle2"
+                        android:id="@+id/txtLokasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

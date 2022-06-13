@@ -127,6 +127,8 @@
         <activity android:name=".ui.laporan.RekapPegawai" />
         <activity android:name=".ui.laporan.RekapPelanggan" />
         <activity android:name=".ui.pengaturan.toko.IdentitasToko" />
+        <activity android:name=".ui.logout.LogoutToko" />
+        <activity android:name=".ui.logout.LogoutPegawai" />
     </application>
 
 </manifest>

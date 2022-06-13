@@ -25,6 +25,18 @@
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_home.xml" value="0.26403985507246375" />
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_kategori.xml" value="0.264" />
         <entry key="..\:/Projek/KasirOnlineAndroid/app/src/main/res/layout/item_struk.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.169" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/ic_master_product.xml" value="0.169" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/drawable/searchview_bg2.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_laporan_pendapatan.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_laporan_penjualan.xml" value="0.16547066272688898" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_print_struk.xml" value="0.4192513368983957" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_rekap_barang.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_rekap_kategori.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_rekap_pegawai.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/activity_rekap_pelanggan.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_laporan.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/Administrator/StudioProjects/KasirOnlineAndroid/app/src/main/res/layout/fragment_logout.xml" value="0.1" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable-anydpi/ic_opsi.xml" value="0.184" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1275" />
         <entry key="..\:/Users/LEGION/AndroidStudioProjects/AuthApp/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1055" />

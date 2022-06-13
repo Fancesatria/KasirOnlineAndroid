@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
@@ -57,6 +57,7 @@ public class LaporanPendapatan extends AppCompatActivity {
         init();
         bind.dateFrom.setText(Modul.getDate("yyyy-MM-dd"));
         bind.dateTo.setText(Modul.getDate("yyyy-MM-dd"));
+
         //inisiasi recyclerview
         bind.itemPendapatan.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LapPendapatanAdapter(LaporanPendapatan.this, data);
@@ -82,6 +83,7 @@ public class LaporanPendapatan extends AppCompatActivity {
     public void init(){
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+        bind.searchView.setFocusable(false);
         bind.dateFrom.setFocusable(false);
         bind.dateFrom.setClickable(true);
         bind.dateTo.setFocusable(false);
@@ -97,17 +99,6 @@ public class LaporanPendapatan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDateTo();
-            }
-        });
-
-        bind.icSeacrh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bind.layouticsearch.setVisibility(View.GONE);
-                bind.layoutpendapatan.setVisibility(View.GONE);
-                bind.layouttotal.setVisibility(View.GONE);
-
-                bind.layoutsearch.setVisibility(View.VISIBLE);
             }
         });
 

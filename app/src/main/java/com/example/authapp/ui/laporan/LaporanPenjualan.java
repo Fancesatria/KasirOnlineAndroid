@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
@@ -86,6 +86,7 @@ public class LaporanPenjualan extends AppCompatActivity {
     public void init(){
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+        bind.searchView.setFocusable(false);
         bind.dateFrom.setFocusable(false);
         bind.dateFrom.setClickable(true);
         bind.dateTo.setFocusable(false);
@@ -105,16 +106,16 @@ public class LaporanPenjualan extends AppCompatActivity {
             }
         });
 
-        bind.icSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bind.layouticsearch.setVisibility(View.GONE);
-                bind.layoutpenjualan.setVisibility(View.GONE);
-                bind.layouttotalpenjualan.setVisibility(View.GONE);
-
-                bind.layoutsearch.setVisibility(View.VISIBLE);
-            }
-        });
+//        bind.icSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bind.layouticsearch.setVisibility(View.GONE);
+//                bind.layoutpenjualan.setVisibility(View.GONE);
+//                bind.layouttotalpenjualan.setVisibility(View.GONE);
+//
+//                bind.layoutsearch.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -1,17 +1,22 @@
 package com.example.authapp.ui.laporan;
 
+import android.Manifest;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.RekapBarangAdapter;
 import com.example.authapp.Api;
 import com.example.authapp.Response.RekapBarangResp;
+import com.example.authapp.ViewModel.ViewModelJual;
 import com.example.authapp.ViewModel.ViewModelRekapBarang;
 import com.example.authapp.databinding.ActivityRekapBarangBinding;
 import com.example.authapp.util.Modul;
@@ -19,6 +24,7 @@ import com.example.authapp.util.ModulExcel;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -39,6 +45,9 @@ public class RekapBarang extends AppCompatActivity {
     ActivityRekapBarangBinding bind;
     private RekapBarangAdapter adapter;
     private List<ViewModelRekapBarang> data = new ArrayList<>();
+
+    private DatePickerDialog datePickerDialog;
+    private SimpleDateFormat dateFormatter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = ActivityRekapBarangBinding.inflate(getLayoutInflater());
@@ -50,9 +59,63 @@ public class RekapBarang extends AppCompatActivity {
         adapter = new RekapBarangAdapter(RekapBarang.this, data);
         bind.item.setAdapter(adapter);
 
+        init();
+
+        bind.dateFrom.setText(Modul.getDate("yyyy-MM-dd"));
+        bind.dateTo.setText(Modul.getDate("yyyy-MM-dd"));
+
         refreshData(true);
 
-        //search
+        //        Minta izin
+        ModulExcel.askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,0,RekapBarang.this,RekapBarang.this);
+
+        bind.btnExcel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    ModulExcel.askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,0,RekapBarang.this,RekapBarang.this);
+                    ExportExcel();
+                }catch (Exception e){
+                    Toast.makeText(RekapBarang.this, "Terjadi kesalahan harap coba lagi", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void init(){
+        dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
+        bind.searchView.setFocusable(false);
+        bind.dateFrom.setFocusable(false);
+        bind.dateFrom.setClickable(true);
+        bind.dateTo.setFocusable(false);
+        bind.dateTo.setClickable(true);
+
+        bind.dateFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateFrom();
+            }
+        });
+
+        bind.dateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateTo();
+            }
+        });
+
+//        bind.icSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bind.layouticsearch.setVisibility(View.GONE);
+//                bind.layoutpenjualan.setVisibility(View.GONE);
+//                bind.layouttotalpenjualan.setVisibility(View.GONE);
+//
+//                bind.layoutsearch.setVisibility(View.VISIBLE);
+//            }
+//        });
+
         bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -70,6 +133,14 @@ public class RekapBarang extends AppCompatActivity {
         });
     }
 
+    public void setTotal(){
+        double total=0;
+        for(ViewModelRekapBarang jual:data){
+            total+=Modul.strToDouble(jual.getTotal_pendapatan());
+        }
+        bind.txtRekapBarang.setText("Rp. "+Modul.removeE(total));
+    }
+
     public void refreshData(boolean fetch){
         String cari = bind.searchView.getQuery().toString();
         if (true){
@@ -80,6 +151,8 @@ public class RekapBarang extends AppCompatActivity {
                     if (response.isSuccessful()){
                         data.clear();
                         data.addAll(response.body().getData());
+
+                        setTotal();
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -136,6 +209,40 @@ public class RekapBarang extends AppCompatActivity {
         workbook.close();
         Toast.makeText(this, "Berhasil disimpan di "+file.getPath(), Toast.LENGTH_SHORT).show();
 
+    }
+
+    public void showDateFrom(){
+        Calendar kalender = Calendar.getInstance();
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, month, dayOfMonth);
+
+                bind.dateFrom.setText(dateFormatter.format(newDate.getTime()));
+                refreshData(true);
+            }
+        }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.show();
+    }
+
+    public void showDateTo(){
+        Calendar kalender = Calendar.getInstance();
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, month, dayOfMonth);
+
+                bind.dateTo.setText(dateFormatter.format(newDate.getTime()));
+                refreshData(true);
+            }
+        }, kalender.get(Calendar.YEAR), kalender.get(Calendar.MONTH), kalender.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.show();
     }
 
 }

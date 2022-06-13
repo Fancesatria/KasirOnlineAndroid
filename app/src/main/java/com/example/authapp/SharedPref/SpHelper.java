@@ -69,10 +69,14 @@ public class SpHelper {
         editor.commit();
     }
 
-    //logout toko di click nnti manggil sp.clearAll() trs diintent
+    //logout toko di click nnti manggil sp.clearAll() trs diintent ke login
     public void clearAll(){
         editor.clear();
         editor.commit();
+    }
+
+    public void clearPegawai(){
+        sp.edit().remove("idpegawai").commit();
     }
 
     public boolean getBoolean(String key){

@@ -43,11 +43,14 @@ import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.Model.ModelDetailJual;
 import com.example.authapp.Model.ModelJual;
+import com.example.authapp.Model.ModelToko;
 import com.example.authapp.R;
 import com.example.authapp.Response.DetailOrderResponse;
+import com.example.authapp.Response.IdentitasGetResp;
 import com.example.authapp.ViewModel.ModelViewStruk;
 import com.example.authapp.databinding.ActivityPrintStrukBinding;
 import com.example.authapp.ui.home.bottom_nav.shopping.TransactionSuccess;
+import com.example.authapp.ui.pengaturan.toko.IdentitasToko;
 import com.example.authapp.util.Modul;
 import com.google.android.material.textfield.TextInputEditText;
 import com.novandikp.simplethermalprinter.AlignColumn;
@@ -77,8 +80,6 @@ public class PrintStruk extends AppCompatActivity {
     private ModelJual modelJual;
     private StrukAdapter adapter;
     private List<ModelViewStruk> modelDetailJualList = new ArrayList<>();
-    private List<ModelBarang> modelBarangList = new ArrayList<>();
-
 
     final int PERMISSION_BLUETOOTH = 10;
     final int PERMISSION_BLUETOOTH_ADMIN = 11;
@@ -109,6 +110,7 @@ public class PrintStruk extends AppCompatActivity {
 
         bind.struk.setVisibility(View.GONE);
 
+        refreshData();
 
         bind.cari.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -333,6 +335,26 @@ public class PrintStruk extends AppCompatActivity {
         }else{
             ErrorDialog.message(this,"Struk masih diproses",bind.getRoot());
         }
+    }
+
+    public void refreshData(){
+        Call<IdentitasGetResp> identitasGetRespCall = Api.Identitas(PrintStruk.this).getIdentitas();
+        identitasGetRespCall.enqueue(new Callback<IdentitasGetResp>() {
+            @Override
+            public void onResponse(Call<IdentitasGetResp> call, Response<IdentitasGetResp> response) {
+                if (response.isSuccessful()){
+                    ModelToko modelToko = response.body().getData();
+                    bind.txtNamaToko.setText(modelToko.getNama_toko());
+                    bind.txtLokasi.setText(modelToko.getAlamat_toko() +" || "+ modelToko.getNomer_toko());
+                    bind.txtTambahan1.setText("Senang bertransaksi dengan anda");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<IdentitasGetResp> call, Throwable t) {
+
+            }
+        });
     }
 
     public  void setData(List<ModelViewStruk> data){

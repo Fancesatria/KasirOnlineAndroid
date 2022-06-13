@@ -100,6 +100,7 @@ import java.util.Locale;
                         LoadingDialog.load(Payment.this);
                         service.Bayar(Modul.strToDouble(Bayar));
                         service.save(getApplication());
+
                     }
                 }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
