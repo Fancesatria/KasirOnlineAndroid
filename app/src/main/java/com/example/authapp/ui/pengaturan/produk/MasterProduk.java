@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -21,11 +25,15 @@ import com.example.authapp.Component.ErrorDialog;
 import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.BarangRepository;
+import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelBarang;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangGetResp;
 import com.example.authapp.Response.BarangResponse;
 import com.example.authapp.databinding.ActivityMasterProdukBinding;
+import com.example.authapp.databinding.FragmentPengaturanBinding;
+import com.example.authapp.ui.pengaturan.PengaturanFragment;
+import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
 
 import java.util.ArrayList;
@@ -72,27 +80,26 @@ public class MasterProduk extends AppCompatActivity {
         });
 
         //buat search
-        bind.searchProduk.addTextChangedListener(new TextWatcher() {
+        bind.searchProduk.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
 
     public void refreshData(boolean fetch){
         //inisiasi search
-        String cari = bind.searchProduk.getText().toString();
+        String cari = bind.searchProduk.getQuery().toString();
 
         //ini dibuat getnya ada 2 yaitu rerofit dan sqlite, biar kalau salah satu ada error, appnya msh bisa erjalan
         //get sqlite
@@ -169,6 +176,25 @@ public class MasterProduk extends AppCompatActivity {
             }
         });
         alert.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_export,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, HomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }else  if (id == R.id.export) {
+            Toast.makeText(getApplicationContext(), "Exported", Toast.LENGTH_SHORT).show();
+        } return true;
     }
 
 }

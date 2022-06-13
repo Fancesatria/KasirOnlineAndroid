@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <!--    untuk : item master produk-->
@@ -44,30 +44,30 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                    <LinearLayout
-                        android:layout_weight="1"
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="7dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/txtTelp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="7dp"
-                        android:layout_marginTop="5dp">
+                        android:text="Nomor Telepon"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="14sp"/>
 
-                        <TextView
-                            android:id="@+id/txtTelp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Nomor Telepon"
-                            android:fontFamily="sans-serif-medium"
-                            android:textSize="14sp"/>
-
-                        <TextView
-                            android:id="@+id/txtAlamat"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat"
-                            android:fontFamily="sans-serif-medium"
-                            android:textSize="14sp"/>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:fontFamily="sans-serif-medium"
+                        android:textSize="14sp"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_weight="1"

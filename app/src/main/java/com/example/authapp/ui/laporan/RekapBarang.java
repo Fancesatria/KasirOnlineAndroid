@@ -3,6 +3,7 @@ package com.example.authapp.ui.laporan;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,12 @@ public class RekapBarang extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = ActivityRekapBarangBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Rekap per Barang");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 
         //Recyclerview
@@ -37,27 +44,27 @@ public class RekapBarang extends AppCompatActivity {
 
         refreshData(true);
 
-        //search
-        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                refreshData(false);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (newText.isEmpty()){
-                    refreshData(false);
-                }
-                return false;
-            }
-        });
+//        //search
+//        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                refreshData(false);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if (newText.isEmpty()){
+//                    refreshData(false);
+//                }
+//                return false;
+//            }
+//        });
     }
 
     public void refreshData(boolean fetch){
         String cari = bind.searchView.getQuery().toString();
-        if (fetch){
+        if (true){
             Call<RekapBarangResp> rekapBarangRespCall = Api.RekapBarang(RekapBarang.this).getRekapBarang(cari);
             rekapBarangRespCall.enqueue(new Callback<RekapBarangResp>() {
                 @Override

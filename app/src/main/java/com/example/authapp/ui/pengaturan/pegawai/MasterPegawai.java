@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +25,7 @@ import com.example.authapp.Component.ErrorDialog;
 import com.example.authapp.Component.LoadingDialog;
 import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.PegawaiRepository;
+import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelPegawai;
 import com.example.authapp.R;
 import com.example.authapp.Response.PegawaiGetResp;
@@ -65,7 +70,7 @@ public class MasterPegawai extends AppCompatActivity {
 
         refreshData(true);
 
-        bind.plusBtnProduk.setOnClickListener(new View.OnClickListener() {
+        bind.plusBtnPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MasterPegawai.this, TambahPegawai.class));
@@ -74,20 +79,19 @@ public class MasterPegawai extends AppCompatActivity {
         });
 
         //buat search
-        bind.searchPegawai.addTextChangedListener(new TextWatcher() {
+        bind.searchPegawai.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public boolean onQueryTextSubmit(String query) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
@@ -96,7 +100,7 @@ public class MasterPegawai extends AppCompatActivity {
 
     public void refreshData(boolean fetch){
         //inisiasi cari dr file layout
-        String cari = bind.searchPegawai.getText().toString();
+        String cari = bind.searchPegawai.getQuery().toString();
         //get SQLite
         pr.getAllPegawai(cari).observe(this, new Observer<List<ModelPegawai>>() {
             @Override
@@ -171,4 +175,24 @@ public class MasterPegawai extends AppCompatActivity {
         });
         alert.show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_export,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, HomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }else  if (id == R.id.export) {
+            Toast.makeText(getApplicationContext(), "Exported", Toast.LENGTH_SHORT).show();
+        } return true;
+    }
+
 }

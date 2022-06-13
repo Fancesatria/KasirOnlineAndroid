@@ -5,24 +5,48 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.AuthApp"
         android:usesCleartextTraffic="true">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.authapp.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
         <activity
             android:name=".ui.home.PrintStruk"
             android:exported="false" />
         <activity
-            android:name=".ui.home.TransactionSuccessNotif"
+            android:name=".ui.home.ScanDevice"
             android:exported="false" />
         <activity
+            android:name=".ui.home.TransactionSuccessNotif"
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
+        <activity
             android:name=".ui.laporan.LaporanPendapatan"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.LaporanPendapatan" />
         <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false"
@@ -34,7 +58,8 @@
             android:theme="@style/Theme.AuthApp.NoActionBar" />
         <activity
             android:name=".TambahkanProduk"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".ui.home.ScanBarcode"
             android:exported="false" />
@@ -43,13 +68,16 @@
             android:exported="false" />
         <activity
             android:name=".InformasiBisnis"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".OTPVerification"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".TelpVerification"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -65,16 +93,17 @@
             android:exported="false" />
         <activity
             android:name=".UserRegister"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AuthApp.NoActionBar" />
         <activity android:name=".ui.pengaturan.satuan.MasterSatuan"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
         <activity android:name=".ui.pengaturan.pelanggan.MasterPelanggan"
-            android:exported="false"
-            android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
+            android:exported="false"/>
         <activity android:name=".ui.pengaturan.pelanggan.TambahPelanggan" />
         <activity android:name=".ui.pengaturan.pelanggan.EditPelanggan" />
         <activity android:name=".ui.pengaturan.pegawai.MasterPegawai"
@@ -83,20 +112,35 @@
         <activity android:name=".ui.pengaturan.pegawai.EditPegawai" />
         <activity android:name=".ui.pengaturan.pegawai.TambahPegawai" />
         <activity android:name=".ui.pengaturan.pegawai.LoginPegawai" />
-        <activity android:name=".ui.pengaturan.produk.MasterProduk"
-            android:exported="false"
-            android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
+        <activity
+            android:name=".ui.pengaturan.produk.MasterProduk"
+            android:exported="false" />
         <activity android:name=".ui.pengaturan.produk.TambahProduk" />
         <activity android:name=".ui.pengaturan.produk.EditProduk" />
         <activity android:name=".ui.home.bottom_nav.PelangganOrder" />
         <activity android:name=".ui.home.bottom_nav.shopping.ShoppingCart" />
-        <activity android:name=".ui.home.bottom_nav.shopping.Payment" />
-        <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess" />
-        <activity android:name=".ui.laporan.LaporanPenjualan" />
-        <activity android:name=".ui.laporan.RekapBarang" />
-        <activity android:name=".ui.laporan.RekapKategori" />
-        <activity android:name=".ui.laporan.RekapPegawai" />
-        <activity android:name=".ui.laporan.RekapPelanggan" />
+        <activity android:name=".ui.home.bottom_nav.shopping.Payment"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".ui.home.bottom_nav.shopping.TransactionSuccess"
+            />
+        <activity android:name=".ui.laporan.LaporanPenjualan"
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.LaporanPenjualan" />
+        <activity android:name=".ui.laporan.RekapBarang"
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.RekapBarang" />
+        <activity android:name=".ui.laporan.RekapKategori"
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.RekapKategori" />
+        <activity android:name=".ui.laporan.RekapPegawai"
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.RekapPegawai" />
+        <activity android:name=".ui.laporan.RekapPelanggan"
+            android:exported="false"
+            android:parentActivityName=".ui.laporan.RekapPelanggan" />
+        <activity android:name=".ui.pengaturan.toko.IdentitasToko"
+            android:exported="false"
+            android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>
     </application>
 
 </manifest>

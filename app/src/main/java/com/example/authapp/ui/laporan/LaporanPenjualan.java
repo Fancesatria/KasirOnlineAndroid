@@ -7,7 +7,9 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.authapp.Adapter.LapPendapatanAdapter;
@@ -16,6 +18,7 @@ import com.example.authapp.Api;
 import com.example.authapp.Response.PenjualanGetResp;
 import com.example.authapp.ViewModel.ViewModelDetailJual;
 import com.example.authapp.databinding.ActivityLaporanPenjualanBinding;
+import com.example.authapp.util.Modul;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,9 +41,18 @@ public class LaporanPenjualan extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = ActivityLaporanPenjualanBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Laporan Penjualan");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 
         init();
+
+        bind.dateFrom.setText(Modul.getDate("yyyy-MM-dd"));
+        bind.dateTo.setText(Modul.getDate("yyyy-MM-dd"));
 
         //inisiasi recyclerview
         bind.itemPenjualan.setLayoutManager(new LinearLayoutManager(this));
@@ -48,6 +60,7 @@ public class LaporanPenjualan extends AppCompatActivity {
         bind.itemPenjualan.setAdapter(adapter);
 
         refreshData(true);
+
     }
 
     public void init(){
@@ -66,14 +79,42 @@ public class LaporanPenjualan extends AppCompatActivity {
                 showDateTo();
             }
         });
+
+        bind.icSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bind.layouticsearch.setVisibility(View.GONE);
+                bind.layoutpenjualan.setVisibility(View.GONE);
+                bind.layouttotalpenjualan.setVisibility(View.GONE);
+
+                bind.layoutsearch.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                refreshData(false);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
+            }
+        });
     }
 
     public void refreshData(boolean fetch){
+        String cari = bind.searchView.getQuery().toString();
         String mulai = bind.dateFrom.getText().toString();
         String sampai = bind.dateTo.getText().toString();
 
-        if (fetch){
-            Call<PenjualanGetResp> penjualanGetRespCall = Api.Penjualan(LaporanPenjualan.this).getPenjualan(mulai, sampai, "");
+        if (true){
+            Call<PenjualanGetResp> penjualanGetRespCall = Api.Penjualan(LaporanPenjualan.this).getPenjualan(mulai, sampai, cari);
             penjualanGetRespCall.enqueue(new Callback<PenjualanGetResp>() {
                 @Override
                 public void onResponse(Call<PenjualanGetResp> call, Response<PenjualanGetResp> response) {
