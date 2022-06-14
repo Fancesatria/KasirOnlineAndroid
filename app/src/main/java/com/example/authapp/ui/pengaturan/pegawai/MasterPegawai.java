@@ -3,6 +3,7 @@ package com.example.authapp.ui.pengaturan.pegawai;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.PegawaiRepository;
 import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelPegawai;
+import com.example.authapp.Model.ModelPelanggan;
 import com.example.authapp.R;
 import com.example.authapp.Response.PegawaiGetResp;
 import com.example.authapp.Response.PegawaiResponse;
@@ -34,10 +36,20 @@ import com.example.authapp.Service.PegawaiService;
 import com.example.authapp.Service.PelangganService;
 import com.example.authapp.databinding.ActivityMasterPegawaiBinding;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
+import com.example.authapp.util.Modul;
+import com.example.authapp.util.ModulExcel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,10 +72,10 @@ public class MasterPegawai extends AppCompatActivity {
 
         setContentView(bind.getRoot());
 
-        //memanggil db
+        // memanggil db
         pr = new PegawaiRepository(getApplication());
 
-        //menginisiasi adapter dan recycler view
+        // menginisiasi adapter dan recycler view
         bind.item.setLayoutManager(new LinearLayoutManager(this));
         pa = new PegawaiAdapter(MasterPegawai.this, data);
         bind.item.setAdapter(pa);
@@ -78,7 +90,10 @@ public class MasterPegawai extends AppCompatActivity {
             }
         });
 
-        //buat search
+        bind.searchPegawai.setFocusable(false);
+        bind.searchPegawai.setClickable(true);
+
+        // buat search
         bind.searchPegawai.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -88,7 +103,7 @@ public class MasterPegawai extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.isEmpty()){
+                if (newText.isEmpty()) {
                     refreshData(false);
                 }
                 return false;
@@ -96,12 +111,10 @@ public class MasterPegawai extends AppCompatActivity {
         });
     }
 
-
-
-    public void refreshData(boolean fetch){
-        //inisiasi cari dr file layout
+    public void refreshData(boolean fetch) {
+        // inisiasi cari dr file layout
         String cari = bind.searchPegawai.getQuery().toString();
-        //get SQLite
+        // get SQLite
         pr.getAllPegawai(cari).observe(this, new Observer<List<ModelPegawai>>() {
             @Override
             public void onChanged(List<ModelPegawai> modelPegawais) {
@@ -110,18 +123,18 @@ public class MasterPegawai extends AppCompatActivity {
                 pa.notifyDataSetChanged();
             }
         });
-        if(fetch) {
-            //get Retrofit
+        if (fetch) {
+            // get Retrofit
             PegawaiService ps = Api.Pegawai(MasterPegawai.this);
             Call<PegawaiGetResp> pegawaiGetRespCall = ps.getPeg(cari);
             pegawaiGetRespCall.enqueue(new Callback<PegawaiGetResp>() {
                 @Override
                 public void onResponse(Call<PegawaiGetResp> call, Response<PegawaiGetResp> response) {
                     if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())) {
-                        //Memasukkan ke db kalau gada yg sm
+                        // Memasukkan ke db kalau gada yg sm
                         pr.insertAll(response.body().getData(), true);
 
-                        //merefresh adapter
+                        // merefresh adapter
                         data.clear();
                         data.addAll(response.body().getData());
                         pa.notifyDataSetChanged();
@@ -136,7 +149,7 @@ public class MasterPegawai extends AppCompatActivity {
         }
     }
 
-    public void DeletePeg(int id){
+    public void DeletePeg(int id) {
         AlertDialog.Builder alert = new AlertDialog.Builder(MasterPegawai.this);
         alert.setTitle("Konfirmasi");
         alert.setMessage("Anda yakin ingin menghapus data ini?");
@@ -149,13 +162,15 @@ public class MasterPegawai extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<PegawaiResponse> call, Response<PegawaiResponse> response) {
                         LoadingDialog.close();
-                        if (response.isSuccessful()){
-                            if (response.body().isStatus()){
+                        if (response.isSuccessful()) {
+                            if (response.body().isStatus()) {
                                 pr.delete(response.body().getData());
-                                SuccessDialog.message(MasterPegawai.this, getString(R.string.deleted_success), bind.getRoot());
+                                SuccessDialog.message(MasterPegawai.this, getString(R.string.deleted_success),
+                                        bind.getRoot());
                             }
                         } else {
-                            ErrorDialog.message(MasterPegawai.this, getString(R.string.error_pegawai_message), bind.getRoot());
+                            ErrorDialog.message(MasterPegawai.this, getString(R.string.error_pegawai_message),
+                                    bind.getRoot());
                         }
                         refreshData(true);
                     }
@@ -178,7 +193,7 @@ public class MasterPegawai extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_export,menu);
+        getMenuInflater().inflate(R.menu.menu_export, menu);
         return true;
     }
 
@@ -190,9 +205,49 @@ public class MasterPegawai extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
-        }else  if (id == R.id.export) {
+        } else if (id == R.id.export) {
             Toast.makeText(getApplicationContext(), "Exported", Toast.LENGTH_SHORT).show();
-        } return true;
+        }
+        return true;
     }
 
+    private void ExportExcel() throws IOException, WriteException {
+
+        String nama = "LaporanPegawai";
+        String path = Environment.getExternalStorageDirectory().toString() + "/Download/";
+        File file = new File(path + nama + " " + Modul.getDate("dd-MM-yyyy_HHmmss") + ".xls");
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet("Report", 0);
+        WritableSheet sheet = workbook.getSheet(0);
+
+        ModulExcel.createLabel(sheet);
+        // setHeader(db,sheet,5);
+        ModulExcel.excelNextLine(sheet, 2);
+
+        String[] judul = { "No.",
+                "Pelanggan",
+                "Alamat",
+                "No Telepon"
+        };
+        ModulExcel.setJudul(sheet, judul);
+        int row = ModulExcel.row;
+        int no = 1;
+        for (ModelPegawai detail : data) {
+            int col = 0;
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(no));
+            ModulExcel.addLabel(sheet, col++, row, detail.getNama_pegawai());
+            ModulExcel.addLabel(sheet, col++, row, detail.getAlamat_pegawai());
+            ModulExcel.addLabel(sheet, col++, row, detail.getNo_pegawai());
+            row++;
+            no++;
+        }
+        workbook.write();
+        workbook.close();
+        Toast.makeText(this, "Berhasil disimpan di " + file.getPath(), Toast.LENGTH_SHORT).show();
+
+    }
 }

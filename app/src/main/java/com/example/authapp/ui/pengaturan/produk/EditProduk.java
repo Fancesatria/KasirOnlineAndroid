@@ -218,7 +218,7 @@ public class EditProduk extends AppCompatActivity {
     }
 
     public void refreshKategori(){
-        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(EditProduk.this).getKat();
+        Call<KategoriGetResp> kategoriGetRespCall = Api.Kategori(EditProduk.this).getKat("");
         kategoriGetRespCall.enqueue(new Callback<KategoriGetResp>() {
             @Override
             public void onResponse(Call<KategoriGetResp> call, Response<KategoriGetResp> response) {
@@ -240,7 +240,7 @@ public class EditProduk extends AppCompatActivity {
     }
 
     public void refreshSatuan(){
-        Call<SatuanGetResp> satuanGetRespCall = Api.Satuan(EditProduk.this).getSat();
+        Call<SatuanGetResp> satuanGetRespCall = Api.Satuan(EditProduk.this).getSat("");
         satuanGetRespCall.enqueue(new Callback<SatuanGetResp>() {
             @Override
             public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {

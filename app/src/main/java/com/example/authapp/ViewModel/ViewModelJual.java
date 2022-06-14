@@ -2,6 +2,12 @@ package com.example.authapp.ViewModel;
 
 import androidx.room.DatabaseView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 @DatabaseView(value =
        "SELECT tbljual.idjual,\n" +
                 "    tbljual.fakturjual,\n" +
@@ -99,6 +105,13 @@ public class ViewModelJual {
 
     public String getTanggal_jual() {
         return tanggal_jual;
+    }
+
+    public Date tanggalku() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date tanggal = format.parse(getTanggal_jual());
+        return tanggal;
     }
 
     public void setTanggal_jual(String tanggal_jual) {

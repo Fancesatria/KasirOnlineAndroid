@@ -42,6 +42,15 @@ public class SpHelper {
         editor.commit();
     }
 
+    public void setIdPegawai(String id){
+        editor.putString("idpegawai", id);
+        editor.commit();
+    }
+
+    public String getIdPegawai(){
+        return getValue("idpegawai");
+    }
+
     public void setKembali(double kembali){
         editor.putInt("kembali", (int) kembali);
         editor.commit();
@@ -58,6 +67,16 @@ public class SpHelper {
     public void setBoolean(String key, boolean value){
         editor.putBoolean(key,value);
         editor.commit();
+    }
+
+    //logout toko di click nnti manggil sp.clearAll() trs diintent ke login
+    public void clearAll(){
+        editor.clear();
+        editor.commit();
+    }
+
+    public void clearPegawai(){
+        sp.edit().remove("idpegawai").commit();
     }
 
     public boolean getBoolean(String key){

@@ -34,7 +34,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="-"
                 android:textAlignment="center"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/default3"
                 android:textSize="50sp"
                 android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="+"
                 android:textAlignment="center"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/default3"
                 android:textSize="50sp" />
         </LinearLayout>
 

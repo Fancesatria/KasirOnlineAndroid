@@ -22,6 +22,10 @@ public class SatuanRepository {
         allSatuan = satuanDao.getSatuans();
     }
 
+    public LiveData<List<ModelSatuan>> getAllSatuan(String keyword) {
+        return allSatuan;
+    }
+
     public LiveData<List<ModelSatuan>> getAllSatuan() {
         return allSatuan;
     }

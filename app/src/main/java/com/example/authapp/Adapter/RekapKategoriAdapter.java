@@ -37,7 +37,7 @@ public class RekapKategoriAdapter extends RecyclerView.Adapter<RekapKategoriAdap
         holder.kategori.setText(viewModelRekapKategori.getNama_kategori());
         holder.tanggal.setText(viewModelRekapKategori.getTanggal_jual());
         holder.totalJual.setText(viewModelRekapKategori.getTotal_jual());
-        holder.pendapatan.setText("Rp. "+ viewModelRekapKategori.getTotal_pendapatan());
+        holder.pendapatan.setText("Rp. "+ Modul.removeE(viewModelRekapKategori.getTotal_pendapatan()));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RekapKategoriAdapter extends RecyclerView.Adapter<RekapKategoriAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView kategori, tanggal, totalJual, pendapatan;
+        TextView kategori, totalJual, pendapatan;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

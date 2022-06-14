@@ -28,10 +28,11 @@ import com.example.authapp.R;
 import com.example.authapp.Response.KategoriResponse;
 import com.example.authapp.Response.PendapatanGetResp;
 import com.example.authapp.ViewModel.ViewModelJual;
-import com.example.authapp.databinding.FragmentPrintPenjualanBinding;
+import com.example.authapp.databinding.FragmentPenjualanBinding;
 import com.example.authapp.ui.home.PrintStruk;
 import com.example.authapp.ui.laporan.LaporanPendapatan;
 import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
+import com.example.authapp.util.Modul;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ import retrofit2.Response;
 
 public class PenjualanFragment extends Fragment {
 
-    private FragmentPrintPenjualanBinding bind;
+    private FragmentPenjualanBinding bind;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private PrintPenjulanAdapter adapter;
@@ -56,7 +57,7 @@ public class PenjualanFragment extends Fragment {
         PenjualanViewModel galleryViewModel =
                 new ViewModelProvider(this).get(PenjualanViewModel.class);
 
-        bind = FragmentPrintPenjualanBinding.inflate(inflater, container, false);
+        bind = FragmentPenjualanBinding.inflate(inflater, container, false);
         View root = bind.getRoot();
 
         init();
@@ -98,6 +99,18 @@ public class PenjualanFragment extends Fragment {
     public void init(){
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+        bind.dateFrom.setFocusable(false);
+        bind.dateFrom.setClickable(true);
+        bind.dateTo.setFocusable(false);
+        bind.dateTo.setClickable(true);
+
+        bind.searchView.setFocusable(false);
+        bind.searchView.setClickable(true);
+
+        //mengset ke tgl hari ini
+        bind.dateFrom.setText(Modul.getDate("yyyy-MM-dd"));
+        bind.dateTo.setText(Modul.getDate("yyyy-MM-dd"));
+
         bind.dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,47 +132,47 @@ public class PenjualanFragment extends Fragment {
         String mulai = bind.dateFrom.getText().toString();
         String sampai = bind.dateTo.getText().toString();
 
-        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(getContext()).getPendapatan("", "", "");
-        pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
-            @Override
-            public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
-                if (response.isSuccessful()){
+//        Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(getContext()).getPendapatan("", "", "");
+//        pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
+//            @Override
+//            public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
+//                if (response.isSuccessful()){
+//
+//                    data.clear();
+//                    data.addAll(response.body().getData());
+//                    adapter.notifyDataSetChanged();
+//
+//                    //Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
+//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-                    data.clear();
-                    data.addAll(response.body().getData());
-                    adapter.notifyDataSetChanged();
+        if (true){
+            Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(getContext()).getPendapatan(mulai, sampai, cari);
+            pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
+                @Override
+                public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
+                    if (response.isSuccessful()){
 
-                    //Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
+                        data.clear();
+                        data.addAll(response.body().getData());
+                        adapter.notifyDataSetChanged();
+
+                        //Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-//        if (true){
-//            Call<PendapatanGetResp> pendapatanGetRespCall = Api.Pendapatan(getContext()).getPendapatan(mulai, sampai, cari);
-//            pendapatanGetRespCall.enqueue(new Callback<PendapatanGetResp>() {
-//                @Override
-//                public void onResponse(Call<PendapatanGetResp> call, Response<PendapatanGetResp> response) {
-//                    if (response.isSuccessful()){
-//
-//                        data.clear();
-//                        data.addAll(response.body().getData());
-//                        adapter.notifyDataSetChanged();
-//
-//                        //Toast.makeText(LaporanPendapatan.this, String.valueOf(response.body().getData().size()), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
-//                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+                @Override
+                public void onFailure(Call<PendapatanGetResp> call, Throwable t) {
+                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     public void showDateFrom(){

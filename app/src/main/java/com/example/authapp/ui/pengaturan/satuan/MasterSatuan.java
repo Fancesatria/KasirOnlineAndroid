@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -62,7 +63,10 @@ public class MasterSatuan extends AppCompatActivity {
         adapter = new SatuanAdapter(MasterSatuan.this, data);
         bind.item.setAdapter(adapter);
 
-        refreshData();
+        refreshData(true);
+
+        bind.searchSatuan.setFocusable(false);
+        bind.searchSatuan.setClickable(true);
 
 //        bind.btnSimpan.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -84,6 +88,22 @@ public class MasterSatuan extends AppCompatActivity {
             public void onClick(View v) {
                 ModelSatuan modelSatuan = new ModelSatuan();
                 dialogAddSatuan(modelSatuan);
+            }
+        });
+
+        bind.searchSatuan.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                refreshData(false);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
@@ -138,9 +158,11 @@ public class MasterSatuan extends AppCompatActivity {
         dialog.show();
     }
 
-    public void refreshData(){
+    public void refreshData(boolean fetch){
+        String cari = bind.searchSatuan.getQuery().toString();
+
         //get sqlite
-        satuanRepository.getAllSatuan().observe(this, new Observer<List<ModelSatuan>>() {
+        satuanRepository.getAllSatuan(cari).observe(this, new Observer<List<ModelSatuan>>() {
             @Override
             public void onChanged(List<ModelSatuan> modelSatuans) {
                 data.clear();
@@ -150,26 +172,28 @@ public class MasterSatuan extends AppCompatActivity {
         });
 
         //get retrofit
-        SatuanService ss = Api.Satuan(MasterSatuan.this);
-        Call<SatuanGetResp> call = ss.getSat();
-        call.enqueue(new Callback<SatuanGetResp>() {
-            @Override
-            public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
-                if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())) {
-                    // memasukkan inputan ke sqlite jika tak ada yg sama
-                    satuanRepository.insertAll(response.body().getData(), true);
-                    //merefresh adapter
-                    data.clear();
-                    data.addAll(response.body().getData());
-                    adapter.notifyDataSetChanged();
+        if (true){
+            SatuanService ss = Api.Satuan(MasterSatuan.this);
+            Call<SatuanGetResp> call = ss.getSat(cari);
+            call.enqueue(new Callback<SatuanGetResp>() {
+                @Override
+                public void onResponse(Call<SatuanGetResp> call, Response<SatuanGetResp> response) {
+                    if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())) {
+                        // memasukkan inputan ke sqlite jika tak ada yg sama
+                        satuanRepository.insertAll(response.body().getData(), true);
+                        //merefresh adapter
+                        data.clear();
+                        data.addAll(response.body().getData());
+                        adapter.notifyDataSetChanged();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<SatuanGetResp> call, Throwable t) {
-                Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<SatuanGetResp> call, Throwable t) {
+                    Toast.makeText(MasterSatuan.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
 
@@ -221,7 +245,7 @@ public class MasterSatuan extends AppCompatActivity {
                             ErrorDialog.message(MasterSatuan.this, getString(R.string.error_satuan_message), bind.getRoot());
                         }
 
-                        refreshData();
+                        refreshData(true);
                     }
 
                     @Override
@@ -249,7 +273,7 @@ public class MasterSatuan extends AppCompatActivity {
                 if(response.isSuccessful()){
                     if (response.body().isStatus()){
                         satuanRepository.update(modelSatuan);
-                        refreshData();
+                        refreshData(true);
                         LoadingDialog.close();
                         SuccessDialog.message(MasterSatuan.this,getString(R.string.updated_success) ,bind.getRoot());
                     }

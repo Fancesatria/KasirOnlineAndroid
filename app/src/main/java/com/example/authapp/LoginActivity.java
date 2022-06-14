@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Email.setError("Masukkan email yang valid");
             return true;
         } else {
-            Toast.makeText(this, "Harap tunggu...", Toast.LENGTH_SHORT).show();
+            SuccessDialog.message(LoginActivity.this, getString(R.string.login_success), bind.getRoot());
         }
         return false;
     }

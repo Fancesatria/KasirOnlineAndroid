@@ -4,8 +4,8 @@ public class ModelLoginPegawai {
     private String idpegawai;
     private String pin;
 
-    public ModelLoginPegawai(String idpegawai, String pin) {
-        this.idpegawai = idpegawai;
+    public ModelLoginPegawai(String pegawai, String pin) {
+        this.idpegawai = pegawai;
         this.pin = pin;
     }
 
@@ -23,5 +23,13 @@ public class ModelLoginPegawai {
 
     public void setPin(String pin) {
         this.pin = pin;
+    }
+
+    @Override
+    public String toString() {
+        return "ModelLoginPegawai{" +
+                "idpegawai='" + idpegawai + '\'' +
+                ", pin='" + pin + '\'' +
+                '}';
     }
 }

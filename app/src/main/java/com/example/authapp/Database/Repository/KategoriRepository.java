@@ -22,6 +22,10 @@ public class KategoriRepository {
         allKategori = kategoriDao.getKategori();
     }
 
+    public LiveData<List<ModelKategori>> getAllKategori(String keyword) {
+        return kategoriDao.getKategori();
+    }
+
     public LiveData<List<ModelKategori>> getAllKategori() {
         return kategoriDao.getKategori();
     }

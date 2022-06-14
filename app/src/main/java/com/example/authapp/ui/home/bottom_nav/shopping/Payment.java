@@ -52,13 +52,13 @@ import java.util.Locale;
         if (inBayar.getText() == "0"){
             bind.inBayar.setTextColor(getColor(R.color.darkgrey));
         } else {
-            bind.inBayar.setTextColor(getColor(R.color.teal_700));
+            bind.inBayar.setTextColor(getColor(R.color.default1));
         }
 
         Double d = Modul.strToDouble(Bayar);
         if (d >= service.getTotal()) {
             bind.tvNext.setEnabled(true);
-            bind.tvNext.setTextColor(getColor(R.color.teal_700));
+            bind.tvNext.setTextColor(getColor(R.color.default1));
         } else {
             bind.tvNext.setEnabled(false);
             bind.tvNext.setTextColor(getColor(R.color.darkgrey));
@@ -71,7 +71,7 @@ import java.util.Locale;
     }
 
     public void Del(View view){
-        String recentValue = bind.inBayar.getText().toString();
+        String recentValue = Bayar;
         if (recentValue.length() >= 2 ){
             bind.inBayar.setText(recentValue.substring(0, recentValue.length() - 1));
         } else {
@@ -100,6 +100,7 @@ import java.util.Locale;
                         LoadingDialog.load(Payment.this);
                         service.Bayar(Modul.strToDouble(Bayar));
                         service.save(getApplication());
+
                     }
                 }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override

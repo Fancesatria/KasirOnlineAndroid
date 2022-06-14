@@ -3,6 +3,7 @@ package com.example.authapp.ui.pengaturan.produk;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import com.example.authapp.Component.SuccessDialog;
 import com.example.authapp.Database.Repository.BarangRepository;
 import com.example.authapp.HomePage;
 import com.example.authapp.Model.ModelBarang;
+import com.example.authapp.Model.ModelPegawai;
 import com.example.authapp.R;
 import com.example.authapp.Response.BarangGetResp;
 import com.example.authapp.Response.BarangResponse;
@@ -35,10 +37,20 @@ import com.example.authapp.databinding.FragmentPengaturanBinding;
 import com.example.authapp.ui.pengaturan.PengaturanFragment;
 import com.example.authapp.ui.pengaturan.kategori.MasterDaftarKategori;
 import com.example.authapp.ui.pengaturan.pelanggan.MasterPelanggan;
+import com.example.authapp.util.Modul;
+import com.example.authapp.util.ModulExcel;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,15 +73,18 @@ public class MasterProduk extends AppCompatActivity {
 
         setContentView(bind.getRoot());
 
-        //memanggil db
+        // memanggil db
         br = new BarangRepository(getApplication());
 
-        //memanggil dan mengisi recyclerview
+        // memanggil dan mengisi recyclerview
         bind.item.setLayoutManager(new LinearLayoutManager(this));
         pa = new ProdukAdapter(MasterProduk.this, data);
         bind.item.setAdapter(pa);
 
         refreshData(true);
+
+        bind.searchProduk.setFocusable(false);
+        bind.searchProduk.setClickable(true);
 
         bind.plusBtnProduk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +94,7 @@ public class MasterProduk extends AppCompatActivity {
             }
         });
 
-        //buat search
+        // buat search
         bind.searchProduk.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -89,7 +104,7 @@ public class MasterProduk extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.isEmpty()){
+                if (newText.isEmpty()) {
                     refreshData(false);
                 }
                 return false;
@@ -97,12 +112,13 @@ public class MasterProduk extends AppCompatActivity {
         });
     }
 
-    public void refreshData(boolean fetch){
-        //inisiasi search
+    public void refreshData(boolean fetch) {
+        // inisiasi search
         String cari = bind.searchProduk.getQuery().toString();
 
-        //ini dibuat getnya ada 2 yaitu rerofit dan sqlite, biar kalau salah satu ada error, appnya msh bisa erjalan
-        //get sqlite
+        // ini dibuat getnya ada 2 yaitu rerofit dan sqlite, biar kalau salah satu ada
+        // error, appnya msh bisa erjalan
+        // get sqlite
         br.getAllBarang(cari).observe(this, new Observer<List<ModelBarang>>() {
             @Override
             public void onChanged(List<ModelBarang> modelBarangs) {
@@ -112,17 +128,17 @@ public class MasterProduk extends AppCompatActivity {
             }
         });
 
-        //get Retrofit
-        if (fetch){
+        // get Retrofit
+        if (fetch) {
             Call<BarangGetResp> barangGetRespCall = Api.Barang(MasterProduk.this).getBarang(cari);
             barangGetRespCall.enqueue(new Callback<BarangGetResp>() {
                 @Override
                 public void onResponse(Call<BarangGetResp> call, Response<BarangGetResp> response) {
-                    if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())){
-                        //memasukkan data ke / dr db
+                    if (data.size() != response.body().getData().size() || !data.equals(response.body().getData())) {
+                        // memasukkan data ke / dr db
                         br.insertAll(response.body().getData(), true);
 
-                        //merefresh adapter
+                        // merefresh adapter
                         data.clear();
                         data.addAll(response.body().getData());
                         pa.notifyDataSetChanged();
@@ -150,13 +166,15 @@ public class MasterProduk extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BarangResponse> call, Response<BarangResponse> response) {
                         LoadingDialog.close();
-                        if(response.isSuccessful()){
-                            if (response.body().isStatus()){
+                        if (response.isSuccessful()) {
+                            if (response.body().isStatus()) {
                                 br.delete(response.body().getData());
-                                SuccessDialog.message(MasterProduk.this, getString(R.string.deleted_success), bind.getRoot());
+                                SuccessDialog.message(MasterProduk.this, getString(R.string.deleted_success),
+                                        bind.getRoot());
                             }
                         } else {
-                            //ErrorDialog.message(MasterProduk.this, getString(R.string.error_produk_message), bind.getRoot());
+                            // ErrorDialog.message(MasterProduk.this,
+                            // getString(R.string.error_produk_message), bind.getRoot());
                             Toast.makeText(MasterProduk.this, response.toString(), Toast.LENGTH_SHORT).show();
                         }
                         refreshData(true);
@@ -178,6 +196,8 @@ public class MasterProduk extends AppCompatActivity {
         alert.show();
     }
 
+    private void ExportExcel() throws IOException, WriteException {
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_export,menu);
@@ -197,4 +217,42 @@ public class MasterProduk extends AppCompatActivity {
         } return true;
     }
 
+        String nama = "LaporanBarang";
+        String path = Environment.getExternalStorageDirectory().toString() + "/Download/";
+        File file = new File(path + nama + " " + Modul.getDate("dd-MM-yyyy_HHmmss") + ".xls");
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet("Report", 0);
+        WritableSheet sheet = workbook.getSheet(0);
+
+        ModulExcel.createLabel(sheet);
+//        setHeader(db,sheet,5);
+        ModulExcel.excelNextLine(sheet, 2);
+
+        String[] judul = {"No.",
+                "Barang",
+                "Harga Beli",
+                "Harga Jual",
+
+        };
+        ModulExcel.setJudul(sheet, judul);
+        int row = ModulExcel.row;
+        int no = 1;
+        for (ModelBarang detail : data) {
+            int col = 0;
+            ModulExcel.addLabel(sheet, col++, row, Modul.intToStr(no));
+            ModulExcel.addLabel(sheet, col++, row, detail.getBarang());
+            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(detail.getHargabeli()));
+            ModulExcel.addLabel(sheet, col++, row, Modul.removeE(detail.getHarga()));
+            row++;
+            no++;
+        }
+        workbook.write();
+        workbook.close();
+        Toast.makeText(this, "Berhasil disimpan di "+file.getPath(), Toast.LENGTH_SHORT).show();
+
+    }
 }

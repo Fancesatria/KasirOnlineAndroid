@@ -48,6 +48,9 @@
             android:exported="false"
             android:parentActivityName=".ui.laporan.LaporanPendapatan" />
         <activity
+            android:name=".ui.laporan.LaporanPendapatan"
+            android:exported="false"/>
+        <activity
             android:name=".ui.pengaturan.kategori.MasterDaftarKategori"
             android:exported="false"
             android:parentActivityName=".ui.pengaturan.kategori.MasterDaftarKategori"/>

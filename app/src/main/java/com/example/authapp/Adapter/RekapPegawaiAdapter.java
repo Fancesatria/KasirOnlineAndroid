@@ -37,7 +37,6 @@ public class RekapPegawaiAdapter extends RecyclerView.Adapter<RekapPegawaiAdapte
         holder.nama.setText(viewModelRekapPegawai.getNama_pegawai());
         holder.alamat.setText(viewModelRekapPegawai.getAlamat_pegawai());
         holder.telp.setText(viewModelRekapPegawai.getNo_pegawai());
-        holder.tanggal.setText(viewModelRekapPegawai.getTanggal_jual());
         holder.totalJual.setText(viewModelRekapPegawai.getTotal_jual());
         holder.pendapatan.setText("Rp. "+ Modul.removeE(viewModelRekapPegawai.getTotal_pendapatan()));
         holder.keuntungan.setText("Rp. "+ Modul.removeE(viewModelRekapPegawai.getTotal_keuntungan()));
@@ -49,13 +48,12 @@ public class RekapPegawaiAdapter extends RecyclerView.Adapter<RekapPegawaiAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nama, telp, alamat, tanggal, totalJual, pendapatan, keuntungan;
+        TextView nama, telp, alamat, totalJual, pendapatan, keuntungan;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nama = itemView.findViewById(R.id.txtpegawai);
             telp = itemView.findViewById(R.id.txtnomor);
             alamat = itemView.findViewById(R.id.txtalamat);
-            tanggal = itemView.findViewById(R.id.isitanggal);
             totalJual = itemView.findViewById(R.id.isitotaljual);
             pendapatan = itemView.findViewById(R.id.isipendapatan);
             keuntungan = itemView.findViewById(R.id.isiKeuntungan);
