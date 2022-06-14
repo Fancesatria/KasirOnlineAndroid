@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="2dp"
@@ -31,7 +31,6 @@
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -44,18 +43,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="sans-serif-medium"
+                    android:fontFamily="sans-serif-black"
                     android:text="Sign Up"
+                    android:textColor="@color/black"
                     android:textAlignment="center"
-                    android:textSize="45sp"/>
+                    android:textSize="35dp"/>
 
                 <TextView
                     android:id="@+id/bannerDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LokaKarya"
+                    android:layout_marginTop="6dp"
+                    android:text="Aplikasi Toko"
+                    android:textFontWeight="450"
                     android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="italic" />
 
                 <EditText
@@ -102,6 +104,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="35dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,8 +114,8 @@
 
                 <Button
                     android:id="@+id/register"
-                    android:layout_width="200dp"
-                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
                     android:backgroundTint="#2F4F4F"
                     android:text="Register"
                     android:textColor="#FFFFFF"

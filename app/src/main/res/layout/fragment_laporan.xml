@@ -18,7 +18,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPendapatan"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp">
@@ -34,10 +34,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_category" />
 
                     <LinearLayout
@@ -57,7 +57,7 @@
                             android:paddingBottom="5dp"
                             android:text="Pendapatan"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -66,7 +66,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPenjualan"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp"
@@ -83,10 +83,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_product" />
 
                     <LinearLayout
@@ -106,7 +106,7 @@
                             android:paddingBottom="5dp"
                             android:text="Penjualan"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -116,7 +116,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPenjualanBarang"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp"
@@ -132,10 +132,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_satuan" />
 
                     <LinearLayout
@@ -155,7 +155,7 @@
                             android:paddingBottom="5dp"
                             android:text="Penjualan per Barang"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -164,7 +164,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPenjualanKategori"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp"
@@ -180,10 +180,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_pelanggan" />
 
                     <LinearLayout
@@ -203,7 +203,7 @@
                             android:paddingBottom="5dp"
                             android:text="Penjualan per Kategori"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -212,7 +212,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPenjualanPelanggan"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp"
@@ -228,10 +228,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_pegawai" />
 
                     <LinearLayout
@@ -251,7 +251,7 @@
                             android:paddingBottom="5dp"
                             android:text="Penjualan per Pelanggan"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -259,7 +259,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/laporanPenjualanPegawai"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="4dp"
@@ -275,10 +275,10 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="5dp"
+                        android:paddingLeft="7dp"
+                        android:paddingTop="7dp"
+                        android:paddingRight="7dp"
+                        android:paddingBottom="7dp"
                         android:src="@drawable/ic_master_category" />
 
                     <LinearLayout
@@ -298,7 +298,7 @@
                             android:paddingBottom="5dp"
                             android:text="Penjualan per Pegawai"
                             android:textColor="#3f4f4f"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>

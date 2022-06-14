@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.authapp.Adapter.PegawaiAdapter;
@@ -37,6 +38,12 @@ public class TambahPegawai extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = InsertPegawaiBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Tambah Pegawai");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 
         inNama = bind.addNamaPagawai;
@@ -47,7 +54,7 @@ public class TambahPegawai extends AppCompatActivity {
         //memanggil db
         pr = new PegawaiRepository(getApplication());
 
-        bind.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        bind.btnAddPegawai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nama = inNama.getText().toString();
@@ -73,7 +80,6 @@ public class TambahPegawai extends AppCompatActivity {
         inAlamat.setEnabled(false);
         inTelp.setEnabled(false);
         inPin.setEnabled(false);
-        bind.btnSubmit.setEnabled(false);
         LoadingDialog.load(TambahPegawai.this);
         Call<PegawaiResponse> pegawaiResponseCall = Api.Pegawai(TambahPegawai.this).postPeg(modelPegawai);
         pegawaiResponseCall.enqueue(new Callback<PegawaiResponse>() {

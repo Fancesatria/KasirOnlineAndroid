@@ -27,44 +27,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
+                android:weightSum="2"
+                android:orientation="horizontal"
                 android:background="@drawable/gradient1">
-
-                <TextView
-                    android:id="@+id/txtpegawai"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Rossa"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtnomor"
+                    <TextView
+                        android:id="@+id/txtDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="18 May 2022"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="17sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="09766877777"
-                    android:textColor="@color/white"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    >
 
-                <TextView
-                    android:id="@+id/txtalamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="Sidoarjo"
-                    android:textColor="@color/white"/>
+                    <ImageView
+                        android:id="@+id/ic_print"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:paddingLeft="1dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="1dp"
+                        android:paddingBottom="10dp"
+                        android:src="@drawable/ic_white_print"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="100dp"
+                        />
 
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -87,27 +98,27 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtTanggal"
+                            android:id="@+id/txtFakturJual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="Tanggal Jual"
+                            android:text="Faktur Jual"
                             android:textColor="@color/primary1"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/isitanggal"
+                            android:id="@+id/isiFakturJual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="18 Mei 2022" />
+                            android:text="000" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -116,36 +127,28 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/txtTotalJual"
+                            android:id="@+id/txtPegawai"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="Total terjual"
+                            android:text="Pegawai"
                             android:textColor="@color/primary1"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/isitotaljual"
+                            android:id="@+id/isiPegawai"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="0dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="Ivanna" />
+                            android:text="Rossa" />
                     </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -156,57 +159,27 @@
                             android:id="@+id/txtPendapatan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="Total Pendapatan"
+                            android:text="Pendapatan"
                             android:textColor="@color/primary1"
                             android:textStyle="bold"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/isipendapatan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="Rp. 0" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtKeuntungan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:text="Total Keuntungan"
-                            android:textColor="@color/primary1"
-                            android:textStyle="bold"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/isiKeuntungan"
+                            android:id="@+id/isiPendapatan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="1 pcs" />
+                            android:text="Rp. 150.000" />
                     </LinearLayout>
+
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

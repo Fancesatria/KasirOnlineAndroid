@@ -5,11 +5,13 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
@@ -42,7 +44,7 @@ public class EditProduk extends AppCompatActivity {
     //buat update
     BarangRepository barangRepository;
     private EditText inNama, inKode, inHarga, inhargaBeli, inStok;
-    private Spinner inKategori, inSatuan;
+    private AutoCompleteTextView inKategori, inSatuan;
 
     //spinner kategori
     List<ModelKategori> dataKategori = new ArrayList<>();
@@ -60,6 +62,11 @@ public class EditProduk extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         bind = EditProdukBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Detail Produk");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         setContentView(bind.getRoot());
 
         //panggil db/repository
@@ -78,7 +85,7 @@ public class EditProduk extends AppCompatActivity {
                     kategori.add(modelKategori.getNama_kategori());
                 }
                 adapterKategori = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
-                bind.spinnerKategori.setAdapter(adapterKategori);
+                bind.opsiKategori.setAdapter(adapterKategori);
 
                 //memaggil function kategori/satuan biar bisa berjalan saat online
                 refreshKategori();
@@ -97,7 +104,7 @@ public class EditProduk extends AppCompatActivity {
 
                 }
                 adapterSatuan = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
-                bind.spinnerSatuan.setAdapter(adapterSatuan);
+                bind.opsiSatuan.setAdapter(adapterSatuan);
 
                 //memaggil function kategori/satuan biar bisa berjalan saat online
                 refreshSatuan();
@@ -107,13 +114,13 @@ public class EditProduk extends AppCompatActivity {
         //inisiasi variabel (update data)
         inNama = bind.namaProduk;
         inKode = bind.kodeProduk;
-        inHarga = bind.harga;
-        inhargaBeli = bind.hargaBeli;
-        inKategori = bind.spinnerKategori;
-        inSatuan = bind.spinnerSatuan;
+        inHarga = bind.hargaJual;
+        inhargaBeli = bind.hargaAwal;
+        inKategori = bind.opsiKategori;
+        inSatuan = bind.opsiSatuan;
         inStok = bind.stokAwal;
 
-        bind.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        bind.btnUpdateProduk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nama = inNama.getText().toString();
@@ -152,21 +159,23 @@ public class EditProduk extends AppCompatActivity {
 
     //ngambil / selected item
     public ModelKategori KategoriSelected(){
-        return dataKategori.get(bind.spinnerKategori.getSelectedItemPosition());
+        //return dataKategori.get(bind.opsiKategori.getSelectedItemPosition());
+        return null;
     }
 
     public ModelSatuan SatuanSelected(){
-        return dataSatuan.get(bind.spinnerSatuan.getSelectedItemPosition());
+        //return dataSatuan.get(bind.opsiSatuan.getSelectedItemPosition());
+        return null;
     }
 
     public void init(){
         //deklarasi vaiabel
         inNama = bind.namaProduk;
         inKode = bind.kodeProduk;
-        inHarga = bind.harga;
-        inhargaBeli = bind.hargaBeli;
-        inKategori = bind.spinnerKategori;
-        inSatuan = bind.spinnerSatuan;
+        inHarga = bind.hargaJual;
+        inhargaBeli = bind.hargaAwal;
+        inKategori = bind.opsiKategori;
+        inSatuan = bind.opsiSatuan;
         inStok = bind.stokAwal;
 
         //mengambil value dr intent
@@ -220,7 +229,7 @@ public class EditProduk extends AppCompatActivity {
                         kategori.add(modelKategori.getNama_kategori());
                     }
                     adapterKategori = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, kategori);
-                }   bind.spinnerKategori.setAdapter(adapterKategori);
+                }   bind.opsiKategori.setAdapter(adapterKategori);
             }
 
             @Override
@@ -242,7 +251,7 @@ public class EditProduk extends AppCompatActivity {
                         satuan.add(modelSatuan.getNama_satuan());
                     }
                     adapterSatuan = new ArrayAdapter(EditProduk.this, android.R.layout.simple_spinner_dropdown_item, satuan);
-                    bind.spinnerSatuan.setAdapter(adapterSatuan);
+                    bind.opsiSatuan.setAdapter(adapterSatuan);
                 }
             }
 

@@ -58,7 +58,6 @@ public class LapPendapatanAdapter extends RecyclerView.Adapter<LapPendapatanAdap
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tanggal = itemView.findViewById(R.id.txtDate);
-            jumlah = itemView.findViewById(R.id.txtJmlTransaksi);
             pendapatan = itemView.findViewById(R.id.isiPendapatan);
             pelanggan = itemView.findViewById(R.id.isipelanggan);
             pegawai = itemView.findViewById(R.id.isiPegawai);

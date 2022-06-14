@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.bottom_nav.shopping.TransactionSuccess"
+    tools:context=".ui.home.TransactionSuccessNotif"
     android:orientation="vertical">
 
     <LinearLayout

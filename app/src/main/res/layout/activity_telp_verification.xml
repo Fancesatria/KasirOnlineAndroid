@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="2dp"
@@ -31,7 +31,6 @@
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -48,6 +47,7 @@
                     android:layout_marginRight="40dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Proteksi Akun"
+                    android:textColor="@color/black"
                     android:textAlignment="textStart"
                     android:textSize="30sp"/>
 
@@ -58,6 +58,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:text="Masukkan Nomor telefon untuk menjaga keamanan akun"
+                    android:textFontWeight="450"
                     android:textAlignment="textStart"
                     android:textSize="18sp"
                     android:textStyle="italic" />
@@ -81,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="35dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +92,8 @@
 
                 <Button
                     android:id="@+id/sendKodeOTP"
-                    android:layout_width="200dp"
-                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
                     android:backgroundTint="#2F4F4F"
                     android:text="Send OTP Code"
                     android:textColor="#FFFFFF"

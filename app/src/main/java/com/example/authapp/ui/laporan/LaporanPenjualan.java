@@ -80,32 +80,32 @@ public class LaporanPenjualan extends AppCompatActivity {
             }
         });
 
-        bind.icSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bind.layouticsearch.setVisibility(View.GONE);
-                bind.layoutpenjualan.setVisibility(View.GONE);
-                bind.layouttotalpenjualan.setVisibility(View.GONE);
+//        bind.icSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                bind.layouticsearch.setVisibility(View.GONE);
+//                bind.layoutpenjualan.setVisibility(View.GONE);
+//                bind.layouttotalpenjualan.setVisibility(View.GONE);
+//
+//                bind.layoutsearch.setVisibility(View.VISIBLE);
+//            }
+//        });
 
-                bind.layoutsearch.setVisibility(View.VISIBLE);
-            }
-        });
-
-        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                refreshData(false);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (newText.isEmpty()){
-                    refreshData(false);
-                }
-                return false;
-            }
-        });
+//        bind.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                refreshData(false);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if (newText.isEmpty()){
+//                    refreshData(false);
+//                }
+//                return false;
+//            }
+//        });
     }
 
     public void refreshData(boolean fetch){

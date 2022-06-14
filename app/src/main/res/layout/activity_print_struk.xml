@@ -4,301 +4,365 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f1f1f1"
     android:orientation="vertical"
-    tools:context=".ui.home.PrintStruk"
-    android:background="@color/darkgrey">
+    tools:context=".ui.home.PrintStruk">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white"
-        />
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Model" />
+
+    <Spinner
+        android:id="@+id/spinnerMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/mode_print" />
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_textview2"
-        android:padding="15dp"
-        android:layout_margin="20dp"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
 
-        <LinearLayout
-            android:layout_width="300dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
-            <TextView
-                android:id="@+id/txtTitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HALO Store"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:layout_gravity="center_horizontal" />
-            <TextView
-                android:id="@+id/txtTitle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Surabaya"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+            android:layout_marginRight="12dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="—————————————————————————————"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/txtDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Keterangan Tanggal"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/txtTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Keterangan Waktu"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textStart"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/txtNoOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Nomor Order"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textStart"
-                    android:paddingLeft="5dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/txtCashierName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nama Kasir"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textEnd"
-                    android:paddingRight="5dp"/>
-                <TextView
-                    android:id="@+id/isikasir"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nama Kasir"
-                    android:textSize="10sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textEnd"
-                    android:paddingRight="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="—————————————————————————————"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/itemBarangJmlHarga"
-            android:layout_width="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"/>
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="—————————————————————————————"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:weightSum="2">
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvPrinter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/txtTotalOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Total"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textStart"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/txtTunai"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Tunai"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textStart"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/txtKembalian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Kembalian"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textStart"
-                    android:paddingLeft="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
-                <TextView
-                    android:id="@+id/jmlTotalOrder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Total"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textEnd"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/jmlTunai"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Tunai"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textEnd"
-                    android:paddingLeft="5dp"/>
-                <TextView
-                    android:id="@+id/jmlKembalian"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="Kembalian"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:textAlignment="textEnd"
-                    android:paddingLeft="5dp"/>
-            </LinearLayout>
-        </LinearLayout>
+                android:hint="hint" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="—————————————————————————————"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/txtTambahan1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Text Tambahan 1"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_gravity="center_horizontal" />
-            <TextView
-                android:id="@+id/txtTambahan2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Text Tambahan 2"
-                android:textSize="13sp"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/cari"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="#42A5F5"
+            app:srcCompat="@drawable/ic_search" />
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f1f1f1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/struk"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_textview2"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="HALO Store"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtTitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Surabaya"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="—————————————————————————————"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp">
+
+                        <TextView
+                            android:id="@+id/txtDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Keterangan Tanggal"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/txtPelanggan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Keterangan Waktu"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/txtNoOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Nomor Order"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="—————————————————————————————"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/itemBarangJmlHarga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="—————————————————————————————"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="8dp">
+
+                        <TextView
+                            android:id="@+id/txtTotalOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Total"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/txtTunai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Tunai"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/txtKembalian"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingLeft="7dp"
+                            android:text="Kembalian"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingRight="8dp">
+
+                        <TextView
+                            android:id="@+id/jmlTotalOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingRight="7dp"
+                            android:text="Total IDR"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/jmlTunai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingRight="7dp"
+                            android:text="Tunai IDR"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/jmlKembalian"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            android:paddingRight="7dp"
+                            android:text="Kembalian IDR"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="—————————————————————————————"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtTambahan1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="0dp"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:text="Terima kasih"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/txtTambahan2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="2dp"
+                        android:paddingLeft="7dp"
+                        android:paddingRight="7dp"
+                        android:text="telah berbelanja di tempat kami"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnPrint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="Cetak"
+        android:textColor="@color/white"
+        android:backgroundTint="#2F4F4F"/>
 
 
     <!--    <androidx.appcompat.widget.Toolbar-->
@@ -315,9 +379,6 @@
     <!--        app:layout_constraintEnd_toEndOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent"/>-->
-
-
-
 
 
 </LinearLayout>

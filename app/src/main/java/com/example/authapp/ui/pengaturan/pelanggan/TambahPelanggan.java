@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
@@ -38,6 +39,12 @@ public class TambahPelanggan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         bind = InsertPelangganBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Tambah Pelanggan");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 
         inNama = bind.inNama;
@@ -47,7 +54,7 @@ public class TambahPelanggan extends AppCompatActivity {
         //memanggil db
         pr = new PelangganRepository(getApplication());
 
-        bind.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        bind.btnAddPelanggan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nama = inNama.getText().toString();
@@ -70,7 +77,7 @@ public class TambahPelanggan extends AppCompatActivity {
         inNama.setEnabled(false);
         inAlamat.setEnabled(false);
         inTelp.setEnabled(false);
-        bind.btnSubmit.setEnabled(false);
+        bind.btnAddPelanggan.setEnabled(false);
 
         LoadingDialog.load(this);
         Call<PelangganResponse> pelangganResponseCall = Api.Pelanggan(TambahPelanggan.this).postPel(modelPelanggan);
@@ -94,7 +101,7 @@ public class TambahPelanggan extends AppCompatActivity {
                 inNama.setEnabled(true);
                 inAlamat.setEnabled(true);
                 inTelp.setEnabled(true);
-                bind.btnSubmit.setEnabled(true);
+                bind.btnAddPelanggan.setEnabled(true);
             }
 
             @Override
@@ -104,7 +111,7 @@ public class TambahPelanggan extends AppCompatActivity {
                 inNama.setEnabled(true);
                 inAlamat.setEnabled(true);
                 inTelp.setEnabled(true);
-                bind.btnSubmit.setEnabled(true);
+                bind.btnAddPelanggan.setEnabled(true);
             }
         });
     }

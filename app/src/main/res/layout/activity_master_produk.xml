@@ -52,7 +52,6 @@
                 android:background="@drawable/searchview_bg"
                 android:iconifiedByDefault="false"
                 android:queryHint="Cari Nama Produk..."/>
-
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -83,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginBottom="0dp"/>
         </LinearLayout>
 

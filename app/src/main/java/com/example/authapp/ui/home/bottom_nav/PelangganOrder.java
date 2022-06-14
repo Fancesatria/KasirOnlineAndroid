@@ -3,9 +3,11 @@ package com.example.authapp.ui.home.bottom_nav;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +37,12 @@ public class PelangganOrder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         bind = ActivityPelangganOrderBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Data Pelanggan");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(bind.getRoot());
 
         //inisiasi repositoy / db
@@ -48,28 +56,43 @@ public class PelangganOrder extends AppCompatActivity {
         refreshData(true);
 
         //buat search
-        bind.searchPelanggan.addTextChangedListener(new TextWatcher() {
+//        bind.searchPelanggan.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                refreshData(false);
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+
+        bind.searchPelanggan.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public boolean onQueryTextSubmit(String s) {
                 refreshData(false);
+                return true;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onQueryTextChange(String s) {
+                if (s.isEmpty()){
+                    refreshData(false);
+                }
+                return false;
             }
         });
     }
 
     public void refreshData(boolean fetch){
         //inisiasi search dari layoutnya
-        String cari = bind.searchPelanggan.getText().toString();
+        String cari = bind.searchPelanggan.getQuery().toString();
         //get SQL
         pelangganRepository.getAllPelanggan(cari).observe(this, new Observer<List<ModelPelanggan>>() {
             @Override

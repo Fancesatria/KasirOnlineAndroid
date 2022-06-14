@@ -26,6 +26,7 @@ import com.example.authapp.Response.KategoriGetResp;
 import com.example.authapp.Response.KategoriResponse;
 import com.example.authapp.Service.KategoriService;
 import com.example.authapp.databinding.ActivityMasterDaftarKategoriBinding;
+import com.example.authapp.databinding.DialogAddKategoriBinding;
 import com.example.authapp.databinding.DialogDetailKategoriBinding;
 
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ public class MasterDaftarKategori extends AppCompatActivity {
     List<ModelKategori> data= new ArrayList<>();
     KategoriAdapter adapter;
     KategoriRepository kategoriRepository;
-    private EditText inKategori;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +53,23 @@ public class MasterDaftarKategori extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         setContentView(bind.getRoot());
+
 //       Repo sqlite
         //manggil database (sqlite)
         kategoriRepository = new KategoriRepository(getApplication());
 
 //      Definisi Reclerview
-//        bind.item.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
-//        bind.item.setAdapter(adapter);
+        bind.item.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new KategoriAdapter(MasterDaftarKategori.this, data);
+        bind.item.setAdapter(adapter);
+
+        bind.plusBtnKategori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ModelKategori modelKategori = new ModelKategori();
+                dialogAddKategori(modelKategori);
+            }
+        });
 
 
 //        inKategori = bind.eKategori;
@@ -121,7 +130,7 @@ public class MasterDaftarKategori extends AppCompatActivity {
         DialogDetailKategoriBinding binder = DialogDetailKategoriBinding.inflate(LayoutInflater.from(this));
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
         alertBuilder.setView(binder.getRoot());
-        alertBuilder.setTitle("Edit Kategori");
+        alertBuilder.setTitle("EDIT KATEGORI");
         AlertDialog dialog = alertBuilder.create();
         binder.txtKategori.setText(modelKategori.getNama_kategori());
         binder.btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -142,8 +151,32 @@ public class MasterDaftarKategori extends AppCompatActivity {
         dialog.show();
     }
 
+    public void dialogAddKategori(ModelKategori modelKategori){
+        DialogAddKategoriBinding binder = DialogAddKategoriBinding.inflate(LayoutInflater.from(this));
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setView(binder.getRoot());
+        alertBuilder.setTitle("ADD KATEGORI");
+        AlertDialog dialog = alertBuilder.create();
+        binder.txtAddKategori.setText(modelKategori.getNama_kategori());
+        binder.btnAddKategori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nama_kategori = binder.txtAddKategori.getText().toString();
+                if(nama_kategori.isEmpty()){
+                    binder.txtAddKategori.setError("Harap isi dengan benar");
+                }else {
+                    binder.txtAddKategori.setError(null);
+                    modelKategori.setNama_kategori(nama_kategori);
+                    PostKat(modelKategori);
+                    dialog.cancel();
+
+                }
+            }
+        });
+        dialog.show();
+    }
+
     public void PostKat(ModelKategori modelKategori){
-        inKategori.setEnabled(false);
 //        bind.btnSimpan.setEnabled(false);
         LoadingDialog.load(this);
         Call<KategoriResponse> kategoriResponseCall = Api.Kategori(MasterDaftarKategori.this).postKat(modelKategori);
@@ -154,7 +187,6 @@ public class MasterDaftarKategori extends AppCompatActivity {
 //                EditText inKategori = bind.eKategori;
                 if (response.isSuccessful() && response.body().isStatus()) {
                     SuccessDialog.message(MasterDaftarKategori.this,getString(R.string.success_added),bind.getRoot());
-                    inKategori.getText().clear();
 
                     kategoriRepository.insert(modelKategori);
                     data.add(response.body().getData());
@@ -163,14 +195,12 @@ public class MasterDaftarKategori extends AppCompatActivity {
                     ErrorDialog.message(MasterDaftarKategori.this,getString(R.string.add_kategori_error),bind.getRoot());
 
                 }
-                inKategori.setEnabled(true);
 //                bind.btnSimpan.setEnabled(true);
             }
             @Override
             public void onFailure(Call<KategoriResponse> call, Throwable t) {
                 LoadingDialog.close();
                 ErrorDialog.message(MasterDaftarKategori.this,getString(R.string.error_fetch), bind.getRoot());
-                inKategori.setEnabled(true);
 //                bind.btnSimpan.setEnabled(true);
             }
         });

@@ -3,7 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Auth App"

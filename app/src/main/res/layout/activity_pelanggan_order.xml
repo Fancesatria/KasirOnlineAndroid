@@ -7,43 +7,31 @@
     tools:context=".ui.home.bottom_nav.PelangganOrder">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="0dp"
+        <SearchView
+            android:id="@+id/searchPelanggan"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeColor="@color/black">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchPelanggan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cari Pelanggan" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btnSimpan"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:text="+"
-            android:textColor="@color/white"
-            app:rippleColor="@color/teal_200" />
-
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/searchview_bg"
+            android:iconifiedByDefault="false"
+            android:queryHint="Cari Nama Pelanggan..."/>
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -55,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item"
